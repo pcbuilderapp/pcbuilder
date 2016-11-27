@@ -1,26 +1,25 @@
 package pcbuilder.domain.components;
 
 import pcbuilder.domain.Component;
+import pcbuilder.domain.connectors.HardDiskConnector;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class HardDisk extends Component {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
 	private int readSpeed;
 	private int writeSpeed;
 
-	public HardDisk(String name, String brand, String europeanArticleNumber, int readSpeed, int writeSpeed) {
+	@OneToOne
+	private HardDiskConnector hardDiskConnector;
+
+	public HardDisk(String name, String brand, String europeanArticleNumber, int readSpeed, int writeSpeed, HardDiskConnector hardDiskConnector) {
 		super(name, brand, europeanArticleNumber);
 		this.readSpeed = readSpeed;
 		this.writeSpeed = writeSpeed;
+		this.hardDiskConnector = hardDiskConnector;
 	}
 
 	public int getReadSpeed() {

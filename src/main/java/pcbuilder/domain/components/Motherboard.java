@@ -7,25 +7,29 @@ import pcbuilder.domain.connectors.HardDiskConnector;
 import pcbuilder.domain.connectors.MemoryConnector;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.util.List;
 
 @Entity
 public class Motherboard extends Component {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
 	private String productCode;
 	private String description;
+
+	@OneToOne
 	private FormFactor formFactor;
+
+	@OneToMany
 	private List<MemoryConnector> supportedMemoryConnectors;
+
+	@OneToMany
 	private List<CpuSocket> supportedCpuSockets;
+
+	@OneToMany
 	private List<FormFactor> supportedFormFactors;
+
+	@OneToMany
 	private List<HardDiskConnector> supportedHardDiskConnectors;
 
 	public Motherboard(String name, String brand, String europeanArticleNumber, String productCode, String description, FormFactor formFactor, List<MemoryConnector> supportedMemoryConnectors, List<CpuSocket> supportedCpuSockets, List<FormFactor> supportedFormFactors, List<HardDiskConnector> supportedHardDiskConnectors) {

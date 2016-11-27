@@ -2,21 +2,16 @@ package pcbuilder.domain.components;
 
 import pcbuilder.domain.Component;
 import pcbuilder.domain.connectors.MemoryConnector;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Memory extends Component {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
 	private String speed;
 	private String type;
+
+	@OneToOne
 	private MemoryConnector memoryConnector;
 
 	public Memory(String name, String brand, String europeanArticleNumber, String speed, String type, MemoryConnector memoryConnector) {

@@ -1,6 +1,13 @@
 package pcbuilder.domain;
 
-public class Connector {
+import javax.persistence.*;
+
+@Entity
+public abstract class Connector {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
 
 	private String name;
 

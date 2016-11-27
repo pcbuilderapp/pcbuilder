@@ -1,6 +1,13 @@
 package pcbuilder.domain;
 
-public class Component {
+import javax.persistence.*;
+
+@Entity
+public abstract class Component {
+
+	@Id
+	@GeneratedValue(strategy= GenerationType.AUTO)
+	private Long id;
 
 	private String name;
 	private String brand;

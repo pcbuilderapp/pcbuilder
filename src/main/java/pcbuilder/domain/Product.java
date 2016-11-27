@@ -1,9 +1,6 @@
 package pcbuilder.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -12,9 +9,13 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	@OneToOne
 	private Component component;
-	private Float currentPrice;
+
+	@OneToOne
 	private Shop shop;
+
+	private Float currentPrice;
 	private String productUrl;
 
 	public Product(Component component, Float currentPrice, Shop shop, String productUrl) {

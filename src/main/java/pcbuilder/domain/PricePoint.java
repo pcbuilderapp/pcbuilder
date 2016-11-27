@@ -1,9 +1,6 @@
 package pcbuilder.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,8 +10,11 @@ public class PricePoint {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
-    Date pricingDate;
-    Float price;
+    @ManyToOne
+    Product product;
+
+    private Date pricingDate;
+    private Float price;
 
     public PricePoint(Date pricingDate, Float price) {
         this.pricingDate = pricingDate;
@@ -35,5 +35,15 @@ public class PricePoint {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "PricePoint{" +
+                "id=" + id +
+                ", product=" + product +
+                ", pricingDate=" + pricingDate +
+                ", price=" + price +
+                '}';
     }
 }

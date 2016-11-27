@@ -2,22 +2,17 @@ package pcbuilder.domain.components;
 
 import pcbuilder.domain.Component;
 import pcbuilder.domain.connectors.CpuSocket;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Cpu extends Component {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-
 	private String generation;
 	private int speed;
 	private int turbo;
+
+	@OneToOne
 	private CpuSocket socket;
 
 	public Cpu(String name, String brand, String europeanArticleNumber, String generation, int speed, int turbo, CpuSocket socket) {
