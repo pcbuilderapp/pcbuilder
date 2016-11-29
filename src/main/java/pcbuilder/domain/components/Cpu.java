@@ -15,14 +15,6 @@ public class Cpu extends Component {
 	@OneToOne
 	private CpuSocket socket;
 
-	public Cpu(String name, String brand, String europeanArticleNumber, String generation, int speed, int turbo, CpuSocket socket) {
-		super(name, brand, europeanArticleNumber);
-		this.generation = generation;
-		this.speed = speed;
-		this.turbo = turbo;
-		this.socket = socket;
-	}
-
 	public String getGeneration() {
 		return generation;
 	}

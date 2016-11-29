@@ -16,11 +16,6 @@ public class PricePoint {
     private Date pricingDate;
     private Float price;
 
-    public PricePoint(Date pricingDate, Float price) {
-        this.pricingDate = pricingDate;
-        this.price = price;
-    }
-
     public Date getPricingDate() {
         return pricingDate;
     }

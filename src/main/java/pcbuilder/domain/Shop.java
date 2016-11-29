@@ -16,12 +16,6 @@ public class Shop {
 	private String url;
 	private String logoUrl;
 
-	public Shop(String name, String url, String logoUrl) {
-		this.name = name;
-		this.url = url;
-		this.logoUrl = logoUrl;
-	}
-
 	public String getName() {
 		return name;
 	}

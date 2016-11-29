@@ -14,13 +14,6 @@ public class Memory extends Component {
 	@OneToOne
 	private MemoryConnector memoryConnector;
 
-	public Memory(String name, String brand, String europeanArticleNumber, String speed, String type, MemoryConnector memoryConnector) {
-		super(name, brand, europeanArticleNumber);
-		this.speed = speed;
-		this.type = type;
-		this.memoryConnector = memoryConnector;
-	}
-
 	public String getSpeed() {
 		return speed;
 	}

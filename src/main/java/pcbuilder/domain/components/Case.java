@@ -11,11 +11,6 @@ public class Case extends Component {
 	@OneToOne
 	private FormFactor formFactor;
 
-	public Case(String name, String brand, String europeanArticleNumber, FormFactor formFactor) {
-		super(name, brand, europeanArticleNumber);
-		this.formFactor = formFactor;
-	}
-
 	public FormFactor getFormFactor() {
 		return formFactor;
 	}

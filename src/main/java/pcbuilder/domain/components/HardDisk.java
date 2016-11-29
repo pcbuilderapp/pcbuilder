@@ -15,13 +15,6 @@ public class HardDisk extends Component {
 	@OneToOne
 	private HardDiskConnector hardDiskConnector;
 
-	public HardDisk(String name, String brand, String europeanArticleNumber, int readSpeed, int writeSpeed, HardDiskConnector hardDiskConnector) {
-		super(name, brand, europeanArticleNumber);
-		this.readSpeed = readSpeed;
-		this.writeSpeed = writeSpeed;
-		this.hardDiskConnector = hardDiskConnector;
-	}
-
 	public int getReadSpeed() {
 		return readSpeed;
 	}

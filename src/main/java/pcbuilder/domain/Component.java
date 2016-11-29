@@ -13,12 +13,6 @@ public abstract class Component {
 	private String brand;
 	private String europeanArticleNumber;
 
-	public Component(String name, String brand, String europeanArticleNumber) {
-		this.name = name;
-		this.brand = brand;
-		this.europeanArticleNumber = europeanArticleNumber;
-	}
-
 	public String getName() {
 		return name;
 	}

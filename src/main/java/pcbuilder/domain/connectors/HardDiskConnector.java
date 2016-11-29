@@ -6,7 +6,4 @@ import javax.persistence.Entity;
 @Entity
 public class HardDiskConnector extends Connector {
 
-    public HardDiskConnector(String name) {
-        super(name);
-    }
 }

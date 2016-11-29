@@ -18,13 +18,6 @@ public class Product {
 	private Float currentPrice;
 	private String productUrl;
 
-	public Product(Component component, Float currentPrice, Shop shop, String productUrl) {
-		this.component = component;
-		this.currentPrice = currentPrice;
-		this.shop = shop;
-		this.productUrl = productUrl;
-	}
-
 	public Component getComponent() {
 		return component;
 	}

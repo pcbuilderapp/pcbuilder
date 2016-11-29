@@ -32,17 +32,6 @@ public class Motherboard extends Component {
 	@OneToMany
 	private List<HardDiskConnector> supportedHardDiskConnectors;
 
-	public Motherboard(String name, String brand, String europeanArticleNumber, String productCode, String description, FormFactor formFactor, List<MemoryConnector> supportedMemoryConnectors, List<CpuSocket> supportedCpuSockets, List<FormFactor> supportedFormFactors, List<HardDiskConnector> supportedHardDiskConnectors) {
-		super(name, brand, europeanArticleNumber);
-		this.productCode = productCode;
-		this.description = description;
-		this.formFactor = formFactor;
-		this.supportedMemoryConnectors = supportedMemoryConnectors;
-		this.supportedCpuSockets = supportedCpuSockets;
-		this.supportedFormFactors = supportedFormFactors;
-		this.supportedHardDiskConnectors = supportedHardDiskConnectors;
-	}
-
 	public String getProductCode() {
 		return productCode;
 	}

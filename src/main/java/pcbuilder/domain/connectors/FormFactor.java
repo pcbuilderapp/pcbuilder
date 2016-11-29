@@ -8,11 +8,6 @@ public class FormFactor extends Connector {
 
 	private int order;
 
-	public FormFactor(String name, int order) {
-		super(name);
-		this.order = order;
-	}
-
 	public int getOrder() {
 		return order;
 	}
