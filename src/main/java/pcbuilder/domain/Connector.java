@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "connector")
 public class Connector implements Serializable {
 
 	@Id

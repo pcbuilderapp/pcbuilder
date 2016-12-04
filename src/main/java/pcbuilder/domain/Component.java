@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "component")
 public class Component implements Serializable{
 
 	@Id

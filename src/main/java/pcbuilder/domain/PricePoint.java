@@ -1,10 +1,11 @@
 package pcbuilder.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class PricePoint {
+public class PricePoint implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

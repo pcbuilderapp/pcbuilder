@@ -1,18 +1,19 @@
 package pcbuilder.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Component component;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Shop shop;
 
 	private Float currentPrice;
