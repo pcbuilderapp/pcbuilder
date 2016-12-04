@@ -1,15 +1,20 @@
 package pcbuilder.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
-public abstract class Connector {
+@Table(name = "connector")
+public class Connector implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String name;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Product Component;
 
 	public String getName() {
 		return name;
@@ -19,10 +24,4 @@ public abstract class Connector {
 		this.name = name;
 	}
 
-	@Override
-	public String toString() {
-		return "Connector{" +
-				"name='" + name + '\'' +
-				'}';
-	}
 }

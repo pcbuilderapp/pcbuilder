@@ -1,17 +1,28 @@
 package pcbuilder.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.List;
 
 @Entity
-public abstract class Component {
+@Table(name = "component")
+public class Component implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String name;
 	private String brand;
 	private String europeanArticleNumber;
+	private String type;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Connector> connectors;
+
+	public Long getId(){
+		return id;
+	}
 
 	public String getName() {
 		return name;
@@ -37,12 +48,19 @@ public abstract class Component {
 		this.europeanArticleNumber = europeanArticleNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "Component{" +
-				"name='" + name + '\'' +
-				", brand='" + brand + '\'' +
-				", europeanArticleNumber='" + europeanArticleNumber + '\'' +
-				'}';
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public List<Connector> getConnectors() {
+		return connectors;
+	}
+
+	public void setConnectors(List<Connector> connectors) {
+		this.connectors = connectors;
 	}
 }

@@ -7,10 +7,10 @@ import java.util.Date;
 public class PricePoint {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Product product;
 
     private Date pricingDate;
