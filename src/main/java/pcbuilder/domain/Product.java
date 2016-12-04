@@ -51,13 +51,4 @@ public class Product implements Serializable {
 		this.productUrl = productUrl;
 	}
 
-	@Override
-	public String toString() {
-		return "Product{" +
-				"component=" + component +
-				", currentPrice=" + currentPrice +
-				", shop=" + shop +
-				", productUrl='" + productUrl + '\'' +
-				'}';
-	}
 }

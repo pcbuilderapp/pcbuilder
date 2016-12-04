@@ -41,12 +41,4 @@ public class Shop implements Serializable{
 		this.logoUrl = logoUrl;
 	}
 
-	@Override
-	public String toString() {
-		return "Shop{" +
-				"name='" + name + '\'' +
-				", url='" + url + '\'' +
-				", logoUrl='" + logoUrl + '\'' +
-				'}';
-	}
 }

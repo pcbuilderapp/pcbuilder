@@ -5,11 +5,13 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import pcbuilder.domain.Component;
 
+import java.util.List;
+
 @RepositoryRestResource(path = "component")
 public interface ComponentRepository extends JpaRepository<Component, Long> {
 
-    Iterable<Component> findByName(@Param("name")String name);
-    Iterable<Component> findByBrand(@Param("brand")String brand);
-    Iterable<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
-    Iterable<Component> findByType(@Param("type")String type);
+    List<Component> findByName(@Param("name")String name);
+    List<Component> findByBrand(@Param("brand")String brand);
+    List<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
+    List<Component> findByType(@Param("type")String type);
 }

@@ -33,13 +33,4 @@ public class PricePoint implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "PricePoint{" +
-                "id=" + id +
-                ", product=" + product +
-                ", pricingDate=" + pricingDate +
-                ", price=" + price +
-                '}';
-    }
 }

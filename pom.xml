@@ -9,13 +9,12 @@
 	<packaging>jar</packaging>
 
 	<name>pcbuilder</name>
-	<description>PC Builder Application</description>
+	<description>PC Builder</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>1.4.2.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
