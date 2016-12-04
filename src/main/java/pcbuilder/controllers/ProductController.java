@@ -1,11 +1,9 @@
 package pcbuilder.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import pcbuilder.domain.Component;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pcbuilder.domain.Product;
 import pcbuilder.repository.ProductRepository;
 
@@ -16,13 +14,13 @@ public class ProductController {
     private ProductRepository productRepository;
 
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
-    public String createVideoCard(@RequestBody Product product) {
+    public ResponseEntity<String> createProduct(@RequestBody Product product) {
         productRepository.save(product);
-        return "Product has been added!";
+        return new ResponseEntity<String>("Product has been added!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public Iterable<Product> getAllComponentsCard() {
+    public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
 

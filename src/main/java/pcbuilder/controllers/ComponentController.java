@@ -1,10 +1,10 @@
 package pcbuilder.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import pcbuilder.domain.Component;
 import pcbuilder.repository.ComponentRepository;
 
@@ -15,13 +15,13 @@ public class ComponentController {
     private ComponentRepository componentRepository;
 
     @RequestMapping(value="/component/create", method=RequestMethod.POST)
-    public String createVideoCard(@RequestBody Component component) {
+    public ResponseEntity<String> createComponent(@RequestBody Component component) {
         componentRepository.save(component);
-        return "Component has been created!";
+        return new ResponseEntity<String>("Component has been created!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/component/getall", method=RequestMethod.GET)
-    public Iterable<Component> getAllComponentsCard() {
+    public Iterable<Component> getAllComponents() {
         return componentRepository.findAll();
     }
 
