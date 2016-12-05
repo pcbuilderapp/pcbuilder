@@ -4,6 +4,9 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(uniqueConstraints={
+		@UniqueConstraint(columnNames = {"component_id", "shop_id"})
+})
 public class Product implements Serializable {
 
 	@Id
@@ -27,12 +30,12 @@ public class Product implements Serializable {
 		this.component = component;
 	}
 
-	public Float getPrice() {
+	public Float getCurrentPrice() {
 		return currentPrice;
 	}
 
-	public void setPrice(Float price) {
-		this.currentPrice = price;
+	public void setCurrentPrice(Float currentPrice) {
+		this.currentPrice = currentPrice;
 	}
 
 	public Shop getShop() {

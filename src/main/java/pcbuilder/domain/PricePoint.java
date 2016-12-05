@@ -14,6 +14,14 @@ public class PricePoint implements Serializable {
     @ManyToOne(cascade = CascadeType.ALL)
     Product product;
 
+    public PricePoint(){}
+
+    public PricePoint(Product product, Date pricingDate, Float price){
+        this.product = product;
+        this.pricingDate = pricingDate;
+        this.price = price;
+    }
+
     private Date pricingDate;
     private Float price;
 
@@ -33,4 +41,11 @@ public class PricePoint implements Serializable {
         this.price = price;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
 }

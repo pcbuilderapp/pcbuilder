@@ -7,14 +7,20 @@ import java.util.List;
 @Entity
 public class Component implements Serializable{
 
+	public enum Type { }
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	private String name;
 	private String brand;
+
+	@Column(unique = true)
 	private String europeanArticleNumber;
-	private String type;
+
+	@Enumerated(EnumType.STRING)
+	private pcbuilder.domain.Type type;
 
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Connector> connectors;
@@ -47,11 +53,11 @@ public class Component implements Serializable{
 		this.europeanArticleNumber = europeanArticleNumber;
 	}
 
-	public String getType() {
+	public pcbuilder.domain.Type getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(pcbuilder.domain.Type type) {
 		this.type = type;
 	}
 

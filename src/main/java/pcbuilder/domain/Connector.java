@@ -10,17 +10,13 @@ public class Connector implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String name;
+	private Type type;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	private Product Component;
-
-	public String getName() {
-		return name;
+	public Type getType() {
+		return type;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setType(Type type) {
+		this.type = type;
 	}
-
 }

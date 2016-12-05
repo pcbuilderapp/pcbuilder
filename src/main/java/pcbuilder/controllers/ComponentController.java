@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.domain.Component;
+import pcbuilder.domain.ComponentRequest;
 import pcbuilder.repository.ComponentRepository;
 
 @RestController
@@ -15,7 +16,6 @@ public class ComponentController {
 
     @RequestMapping(value="/component/create", method=RequestMethod.POST)
     public ResponseEntity<String> createComponent(@RequestBody Component component) {
-
         if (componentRepository.findByEuropeanArticleNumber(component.getEuropeanArticleNumber()).isEmpty()) {
             componentRepository.save(component);
         } else {
@@ -27,5 +27,10 @@ public class ComponentController {
     @RequestMapping(value="/component/getall", method=RequestMethod.GET)
     public Iterable<Component> getAllComponents() {
         return componentRepository.findAll();
+    }
+
+    @RequestMapping(value="/component/getmatchingcomponents", method=RequestMethod.GET)
+    public Iterable<Component> getMatchingComponents(@RequestBody ComponentRequest request) {
+        return componentRepository.findByNameContainingAndType(request.getFilter(), request.getType());
     }
 }
