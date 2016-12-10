@@ -2,67 +2,67 @@ package pcbuilder.domain;
 
 public class Configuration {
 
-    private Component motherboard;
-    private Component cpu;
-    private Component gpu;
-    private Component memory;
-    private Component storage;
-    private Component psu;
-    private Component casing;
+    private ComponentRef motherboard;
+    private ComponentRef cpu;
+    private ComponentRef gpu;
+    private ComponentRef memory;
+    private ComponentRef storage;
+    private ComponentRef psu;
+    private ComponentRef casing;
 
-    public Component getMotherboard() {
+    public ComponentRef getMotherboard() {
         return motherboard;
     }
 
-    public void setMotherboard(Component motherboard) {
+    public void setMotherboard(ComponentRef motherboard) {
         this.motherboard = motherboard;
     }
 
-    public Component getCpu() {
+    public ComponentRef getCpu() {
         return cpu;
     }
 
-    public void setCpu(Component cpu) {
+    public void setCpu(ComponentRef cpu) {
         this.cpu = cpu;
     }
 
-    public Component getGpu() {
+    public ComponentRef getGpu() {
         return gpu;
     }
 
-    public void setGpu(Component gpu) {
+    public void setGpu(ComponentRef gpu) {
         this.gpu = gpu;
     }
 
-    public Component getMemory() {
+    public ComponentRef getMemory() {
         return memory;
     }
 
-    public void setMemory(Component memory) {
+    public void setMemory(ComponentRef memory) {
         this.memory = memory;
     }
 
-    public Component getStorage() {
+    public ComponentRef getStorage() {
         return storage;
     }
 
-    public void setStorage(Component storage) {
+    public void setStorage(ComponentRef storage) {
         this.storage = storage;
     }
 
-    public Component getPsu() {
+    public ComponentRef getPsu() {
         return psu;
     }
 
-    public void setPsu(Component psu) {
+    public void setPsu(ComponentRef psu) {
         this.psu = psu;
     }
 
-    public Component getCasing() {
+    public ComponentRef getCasing() {
         return casing;
     }
 
-    public void setCasing(Component casing) {
+    public void setCasing(ComponentRef casing) {
         this.casing = casing;
     }
 }
