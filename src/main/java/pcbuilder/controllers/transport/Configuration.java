@@ -1,4 +1,4 @@
-package pcbuilder.domain;
+package pcbuilder.controllers.transport;
 
 public class Configuration {
 

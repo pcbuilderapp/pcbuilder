@@ -2,12 +2,11 @@ package pcbuilder.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class Component implements Serializable{
-
-	public enum Type { }
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,10 +19,18 @@ public class Component implements Serializable{
 	private String europeanArticleNumber;
 
 	@Enumerated(EnumType.STRING)
-	private pcbuilder.domain.Type type;
+	private CType type;
 
 	@OneToMany(cascade = CascadeType.ALL)
-	private List<Connector> connectors;
+	private List<Connector> connectors = new ArrayList<>();
+
+	public Component(String name, String brand, String europeanArticleNumber, CType type, List<Connector> connectors) {
+		this.name = name;
+		this.brand = brand;
+		this.europeanArticleNumber = europeanArticleNumber;
+		this.type = type;
+		this.connectors = connectors;
+	}
 
 	public Long getId(){
 		return id;
@@ -53,11 +60,11 @@ public class Component implements Serializable{
 		this.europeanArticleNumber = europeanArticleNumber;
 	}
 
-	public pcbuilder.domain.Type getType() {
+	public CType getType() {
 		return type;
 	}
 
-	public void setType(pcbuilder.domain.Type type) {
+	public void setType(CType type) {
 		this.type = type;
 	}
 
@@ -67,5 +74,9 @@ public class Component implements Serializable{
 
 	public void setConnectors(List<Connector> connectors) {
 		this.connectors = connectors;
+	}
+
+	public void addConnector(Connector connector) {
+		connectors.add(connector);
 	}
 }

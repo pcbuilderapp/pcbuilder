@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.domain.Component;
-import pcbuilder.domain.ComponentRequest;
+import pcbuilder.controllers.transport.ComponentMatchingSearch;
 import pcbuilder.repository.ComponentRepository;
 
 @RestController
@@ -30,7 +30,7 @@ public class ComponentController {
     }
 
     @RequestMapping(value="/component/getmatchingcomponents", method=RequestMethod.GET)
-    public Iterable<Component> getMatchingComponents(@RequestBody ComponentRequest request) {
+    public Iterable<Component> getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
         return componentRepository.findByNameContainingAndType(request.getFilter(), request.getType());
     }
 }

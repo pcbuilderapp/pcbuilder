@@ -10,13 +10,33 @@ public class Connector implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private Type type;
+	@Column(unique = true)
+	private String name;
 
-	public Type getType() {
+	@Enumerated(EnumType.STRING)
+	private CType type;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public CType getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(CType type) {
 		this.type = type;
 	}
 }

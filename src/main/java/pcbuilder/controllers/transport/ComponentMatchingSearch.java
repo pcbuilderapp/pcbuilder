@@ -1,6 +1,6 @@
-package pcbuilder.domain;
+package pcbuilder.controllers.transport;
 
-public class ComponentRequest {
+public class ComponentMatchingSearch {
 
     String filter;
     String type;
