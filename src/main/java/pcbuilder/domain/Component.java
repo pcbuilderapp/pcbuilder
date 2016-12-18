@@ -12,24 +12,28 @@ public class Component implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(nullable = false)
 	private String name;
+
 	private String brand;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String europeanArticleNumber;
 
+	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CType type;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Connector> connectors = new ArrayList<>();
 
-	public Component(String name, String brand, String europeanArticleNumber, CType type, List<Connector> connectors) {
+	public Component(){}
+
+	public Component(String name, String brand, String europeanArticleNumber, CType type) {
 		this.name = name;
 		this.brand = brand;
 		this.europeanArticleNumber = europeanArticleNumber;
 		this.type = type;
-		this.connectors = connectors;
 	}
 
 	public Long getId(){

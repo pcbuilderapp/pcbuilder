@@ -22,7 +22,10 @@ public class PricePoint implements Serializable {
         this.price = price;
     }
 
+    @Column(nullable = false)
     private Date pricingDate;
+
+    @Column(nullable = false)
     private Float price;
 
     public Date getPricingDate() {

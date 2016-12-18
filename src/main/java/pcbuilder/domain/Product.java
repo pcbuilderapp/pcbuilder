@@ -19,7 +19,9 @@ public class Product implements Serializable {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Shop shop;
 
+	@Column(nullable = false)
 	private Float currentPrice;
+
 	private String productUrl;
 
 	public Component getComponent() {

@@ -10,11 +10,19 @@ public class Connector implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(unique = true)
+	@Column(unique = true, nullable = false)
 	private String name;
 
+    @Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CType type;
+
+    public Connector() {}
+
+	public Connector(String name, CType type) {
+    	this.name = name;
+    	this.type = type;
+	}
 
 	public Long getId() {
 		return id;

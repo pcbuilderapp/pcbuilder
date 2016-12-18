@@ -1,34 +1,33 @@
 package pcbuilder.controllers.transport;
 
 import pcbuilder.domain.CType;
-import pcbuilder.domain.Connector;
 import java.util.List;
 
 public class ProductData {
 
     private String name;
     private String brand;
-    private String europeanArticleNumber;
-    private Float currentPrice;
-    private String productUrl;
+    private String ean;
+    private Float price;
+    private String url;
     private String shopName;
     private CType type;
-    private List<Connector> connectors;
+    private List<ConnectorData> connectors;
 
-    public Float getCurrentPrice() {
-        return currentPrice;
+    public Float getPrice() {
+        return price;
     }
 
-    public void setCurrentPrice(Float currentPrice) {
-        this.currentPrice = currentPrice;
+    public void setPrice(Float price) {
+        this.price = price;
     }
 
-    public String getProductUrl() {
-        return productUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setProductUrl(String productUrl) {
-        this.productUrl = productUrl;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public String getShopName() {
@@ -55,12 +54,12 @@ public class ProductData {
         this.brand = brand;
     }
 
-    public String getEuropeanArticleNumber() {
-        return europeanArticleNumber;
+    public String getEan() {
+        return ean;
     }
 
-    public void setEuropeanArticleNumber(String europeanArticleNumber) {
-        this.europeanArticleNumber = europeanArticleNumber;
+    public void setEan(String ean) {
+        this.ean = ean;
     }
 
     public CType getType() {
@@ -71,11 +70,11 @@ public class ProductData {
         this.type = type;
     }
 
-    public List<Connector> getConnectors() {
+    public List<ConnectorData> getConnectors() {
         return connectors;
     }
 
-    public void setConnectors(List<Connector> connectors) {
+    public void setConnectors(List<ConnectorData> connectors) {
         this.connectors = connectors;
     }
 }

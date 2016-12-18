@@ -4,12 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pcbuilder.controllers.transport.ConnectorData;
 import pcbuilder.controllers.transport.ProductData;
 import pcbuilder.domain.*;
-import pcbuilder.repository.ComponentRepository;
-import pcbuilder.repository.PricePointRepository;
-import pcbuilder.repository.ProductRepository;
-import pcbuilder.repository.ShopRepository;
+import pcbuilder.repository.*;
 
 import java.util.Date;
 import java.util.List;
@@ -29,12 +27,19 @@ public class ProductController {
     @Autowired
     private PricePointRepository pricePointRepository;
 
-    @RequestMapping(value="/product/addList", method= RequestMethod.POST)
-    public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
+    @Autowired
+    private ConnectorRepository connectorRepository;
 
-        Product product;
+    @RequestMapping(value="/product/add", method= RequestMethod.POST)
+    public ResponseEntity<String> createProducts(@RequestBody List<ProductData> productDataList) {
+
+        List<Product> products;
         List<Shop> shops;
         List<Component> components;
+        Product product;
+        Shop shop;
+        Component component;
+        Connector connector;
 
         for (ProductData productData : productDataList) {
 
@@ -44,75 +49,47 @@ public class ProductController {
             if (shops.isEmpty()) {
                 return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
             } else {
-                product.setShop(shops.get(0));
+                shop = shops.get(0);
+                product.setShop(shop);
             }
 
-            components = componentRepository.findByEuropeanArticleNumber(productData.getEuropeanArticleNumber());
+            components = componentRepository.findByEuropeanArticleNumber(productData.getEan());
             if (components.isEmpty()) {
-                product.setComponent(
-                        componentRepository.save(
-                                new Component(
-                                        productData.getName(),
-                                        productData.getBrand(),
-                                        productData.getEuropeanArticleNumber(),
-                                        productData.getType(),
-                                        productData.getConnectors())));
+                component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getType());
+                for (ConnectorData connectorData : productData.getConnectors()) {
+                    connector = connectorRepository.findByName(connectorData.getName());
+                    if (connector == null) {
+                        connector = new Connector(connectorData.getName(), connectorData.getType());
+                        connectorRepository.save(connector);
+                    }
+                    component.addConnector(connector);
+                }
+                product.setComponent(componentRepository.save(component));
             } else {
-                product.setComponent(components.get(0));
+                component = components.get(0);
+                component.setName(productData.getName());
+                component.setBrand(productData.getBrand());
+                component.setType(productData.getType());
+                product.setComponent(componentRepository.save(component));
             }
 
-            if (productRepository.findByComponentAndShop(product.getComponent(), product.getShop()).isEmpty()) {
+            products = productRepository.findByComponentAndShop(product.getComponent(), shop);
+            if (products.isEmpty()) {
+                product.setCurrentPrice(productData.getPrice());
+                product.setProductUrl(productData.getUrl());
                 productRepository.save(product);
+            } else {
+                product = products.get(0);
             }
 
-            pricePointRepository.save(new PricePoint(product, new Date(), product.getCurrentPrice()));
+            pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
         }
 
         return new ResponseEntity<String>("Products have been added!", HttpStatus.CREATED);
-    }
-
-    @RequestMapping(value="/product/add", method= RequestMethod.POST)
-    public ResponseEntity<String> createProduct(@RequestBody ProductData productData) {
-
-        Product product = new Product();
-        List<Shop> shops;
-        List<Component> components;
-
-        shops = shopRepository.findByName(productData.getShopName());
-        if (shops.isEmpty()) {
-            return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
-        } else {
-            product.setShop(shops.get(0));
-        }
-
-        components = componentRepository.findByEuropeanArticleNumber(productData.getEuropeanArticleNumber());
-        if (components.isEmpty()) {
-            product.setComponent(
-                    componentRepository.save(
-                            new Component(
-                                    productData.getName(),
-                                    productData.getBrand(),
-                                    productData.getEuropeanArticleNumber(),
-                                    productData.getType(),
-                                    productData.getConnectors())));
-        } else {
-            product.setComponent(components.get(0));
-        }
-
-        if (productRepository.findByComponentAndShop(product.getComponent(), product.getShop()).isEmpty()) {
-            productRepository.save(product);
-        }
-
-        pricePointRepository.save(new PricePoint(product, new Date(), product.getCurrentPrice()));
-
-        pricePointRepository.save(new PricePoint(product, new Date(), product.getCurrentPrice()));
-
-        return new ResponseEntity<String>("Product has been added!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
-
 }
