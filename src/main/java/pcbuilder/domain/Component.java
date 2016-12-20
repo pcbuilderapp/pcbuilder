@@ -35,10 +35,11 @@ public class Component implements Serializable{
 
 	public Component(){}
 
-	public Component(String name, String brand, String europeanArticleNumber, CType type) {
+	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type) {
 		this.name = name;
 		this.brand = brand;
 		this.europeanArticleNumber = europeanArticleNumber;
+		this.manufacturerPartNumber = manufacturerPartNumber;
 		this.type = type;
 	}
 
@@ -68,6 +69,14 @@ public class Component implements Serializable{
 
 	public void setEuropeanArticleNumber(String europeanArticleNumber) {
 		this.europeanArticleNumber = europeanArticleNumber;
+	}
+
+	public String getManufacturerPartNumber() {
+		return manufacturerPartNumber;
+	}
+
+	public void setManufacturerPartNumber(String manufacturerPartNumber) {
+		this.manufacturerPartNumber = manufacturerPartNumber;
 	}
 
 	public CType getType() {

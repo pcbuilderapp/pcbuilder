@@ -30,8 +30,19 @@ public class ProductController {
     @Autowired
     private ConnectorRepository connectorRepository;
 
-    @RequestMapping(value="/product/add", method= RequestMethod.POST)
+    @RequestMapping(value="/products/add", method= RequestMethod.POST)
     public ResponseEntity<String> createProducts(@RequestBody List<ProductData> productDataList) {
+
+        for (ProductData productData : productDataList) {
+            createProduct(productData);
+        }
+
+        return new ResponseEntity<String>("Products have been added!", HttpStatus.CREATED);
+    }
+
+
+    @RequestMapping(value="/product/add", method= RequestMethod.POST)
+    public ResponseEntity<String> createProduct(@RequestBody ProductData productData) {
 
         List<Product> products;
         List<Shop> shops;
@@ -41,53 +52,52 @@ public class ProductController {
         Component component;
         Connector connector;
 
-        for (ProductData productData : productDataList) {
+        product = new Product();
 
-            product = new Product();
-
-            shops = shopRepository.findByName(productData.getShopName());
-            if (shops.isEmpty()) {
-                return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
-            } else {
-                shop = shops.get(0);
-                product.setShop(shop);
-            }
-
-            components = componentRepository.findByEuropeanArticleNumber(productData.getEan());
-            if (components.isEmpty()) {
-                component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getType());
-                for (ConnectorData connectorData : productData.getConnectors()) {
-                    connector = connectorRepository.findByName(connectorData.getName());
-                    if (connector == null) {
-                        connector = new Connector(connectorData.getName(), connectorData.getType());
-                        connectorRepository.save(connector);
-                    }
-                    component.addConnector(connector);
-                }
-                product.setComponent(componentRepository.save(component));
-            } else {
-                component = components.get(0);
-                component.setName(productData.getName());
-                component.setBrand(productData.getBrand());
-                component.setType(productData.getType());
-                product.setComponent(componentRepository.save(component));
-            }
-
-            products = productRepository.findByComponentAndShop(product.getComponent(), shop);
-            if (products.isEmpty()) {
-                product.setCurrentPrice(productData.getPrice());
-                product.setProductUrl(productData.getUrl());
-                productRepository.save(product);
-            } else {
-                product = products.get(0);
-                product.setCurrentPrice(productData.getPrice());
-                productRepository.save(product);
-            }
-
-            pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
+        shops = shopRepository.findByName(productData.getShopName());
+        if (shops.isEmpty()) {
+            return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            shop = shops.get(0);
+            product.setShop(shop);
         }
 
-        return new ResponseEntity<String>("Products have been added!", HttpStatus.CREATED);
+        components = componentRepository.findByEuropeanArticleNumber(productData.getEan());
+        if (components.isEmpty()) {
+            component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType());
+            for (ConnectorData connectorData : productData.getConnectors()) {
+                connector = connectorRepository.findByName(connectorData.getName());
+                if (connector == null) {
+                    connector = new Connector(connectorData.getName(), connectorData.getType());
+                    connectorRepository.save(connector);
+                }
+                component.addConnector(connector);
+            }
+            product.setComponent(componentRepository.save(component));
+        } else {
+            component = components.get(0);
+            component.setName(productData.getName());
+            component.setBrand(productData.getBrand());
+            component.setType(productData.getType());
+            component.setEuropeanArticleNumber(productData.getEan());
+            component.setManufacturerPartNumber(productData.getMpn());
+            product.setComponent(componentRepository.save(component));
+        }
+
+        products = productRepository.findByComponentAndShop(product.getComponent(), shop);
+        if (products.isEmpty()) {
+            product.setCurrentPrice(productData.getPrice());
+            product.setProductUrl(productData.getUrl());
+            productRepository.save(product);
+        } else {
+            product = products.get(0);
+            product.setCurrentPrice(productData.getPrice());
+            productRepository.save(product);
+        }
+
+        pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
+
+        return new ResponseEntity<String>("Product has been added!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
