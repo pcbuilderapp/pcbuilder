@@ -80,6 +80,8 @@ public class ProductController {
                 productRepository.save(product);
             } else {
                 product = products.get(0);
+                product.setCurrentPrice(productData.getPrice());
+                productRepository.save(product);
             }
 
             pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));

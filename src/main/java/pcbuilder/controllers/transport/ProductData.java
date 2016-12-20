@@ -8,6 +8,7 @@ public class ProductData {
     private String name;
     private String brand;
     private String ean;
+    private String mpn;
     private Float price;
     private String url;
     private String shopName;
@@ -76,5 +77,13 @@ public class ProductData {
 
     public void setConnectors(List<ConnectorData> connectors) {
         this.connectors = connectors;
+    }
+
+    public String getMpn() {
+        return mpn;
+    }
+
+    public void setMpn(String mpn) {
+        this.mpn = mpn;
     }
 }
