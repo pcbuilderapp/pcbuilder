@@ -37,7 +37,7 @@ public class ProductController {
             createProduct(productData);
         }
 
-        return new ResponseEntity<String>("Products have been added!", HttpStatus.CREATED);
+        return new ResponseEntity<String>("All products have been added!", HttpStatus.CREATED);
     }
 
 
@@ -54,7 +54,7 @@ public class ProductController {
 
         product = new Product();
 
-        shops = shopRepository.findByName(productData.getShopName());
+        shops = shopRepository.findByName(productData.getShop());
         if (shops.isEmpty()) {
             return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
         } else {
@@ -97,7 +97,7 @@ public class ProductController {
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
 
-        return new ResponseEntity<String>("Product has been added!", HttpStatus.CREATED);
+        return new ResponseEntity<String>("Product '" +component.getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)

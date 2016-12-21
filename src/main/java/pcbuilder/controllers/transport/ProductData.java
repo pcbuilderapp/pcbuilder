@@ -11,7 +11,7 @@ public class ProductData {
     private String mpn;
     private Float price;
     private String url;
-    private String shopName;
+    private String shop;
     private CType type;
     private List<ConnectorData> connectors;
 
@@ -31,12 +31,12 @@ public class ProductData {
         this.url = url;
     }
 
-    public String getShopName() {
-        return shopName;
+    public String getShop() {
+        return shop;
     }
 
-    public void setShopName(String shopName) {
-        this.shopName = shopName;
+    public void setShop(String shop) {
+        this.shop = shop;
     }
 
     public String getName() {

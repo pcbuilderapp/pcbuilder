@@ -29,6 +29,6 @@ public class ShopController {
         } else {
             return new ResponseEntity<String>("Shop already exists!", HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<String>("Shop has been created!", HttpStatus.CREATED);
+        return new ResponseEntity<String>("Shop '"+shop.getName()+"' has been created!", HttpStatus.CREATED);
     }
 }
