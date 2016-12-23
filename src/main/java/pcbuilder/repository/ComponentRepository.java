@@ -17,7 +17,8 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     List<Component> findByBrand(@Param("brand")String brand);
 
-    List<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
+    //List<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
+    List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
     List<Component> findByType(@Param("type")String type);
 
     List<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")String type);

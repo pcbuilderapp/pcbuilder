@@ -62,7 +62,7 @@ public class ProductController {
             product.setShop(shop);
         }
 
-        components = componentRepository.findByEuropeanArticleNumber(productData.getEan());
+        components = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
         if (components.isEmpty()) {
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType());
             for (ConnectorData connectorData : productData.getConnectors()) {
@@ -96,7 +96,7 @@ public class ProductController {
         }
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
-
+        System.out.println("Product '" +component.getName()+ "' has been added!");
         return new ResponseEntity<String>("Product '" +component.getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
