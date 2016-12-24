@@ -16,7 +16,7 @@ public class ComponentController {
 
     @RequestMapping(value="/component/create", method=RequestMethod.POST)
     public ResponseEntity<String> createComponent(@RequestBody Component component) {
-        if (componentRepository.findByEuropeanArticleNumber(component.getEuropeanArticleNumber()).isEmpty()) {
+        if (componentRepository.findByBrandAndManufacturerPartNumber(component.getBrand(), component.getEuropeanArticleNumber()).isEmpty()) {
             componentRepository.save(component);
         } else {
             return new ResponseEntity<String>("Component already exists!", HttpStatus.CONFLICT);
