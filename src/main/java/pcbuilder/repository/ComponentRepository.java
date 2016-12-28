@@ -20,7 +20,7 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     //List<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
     List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
-    List<Component> findByType(@Param("type")String type);
+    List<Component> findByType(@Param("type")CType type);
 
     List<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type);
 
