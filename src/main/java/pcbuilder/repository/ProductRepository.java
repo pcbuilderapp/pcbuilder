@@ -11,4 +11,5 @@ import java.util.List;
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByComponentAndShop(Component component, Shop shop);
+    List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
 }

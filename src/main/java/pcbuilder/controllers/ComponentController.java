@@ -29,10 +29,5 @@ public class ComponentController {
         return componentRepository.findAll();
     }
 
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value="/component/getmatchingcomponents", method=RequestMethod.POST)
-    public Iterable<Component> getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
-        return componentRepository.findByType(request.getType());
-        //return componentRepository.findByNameContainingAndType(request.getFilter(), request.getType());
-    }
+
 }
