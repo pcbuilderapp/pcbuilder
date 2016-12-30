@@ -7,6 +7,8 @@ public class ComponentMatchingSearch {
     String filter;
     CType type;
     Configuration configuration;
+    Long page;
+    Long maxItems;
 
     public String getFilter() {
         return filter;
@@ -30,5 +32,21 @@ public class ComponentMatchingSearch {
 
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
+    }
+
+    public Long getPage() {
+        return page;
+    }
+
+    public void setPage(Long page) {
+        this.page = page;
+    }
+
+    public Long getMaxItems() {
+        return maxItems;
+    }
+
+    public void setMaxItems(Long maxItems) {
+        this.maxItems = maxItems;
     }
 }
