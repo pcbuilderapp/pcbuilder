@@ -27,7 +27,7 @@ public class ComponentItemController {
     // TODO: matching
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/componentitem/getmatchingcomponents", method= RequestMethod.POST)
-    public Iterable<ComponentItem> getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
+    public ComponentItemResponse getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
         //return componentRepository.findByType(request.getType());
         //return componentRepository.findByNameContainingAndType(request.getFilter(), request.getType());
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(),request.getMaxItems().intValue());
@@ -43,6 +43,6 @@ public class ComponentItemController {
         response.setComponents(componentItemList);
         response.setPage(components.getNumber());
         response.setPageCount(components.getTotalPages());
-        return componentItemList;
+        return response;
     }
 }
