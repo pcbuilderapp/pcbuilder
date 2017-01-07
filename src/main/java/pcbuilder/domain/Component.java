@@ -3,7 +3,9 @@ package pcbuilder.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints={
@@ -33,6 +35,9 @@ public class Component implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Connector> connectors = new ArrayList<>();
 
+	@ElementCollection
+	private Set<String> pictureUrls =  new HashSet();
+
 	public Component(){}
 
 	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type) {
@@ -45,6 +50,10 @@ public class Component implements Serializable{
 
 	public Long getId(){
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -97,5 +106,17 @@ public class Component implements Serializable{
 
 	public void addConnector(Connector connector) {
 		connectors.add(connector);
+	}
+
+	public Set<String> getPictureUrls() {
+		return pictureUrls;
+	}
+
+	public void setPictureUrls(Set<String> pictureUrls) {
+		this.pictureUrls = pictureUrls;
+	}
+
+	public void addPictureUrl(String pictureUrl) {
+		pictureUrls.add(pictureUrl);
 	}
 }

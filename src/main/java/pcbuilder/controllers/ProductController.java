@@ -65,6 +65,7 @@ public class ProductController {
         components = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
         if (components.isEmpty()) {
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType());
+            productData.getPictureUrls().forEach(component::addPictureUrl);
             for (ConnectorData connectorData : productData.getConnectors()) {
                 connector = connectorRepository.findByName(connectorData.getName());
                 if (connector == null) {
@@ -81,6 +82,7 @@ public class ProductController {
             component.setType(productData.getType());
             component.setEuropeanArticleNumber(productData.getEan());
             component.setManufacturerPartNumber(productData.getMpn());
+            productData.getPictureUrls().forEach(component::addPictureUrl);
             product.setComponent(componentRepository.save(component));
         }
 

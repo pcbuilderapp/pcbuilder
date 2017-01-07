@@ -15,7 +15,6 @@ import pcbuilder.repository.ProductRepository;
 import java.util.LinkedList;
 import java.util.List;
 
-
 @RestController
 public class ComponentItemController {
     @Autowired
