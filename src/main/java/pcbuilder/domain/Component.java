@@ -3,9 +3,7 @@ package pcbuilder.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(uniqueConstraints={
@@ -36,7 +34,7 @@ public class Component implements Serializable{
 	private List<Connector> connectors = new ArrayList<>();
 
 	@ElementCollection
-	private Set<String> pictureUrls =  new HashSet();
+	private List<String> pictureUrls =  new ArrayList<>();
 
 	public Component(){}
 
@@ -108,11 +106,11 @@ public class Component implements Serializable{
 		connectors.add(connector);
 	}
 
-	public Set<String> getPictureUrls() {
+	public List<String> getPictureUrls() {
 		return pictureUrls;
 	}
 
-	public void setPictureUrls(Set<String> pictureUrls) {
+	public void setPictureUrls(List<String> pictureUrls) {
 		this.pictureUrls = pictureUrls;
 	}
 
