@@ -28,5 +28,4 @@ public class ComponentController {
         return componentRepository.findAll();
     }
 
-
 }
