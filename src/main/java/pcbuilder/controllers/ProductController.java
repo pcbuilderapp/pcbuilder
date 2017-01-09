@@ -31,62 +31,31 @@ public class ProductController {
     private ConnectorRepository connectorRepository;
 
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
-    public ResponseEntity<String> createProducts(@RequestBody List<ProductData> productDataList) {
+    public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
 
         for (ProductData productData : productDataList) {
-            createProduct(productData);
+            addProduct(productData);
         }
 
         return new ResponseEntity<String>("All products have been added!", HttpStatus.CREATED);
     }
 
-
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
-    public ResponseEntity<String> createProduct(@RequestBody ProductData productData) {
+    public ResponseEntity<String> addProduct(@RequestBody ProductData productData) {
 
         List<Product> products;
-        List<Shop> shops;
-        List<Component> components;
-        Product product;
-        Shop shop;
-        Component component;
-        Connector connector;
+        List<Shop> shops = shopRepository.findByName(productData.getShop());
+        Product product = new Product();
 
-        product = new Product();
-
-        shops = shopRepository.findByName(productData.getShop());
         if (shops.isEmpty()) {
             return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
         } else {
-            shop = shops.get(0);
-            product.setShop(shop);
+            product.setShop(shops.get(0));
         }
 
-        components = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
-        if (components.isEmpty()) {
-            component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType());
-            productData.getPictureUrls().forEach(component::addPictureUrl);
-            for (ConnectorData connectorData : productData.getConnectors()) {
-                connector = connectorRepository.findByName(connectorData.getName());
-                if (connector == null) {
-                    connector = new Connector(connectorData.getName(), connectorData.getType());
-                    connectorRepository.save(connector);
-                }
-                component.addConnector(connector);
-            }
-            product.setComponent(componentRepository.save(component));
-        } else {
-            component = components.get(0);
-            component.setName(productData.getName());
-            component.setBrand(productData.getBrand());
-            component.setType(productData.getType());
-            component.setEuropeanArticleNumber(productData.getEan());
-            component.setManufacturerPartNumber(productData.getMpn());
-            productData.getPictureUrls().forEach(component::addPictureUrl);
-            product.setComponent(componentRepository.save(component));
-        }
+        product.setComponent(componentRepository.save(persistComponent(componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn()), productData)));
+        products = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
 
-        products = productRepository.findByComponentAndShop(product.getComponent(), shop);
         if (products.isEmpty()) {
             product.setCurrentPrice(productData.getPrice());
             product.setProductUrl(productData.getUrl());
@@ -98,12 +67,46 @@ public class ProductController {
         }
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
-        System.out.println("Product '" +component.getName()+ "' has been added!");
-        return new ResponseEntity<String>("Product '" +component.getName()+ "' has been added!", HttpStatus.CREATED);
+        System.out.println("Product '" +product.getComponent().getName()+ "' has been added!");
+        return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public Component persistComponent(List<Component> components, ProductData productData) {
+
+        Component component;
+
+        if (components.isEmpty()) {
+
+            Connector connector;
+            component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType(), productData.getPictureUrl());
+
+            for (ConnectorData connectorData : productData.getConnectors()) {
+
+                connector = connectorRepository.findByName(connectorData.getName());
+                if (connector == null) {
+                    connector = new Connector(connectorData.getName(), connectorData.getType());
+                    connectorRepository.save(connector);
+                }
+                component.addConnector(connector);
+            }
+
+        } else {
+            component = components.get(0);
+            component.setName(productData.getName());
+            component.setBrand(productData.getBrand());
+            component.setType(productData.getType());
+            component.setEuropeanArticleNumber(productData.getEan());
+            component.setManufacturerPartNumber(productData.getMpn());
+            component.setPictureUrl(productData.getPictureUrl());
+        }
+
+        System.out.println(component.toString());
+
+        return component;
     }
 }
