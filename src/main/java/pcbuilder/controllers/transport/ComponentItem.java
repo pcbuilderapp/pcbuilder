@@ -23,6 +23,7 @@ public class ComponentItem {
     private Float price;
     private String url;
     private String shop;
+    private String image;
 
     private List<AlternativeShopItem> alternativeShops;
 
@@ -37,6 +38,7 @@ public class ComponentItem {
         price = product.getCurrentPrice();
         url = product.getProductUrl();
         shop = product.getShop().getName();
+        image = component.getPictureUrl();
 
         alternativeShops = new LinkedList<>();
         for (Product p : alternativeProducts) {
@@ -123,5 +125,13 @@ public class ComponentItem {
 
     public void setAlternativeShops(List<AlternativeShopItem> alternativeShops) {
         this.alternativeShops = alternativeShops;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
