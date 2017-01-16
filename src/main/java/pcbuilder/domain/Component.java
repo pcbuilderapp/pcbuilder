@@ -33,18 +33,25 @@ public class Component implements Serializable{
 	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Connector> connectors = new ArrayList<>();
 
+	private String pictureUrl;
+
 	public Component(){}
 
-	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type) {
+	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type, String pictureUrl) {
 		this.name = name;
 		this.brand = brand;
 		this.europeanArticleNumber = europeanArticleNumber;
 		this.manufacturerPartNumber = manufacturerPartNumber;
 		this.type = type;
+		this.pictureUrl = pictureUrl;
 	}
 
 	public Long getId(){
 		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -97,5 +104,13 @@ public class Component implements Serializable{
 
 	public void addConnector(Connector connector) {
 		connectors.add(connector);
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
 	}
 }

@@ -13,6 +13,7 @@ public class ProductData {
     private String url;
     private String shop;
     private CType type;
+    private String pictureUrl;
     private List<ConnectorData> connectors;
 
     public Float getPrice() {
@@ -85,5 +86,13 @@ public class ProductData {
 
     public void setMpn(String mpn) {
         this.mpn = mpn;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrls(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 }
