@@ -4,10 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.ComponentItem;
-import pcbuilder.controllers.transport.ComponentItemResponse;
-import pcbuilder.controllers.transport.ComponentMatchingSearch;
+import pcbuilder.controllers.transport.*;
 import pcbuilder.domain.Component;
+import pcbuilder.domain.Connector;
 import pcbuilder.domain.Product;
 import pcbuilder.repository.ComponentRepository;
 import pcbuilder.repository.ProductRepository;
@@ -27,8 +26,17 @@ public class ComponentItemController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/componentitem/getmatchingcomponents", method= RequestMethod.POST)
     public ComponentItemResponse getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
-        //return componentRepository.findByType(request.getType());
-        //return componentRepository.findByNameContainingAndType(request.getFilter(), request.getType());
+        Configuration configuration = request.getConfiguration();
+        List<Connector> connectors = new LinkedList<>();
+        if (configuration.getMotherboard() != null) {
+            connectors = configuration.getMotherboard().component().getConnectors();
+        } else {
+            for (ComponentRef componentRef : configuration) {
+                if (componentRef == null) continue;
+                connectors.addAll(componentRef.component().getConnectors());
+            }
+
+        }
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(),request.getMaxItems().intValue());
         Page<Component> components = componentRepository.findByNameContainingAndType(request.getFilter(), request.getType(),pageRequest);
         ComponentItemResponse response = new ComponentItemResponse();

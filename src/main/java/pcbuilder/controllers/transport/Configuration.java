@@ -1,6 +1,13 @@
 package pcbuilder.controllers.transport;
 
-public class Configuration {
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class Configuration implements Iterable<ComponentRef> {
+
+    private final int componentCount = 7;
 
     private ComponentRef motherboard;
     private ComponentRef cpu;
@@ -64,5 +71,64 @@ public class Configuration {
 
     public void setCasing(ComponentRef casing) {
         this.casing = casing;
+    }
+
+    @Override
+    public Iterator<ComponentRef> iterator() {
+        return new ComponentRefIterator(this,0,componentCount);
+    }
+
+    //@Override
+    //public void forEach(Consumer<? super ComponentRef> consumer) {
+    //    consumer.
+    //}
+
+    @Override
+    public Spliterator<ComponentRef> spliterator() {
+        return null;
+    }
+
+    private static final class ComponentRefIterator implements Iterator<ComponentRef> {
+        private int cursor;
+        private final int end;
+        private final Configuration configuration;
+
+        public ComponentRefIterator(Configuration configuration,int start, int end) {
+            this.configuration = configuration;
+            this.cursor = start;
+            this.end = end;
+        }
+
+        public boolean hasNext() {
+            return this.cursor < end;
+        }
+
+        public ComponentRef next() {
+            if(this.hasNext()) {
+                ComponentRef componentRef = new ComponentRef();
+                if (cursor == 0) {
+                    componentRef = configuration.getMotherboard();
+                } else if (cursor == 1) {
+                    componentRef = configuration.getCasing();
+                } else if (cursor == 2) {
+                    componentRef = configuration.getCpu();
+                } else if (cursor == 3) {
+                    componentRef = configuration.getGpu();
+                } else if (cursor == 4) {
+                    componentRef = configuration.getMemory();
+                } else if (cursor == 5) {
+                    componentRef = configuration.getPsu();
+                } else if (cursor == 6) {
+                    componentRef = configuration.getStorage();
+                }
+                cursor++;
+                return componentRef;
+            }
+            throw new NoSuchElementException();
+        }
+
+        public void remove() {
+            throw new UnsupportedOperationException();
+        }
     }
 }
