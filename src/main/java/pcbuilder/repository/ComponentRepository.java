@@ -10,6 +10,7 @@ import pcbuilder.domain.CType;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.Connector;
 
+import java.util.Collection;
 import java.util.List;
 
 @RepositoryRestResource(path = "components")
@@ -25,6 +26,19 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
     List<Component> findByType(@Param("type")CType type);
 
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Collection<Connector> connectors5, Pageable pageable);
+
+    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Collection<Connector> connectors5, Collection<Connector> connectors6, Pageable pageable);
+
 
     //List<Component> findByNameContainingAndTypeAndConnector(@Param("name")String name, @Param("type")String type, @Param("Connector")Connector connector);
 }

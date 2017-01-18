@@ -1,5 +1,5 @@
 package pcbuilder.domain;
 
 public enum CType {
-    MOTHERBOARD, CPU, GPU, MEMORY, STORAGE, PSU, CASING
+    MOTHERBOARD, CPU, GPU, MEMORY, STORAGE, PSU, CASE
 }
