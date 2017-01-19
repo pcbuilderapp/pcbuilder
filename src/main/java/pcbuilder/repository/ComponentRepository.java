@@ -29,19 +29,20 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
 
-    @Query("SELECT c FROM Component c " +
-            "WHERE  c.name LIKE %:name% AND c.type = :type AND c IN (" +
-            "    SELECT y FROM Component y " +
-            "    INNER JOIN y.connectors yt " +
-            "    WHERE yt IN (" +
-            "        :connectors" +
-            "    )" +
-            "    GROUP BY y " +
-            "    HAVING COUNT( DISTINCT yt) = (" +
-            "        :connectorsSize" +
-            "    )" +
-            ")"
-    )
-    Page<Component> findByNameContainingAndWithAllConnectors(@Param("name")String name, @Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize, Pageable pageable);
+    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
+            "WHERE c.name LIKE %:name% " +
+            "AND c.type = :type " +
+            "AND yt IN (:connectors) " +
+            "GROUP BY c " +
+            "HAVING COUNT(DISTINCT yt) = (:connectorsSize)")
+    Page<Component> findByNameContainingAndWithAllConnectorsPaged(@Param("name")String name, @Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize, Pageable pageable);
+
+    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
+            "WHERE c.name LIKE %:name% " +
+            "AND c.type = :type " +
+            "AND yt IN (:connectors) " +
+            "GROUP BY c " +
+            "HAVING COUNT(DISTINCT yt) = (:connectorsSize)")
+    List<Component> findByNameContainingAndWithAllConnectors(@Param("name")String name, @Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize);
     //List<Component> findByNameContainingAndTypeAndConnector(@Param("name")String name, @Param("type")String type, @Param("Connector")Connector connector);
 }

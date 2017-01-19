@@ -37,7 +37,7 @@ public class ComponentItemController {
         //List<Component> cfgComponents = new LinkedList<>();
         if (configuration.getMotherboard() != null && request.getType() != CType.MOTHERBOARD) {
             connectors = (componentRepository.getOne(configuration.getMotherboard().getId())).getConnectors();
-        } else if (request.getType() == CType.MOTHERBOARD) {
+        } else if (request.getType() == CType.MOTHERBOARD || configuration.hasComponents()) {
             for (ComponentRef componentRef : configuration) {
                 if (componentRef == null) continue;
                 if (componentRef == configuration.getMotherboard()) continue;
@@ -50,7 +50,20 @@ public class ComponentItemController {
             components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(),connectors,pageRequest);
         } else if (connectors.size()>0 && request.getType() == CType.MOTHERBOARD) {
             // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndWithAllConnectors(request.getFilter(), request.getType(),connectors,Long.valueOf(connectors.size()),pageRequest);
+            components = componentRepository.findByNameContainingAndWithAllConnectorsPaged(request.getFilter(), request.getType(),connectors,Long.valueOf(connectors.size()),pageRequest);
+        } else if (connectors.size()>0) {
+            // geen moederbord, wel components, nu niet een moederbord aan het kiezen
+            List<Component> motherboards = componentRepository.findByNameContainingAndWithAllConnectors("", CType.MOTHERBOARD,connectors,Long.valueOf(connectors.size()));
+            // bouw connector lijst op basis van deze moederborden
+            List<Connector> motherboardConnectors = new LinkedList<>();
+            for (Component motherboard : motherboards) {
+                for (Connector connector : motherboard.getConnectors()) {
+                    if (motherboardConnectors.contains(connector)) continue;
+                    motherboardConnectors.add(connector);
+                }
+            }
+            // geef componenten
+            components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(),motherboardConnectors,pageRequest);
         } else {
             // geen moederbord, nu niet een moederbord aan het kiezen
             components = componentRepository.findByNameContainingAndType(request.getFilter(), request.getType(),pageRequest);

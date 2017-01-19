@@ -83,9 +83,16 @@ public class Configuration implements Iterable<ComponentRef> {
     //    consumer.
     //}
 
-    @Override
-    public Spliterator<ComponentRef> spliterator() {
-        return null;
+    //@Override
+    //public Spliterator<ComponentRef> spliterator() {
+    //    return null;
+    //}
+
+    public boolean hasComponents() {
+        for (ComponentRef componentRef : this) {
+            if (componentRef != null) return true;
+        }
+        return false;
     }
 
     private static final class ComponentRefIterator implements Iterator<ComponentRef> {
