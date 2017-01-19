@@ -29,16 +29,19 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
 
-    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Pageable pageable);
-
-    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Pageable pageable);
-
-    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Pageable pageable);
-
-    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Collection<Connector> connectors5, Pageable pageable);
-
-    Page<Component> findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Collection<Connector> connectors2, Collection<Connector> connectors3, Collection<Connector> connectors4, Collection<Connector> connectors5, Collection<Connector> connectors6, Pageable pageable);
-
-
+    @Query("SELECT c FROM Component c " +
+            "WHERE  c.name LIKE %:name% AND c.type = :type AND c IN (" +
+            "    SELECT y FROM Component y " +
+            "    INNER JOIN y.connectors yt " +
+            "    WHERE yt IN (" +
+            "        :connectors" +
+            "    )" +
+            "    GROUP BY y " +
+            "    HAVING COUNT( DISTINCT yt) = (" +
+            "        :connectorsSize" +
+            "    )" +
+            ")"
+    )
+    Page<Component> findByNameContainingAndWithAllConnectors(@Param("name")String name, @Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize, Pageable pageable);
     //List<Component> findByNameContainingAndTypeAndConnector(@Param("name")String name, @Param("type")String type, @Param("Connector")Connector connector);
 }

@@ -34,38 +34,23 @@ public class ComponentItemController {
 
         Page<Component> components;
         List<Connector> connectors = new LinkedList<>();
-        List<Component> cfgComponents = new LinkedList<>();
+        //List<Component> cfgComponents = new LinkedList<>();
         if (configuration.getMotherboard() != null && request.getType() != CType.MOTHERBOARD) {
             connectors = (componentRepository.getOne(configuration.getMotherboard().getId())).getConnectors();
         } else if (request.getType() == CType.MOTHERBOARD) {
             for (ComponentRef componentRef : configuration) {
                 if (componentRef == null) continue;
                 if (componentRef == configuration.getMotherboard()) continue;
-                cfgComponents.add(componentRepository.getOne(componentRef.getId()));
+                connectors.addAll(componentRepository.getOne(componentRef.getId()).getConnectors());
             }
         }
 
-        if (connectors.size() > 0) {
+        if (configuration.getMotherboard() != null && request.getType() != CType.MOTHERBOARD) {
             // we hebben een moederbord
             components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(),connectors,pageRequest);
-        } else if (cfgComponents.size()==1) {
+        } else if (connectors.size()>0 && request.getType() == CType.MOTHERBOARD) {
             // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),pageRequest);
-        } else if (cfgComponents.size()==2) {
-            // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsInAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),cfgComponents.get(1).getConnectors(),pageRequest);
-        } else if (cfgComponents.size()==3) {
-            // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),cfgComponents.get(1).getConnectors(),cfgComponents.get(2).getConnectors(),pageRequest);
-        } else if (cfgComponents.size()==4) {
-            // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),cfgComponents.get(1).getConnectors(),cfgComponents.get(2).getConnectors(),cfgComponents.get(3).getConnectors(),pageRequest);
-        } else if (cfgComponents.size()==5) {
-            // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),cfgComponents.get(1).getConnectors(),cfgComponents.get(2).getConnectors(),cfgComponents.get(3).getConnectors(),cfgComponents.get(4).getConnectors(),pageRequest);
-        } else if (cfgComponents.size()==6) {
-            // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndTypeAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsInAndConnectorsIn(request.getFilter(), request.getType(),cfgComponents.get(0).getConnectors(),cfgComponents.get(1).getConnectors(),cfgComponents.get(2).getConnectors(),cfgComponents.get(3).getConnectors(),cfgComponents.get(4).getConnectors(),cfgComponents.get(5).getConnectors(),pageRequest);
+            components = componentRepository.findByNameContainingAndWithAllConnectors(request.getFilter(), request.getType(),connectors,Long.valueOf(connectors.size()),pageRequest);
         } else {
             // geen moederbord, nu niet een moederbord aan het kiezen
             components = componentRepository.findByNameContainingAndType(request.getFilter(), request.getType(),pageRequest);
