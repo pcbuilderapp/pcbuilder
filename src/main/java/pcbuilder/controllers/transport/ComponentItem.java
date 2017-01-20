@@ -2,6 +2,7 @@ package pcbuilder.controllers.transport;
 
 import pcbuilder.domain.CType;
 import pcbuilder.domain.Component;
+import pcbuilder.domain.Connector;
 import pcbuilder.domain.Product;
 
 import javax.persistence.EnumType;
@@ -26,6 +27,7 @@ public class ComponentItem {
     private String image;
 
     private List<AlternativeShopItem> alternativeShops;
+    private List<Connector> connectors;
 
     public ComponentItem(Component component, Product product, Iterable<Product> alternativeProducts) {
         id = component.getId();
@@ -34,6 +36,7 @@ public class ComponentItem {
         europeanArticleNumber = component.getEuropeanArticleNumber();
         manufacturerPartNumber = component.getManufacturerPartNumber();
         type = component.getType();
+        connectors = component.getConnectors();
 
         price = product.getCurrentPrice();
         url = product.getProductUrl();
@@ -133,5 +136,13 @@ public class ComponentItem {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public List<Connector> getConnectors() {
+        return connectors;
+    }
+
+    public void setConnectors(List<Connector> connectors) {
+        this.connectors = connectors;
     }
 }
