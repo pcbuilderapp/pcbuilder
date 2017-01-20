@@ -110,7 +110,7 @@ public class Component implements Serializable{
 
 	public boolean hasConnector(String connectorName, CType type) {
 		for(Connector connector : connectors) {
-			if (connector.getName() == connectorName && connector.getType() == type) return true;
+			if (connector.getName().equals(connectorName) && connector.getType().name().equals(type.name())) return true;
 		}
 		return false;
 	}

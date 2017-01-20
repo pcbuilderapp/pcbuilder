@@ -87,11 +87,6 @@ public class ProductController {
 
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType(), productData.getPictureUrl());
 
-            for (ConnectorData connectorData : productData.getConnectors()) {
-
-                component.addConnector(persistConnector(connectorData));
-            }
-
         } else {
 
             component = components.get(0);
@@ -101,13 +96,13 @@ public class ProductController {
             component.setEuropeanArticleNumber(productData.getEan());
             component.setManufacturerPartNumber(productData.getMpn());
             component.setPictureUrl(productData.getPictureUrl());
+        }
 
-            for (ConnectorData connectorData : productData.getConnectors()) {
+        for (ConnectorData connectorData : productData.getConnectors()) {
 
-                if (!component.hasConnector(connectorData.getName(), connectorData.getType())) {
+            if (!component.hasConnector(connectorData.getName(), connectorData.getType())) {
 
-                    component.addConnector(persistConnector(connectorData));
-                }
+                component.addConnector(persistConnector(connectorData));
             }
         }
 
