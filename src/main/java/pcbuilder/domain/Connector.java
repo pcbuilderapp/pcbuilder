@@ -4,13 +4,16 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(uniqueConstraints={
+		@UniqueConstraint(columnNames = {"name", "type"})
+})
 public class Connector implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column(unique = true, nullable = false)
+	@Column(nullable = false)
 	private String name;
 
     @Column(nullable = false)
