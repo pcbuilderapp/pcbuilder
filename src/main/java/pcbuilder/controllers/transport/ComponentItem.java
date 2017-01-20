@@ -30,6 +30,7 @@ public class ComponentItem {
     private List<Connector> connectors;
 
     public ComponentItem(Component component, Product product, Iterable<Product> alternativeProducts) {
+
         id = component.getId();
         name = component.getName();
         brand = component.getBrand();
@@ -42,8 +43,8 @@ public class ComponentItem {
         url = product.getProductUrl();
         shop = product.getShop().getName();
         image = component.getPictureUrl();
-
         alternativeShops = new LinkedList<>();
+
         for (Product p : alternativeProducts) {
             AlternativeShopItem alternativeShopItem = new AlternativeShopItem(p);
             alternativeShops.add(alternativeShopItem);

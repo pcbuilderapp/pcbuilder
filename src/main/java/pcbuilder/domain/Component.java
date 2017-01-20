@@ -103,7 +103,16 @@ public class Component implements Serializable{
 	}
 
 	public void addConnector(Connector connector) {
-		connectors.add(connector);
+	    if (connector != null) {
+            connectors.add(connector);
+        }
+	}
+
+	public boolean hasConnector(String connectorName, CType type) {
+		for(Connector connector : connectors) {
+			if (connector.getName() == connectorName && connector.getType() == type) return true;
+		}
+		return false;
 	}
 
 	public String getPictureUrl() {

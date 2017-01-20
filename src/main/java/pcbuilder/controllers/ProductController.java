@@ -57,10 +57,13 @@ public class ProductController {
         products = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
 
         if (products.isEmpty()) {
+
             product.setCurrentPrice(productData.getPrice());
             product.setProductUrl(productData.getUrl());
             productRepository.save(product);
+
         } else {
+
             product = products.get(0);
             product.setCurrentPrice(productData.getPrice());
             productRepository.save(product);
@@ -76,26 +79,21 @@ public class ProductController {
         return productRepository.findAll();
     }
 
-    public Component persistComponent(List<Component> components, ProductData productData) {
+    private Component persistComponent(List<Component> components, ProductData productData) {
 
         Component component;
 
         if (components.isEmpty()) {
 
-            Connector connector;
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType(), productData.getPictureUrl());
 
             for (ConnectorData connectorData : productData.getConnectors()) {
 
-                connector = connectorRepository.findByName(connectorData.getName());
-                if (connector == null) {
-                    connector = new Connector(connectorData.getName(), connectorData.getType());
-                    connectorRepository.save(connector);
-                }
-                component.addConnector(connector);
+                component.addConnector(persistConnector(connectorData));
             }
 
         } else {
+
             component = components.get(0);
             component.setName(productData.getName());
             component.setBrand(productData.getBrand());
@@ -103,10 +101,28 @@ public class ProductController {
             component.setEuropeanArticleNumber(productData.getEan());
             component.setManufacturerPartNumber(productData.getMpn());
             component.setPictureUrl(productData.getPictureUrl());
+
+            for (ConnectorData connectorData : productData.getConnectors()) {
+
+                if (!component.hasConnector(connectorData.getName(), connectorData.getType())) {
+
+                    component.addConnector(persistConnector(connectorData));
+                }
+            }
         }
 
-        System.out.println(component.toString());
-
         return component;
+    }
+
+    private Connector persistConnector(ConnectorData connectorData) {
+
+        Connector connector = connectorRepository.findByNameAndType(connectorData.getName(), connectorData.getType());
+
+        if (connector == null) {
+            connector = new Connector(connectorData.getName(), connectorData.getType());
+            connectorRepository.save(connector);
+        }
+
+        return connector;
     }
 }
