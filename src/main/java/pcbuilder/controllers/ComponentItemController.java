@@ -13,6 +13,7 @@ import pcbuilder.domain.Product;
 import pcbuilder.repository.ComponentRepository;
 import pcbuilder.repository.ProductRepository;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -30,13 +31,7 @@ public class ComponentItemController {
 
         Configuration configuration = request.getConfiguration();
 
-        Sort sort;
-
-        if (request.getSort() == null || request.getSort().equals("")) {
-            sort = new Sort("name");
-        } else {
-            sort = new Sort(request.getSort());
-        }
+        Sort sort = createSort(request.getSort());
 
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
@@ -100,5 +95,22 @@ public class ComponentItemController {
         response.setPageCount(components.getTotalPages());
 
         return response;
+    }
+
+    private Sort createSort(String sortingColumn) {
+
+        Sort sort;
+
+        if (sortingColumn == null || sortingColumn.equals("")) {
+            sort = new Sort("name");
+        } else {
+            if (sortingColumn.equals("brand")) {
+                sort = new Sort(sortingColumn);
+            } else {
+                sort = new Sort("name");
+            }
+        }
+
+        return sort;
     }
 }

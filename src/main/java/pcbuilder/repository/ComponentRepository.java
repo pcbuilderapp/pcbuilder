@@ -23,7 +23,7 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
 
-    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
+    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt INNER JOIN c.products " +
             "WHERE c.name LIKE %:name% " +
             "AND c.type = :type " +
             "AND yt IN (:connectors) " +
