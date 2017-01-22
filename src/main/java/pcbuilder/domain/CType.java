@@ -1,8 +1,8 @@
 package pcbuilder.domain;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Enum CType.
+ * Declared Component type
  */
 public enum CType {
     

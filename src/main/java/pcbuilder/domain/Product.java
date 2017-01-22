@@ -3,7 +3,6 @@ package pcbuilder.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Product.
  */
@@ -45,7 +44,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the component.
 	 *
-	 * @param component the new component
+	 * @param component
 	 */
 	public void setComponent(Component component) {
 		this.component = component;
@@ -63,7 +62,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the current price.
 	 *
-	 * @param currentPrice the new current price
+	 * @param currentPrice
 	 */
 	public void setCurrentPrice(Float currentPrice) {
 		this.currentPrice = currentPrice;
@@ -81,7 +80,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the shop.
 	 *
-	 * @param shop the new shop
+	 * @param shop
 	 */
 	public void setShop(Shop shop) {
 		this.shop = shop;
@@ -99,7 +98,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the product url.
 	 *
-	 * @param productUrl the new product url
+	 * @param productUrl
 	 */
 	public void setProductUrl(String productUrl) {
 		this.productUrl = productUrl;

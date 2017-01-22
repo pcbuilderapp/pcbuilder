@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Component.
  */
@@ -56,12 +55,12 @@ public class Component implements Serializable{
 	/**
 	 * Instantiates a new component.
 	 *
-	 * @param name the name
-	 * @param brand the brand
-	 * @param europeanArticleNumber the european article number
-	 * @param manufacturerPartNumber the manufacturer part number
-	 * @param type the type
-	 * @param pictureUrl the picture url
+	 * @param name
+	 * @param brand
+	 * @param europeanArticleNumber
+	 * @param manufacturerPartNumber
+	 * @param type
+	 * @param pictureUrl
 	 */
 	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type, String pictureUrl) {
 		this.name = name;
@@ -84,7 +83,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the id.
 	 *
-	 * @param id the new id
+	 * @param id
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -102,7 +101,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -120,7 +119,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the brand.
 	 *
-	 * @param brand the new brand
+	 * @param brand
 	 */
 	public void setBrand(String brand) {
 		this.brand = brand;
@@ -138,7 +137,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the european article number.
 	 *
-	 * @param europeanArticleNumber the new european article number
+	 * @param europeanArticleNumber
 	 */
 	public void setEuropeanArticleNumber(String europeanArticleNumber) {
 		this.europeanArticleNumber = europeanArticleNumber;
@@ -156,7 +155,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the manufacturer part number.
 	 *
-	 * @param manufacturerPartNumber the new manufacturer part number
+	 * @param manufacturerPartNumber
 	 */
 	public void setManufacturerPartNumber(String manufacturerPartNumber) {
 		this.manufacturerPartNumber = manufacturerPartNumber;
@@ -174,7 +173,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the type.
 	 *
-	 * @param type the new type
+	 * @param type
 	 */
 	public void setType(CType type) {
 		this.type = type;
@@ -192,7 +191,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the connectors.
 	 *
-	 * @param connectors the new connectors
+	 * @param connectors
 	 */
 	public void setConnectors(List<Connector> connectors) {
 		this.connectors = connectors;
@@ -201,7 +200,7 @@ public class Component implements Serializable{
 	/**
 	 * Adds the connector.
 	 *
-	 * @param connector the connector
+	 * @param connector
 	 */
 	public void addConnector(Connector connector) {
 	    if (connector != null) {
@@ -212,8 +211,8 @@ public class Component implements Serializable{
 	/**
 	 * Checks for connector.
 	 *
-	 * @param connectorName the connector name
-	 * @param type the type
+	 * @param connectorName
+	 * @param type
 	 * @return true, if successful
 	 */
 	public boolean hasConnector(String connectorName, CType type) {
@@ -235,7 +234,7 @@ public class Component implements Serializable{
 	/**
 	 * Sets the picture url.
 	 *
-	 * @param pictureUrl the new picture url
+	 * @param pictureUrl
 	 */
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;

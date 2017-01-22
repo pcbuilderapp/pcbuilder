@@ -2,7 +2,6 @@ package pcbuilder.controllers.transport;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ComponentItemResponse.
  */
@@ -29,7 +28,7 @@ public class ComponentItemResponse {
     /**
      * Sets the components.
      *
-     * @param components the new components
+     * @param components
      */
     public void setComponents(List<ComponentItem> components) {
         this.components = components;
@@ -47,7 +46,7 @@ public class ComponentItemResponse {
     /**
      * Sets the page.
      *
-     * @param page the new page
+     * @param page
      */
     public void setPage(int page) {
         this.page = page;
@@ -65,7 +64,7 @@ public class ComponentItemResponse {
     /**
      * Sets the page count.
      *
-     * @param pageCount the new page count
+     * @param pageCount
      */
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;

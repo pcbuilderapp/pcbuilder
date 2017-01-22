@@ -20,7 +20,7 @@ public class ComponentController {
     /**
      * Creates the component.
      *
-     * @param component the component
+     * @param component
      * @return the response entity
      */
     @RequestMapping(value="/component/create", method=RequestMethod.POST)
@@ -46,7 +46,7 @@ public class ComponentController {
     /**
      * Gets component by id.
      *
-     * @param ID
+     * @param id
      * @return Component
      */
     public Component getById(Long id) {

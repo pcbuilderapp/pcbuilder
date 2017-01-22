@@ -20,7 +20,7 @@ public class PCBuilderApplication {
     /**
      * The main method.
      *
-     * @param args the arguments
+     * @param args
      */
     public static void main(String[] args) {
         SpringApplication.run(PCBuilderApplication.class, args);

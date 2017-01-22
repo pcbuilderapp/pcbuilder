@@ -33,7 +33,7 @@ public class ComponentItemController {
     /**
      * Gets the matching components.
      *
-     * @param is ComponentMatchingSearch
+     * @param ComponentMatchingSearch
      * @return ComponentItemResponse
      */
     @CrossOrigin(origins = "*")

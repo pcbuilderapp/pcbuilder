@@ -2,7 +2,6 @@ package pcbuilder.controllers.transport;
 
 import pcbuilder.domain.CType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ComponentMatchingSearch.
  */
@@ -38,7 +37,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the filter.
      *
-     * @param filter the new filter
+     * @param filter
      */
     public void setFilter(String filter) {
         this.filter = filter;
@@ -56,7 +55,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the type.
      *
-     * @param type the new type
+     * @param type
      */
     public void setType(CType type) {
         this.type = type;
@@ -74,7 +73,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the configuration.
      *
-     * @param configuration the new configuration
+     * @param configuration
      */
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
@@ -92,7 +91,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the page.
      *
-     * @param page the new page
+     * @param page
      */
     public void setPage(Long page) {
         this.page = page;
@@ -110,7 +109,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the max items.
      *
-     * @param maxItems the new max items
+     * @param maxItems
      */
     public void setMaxItems(Long maxItems) {
         this.maxItems = maxItems;
@@ -128,7 +127,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the sort.
      *
-     * @param sort the new sort
+     * @param sort
      */
     public void setSort(String sort) {
         this.sort = sort;

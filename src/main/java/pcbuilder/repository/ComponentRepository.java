@@ -14,7 +14,6 @@ import pcbuilder.domain.Connector;
 import java.util.Collection;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ComponentRepository.
  */
@@ -24,18 +23,18 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
     /**
      * Find by brand and manufacturer part number.
      *
-     * @param brand the brand
-     * @param manufacturerPartNumber the manufacturer part number
-     * @return the list
+     * @param brand
+     * @param manufacturerPartNumber
+     * @return the component list
      */
     List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
 
     /**
      * Find by name containing and type.
      *
-     * @param name the name
-     * @param type the type
-     * @param pageable the pageable
+     * @param name
+     * @param type 
+     * @param pageable 
      * @return the page
      */
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
@@ -43,10 +42,10 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
     /**
      * Find by name containing and type and connectors in.
      *
-     * @param name the name
-     * @param type the type
-     * @param connectors the connectors
-     * @param pageable the pageable
+     * @param name
+     * @param type
+     * @param connectors
+     * @param pageable
      * @return the page
      */
     Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
@@ -54,11 +53,11 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
     /**
      * Find by name containing and with all connectors paged.
      *
-     * @param name the name
-     * @param type the type
-     * @param connectors the connectors
-     * @param connectorsSize the connectors size
-     * @param pageable the pageable
+     * @param name
+     * @param type
+     * @param connectors
+     * @param connectorsSize
+     * @param pageable
      * @return the page
      */
     @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
@@ -72,10 +71,10 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
     /**
      * Find by name containing and with all connectors.
      *
-     * @param name the name
-     * @param type the type
-     * @param connectors the connectors
-     * @param connectorsSize the connectors size
+     * @param name
+     * @param type
+     * @param connectors
+     * @param connectorsSize
      * @return the list
      */
     @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
