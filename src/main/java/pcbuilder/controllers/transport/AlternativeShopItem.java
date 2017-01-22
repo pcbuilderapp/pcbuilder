@@ -19,7 +19,7 @@ public class AlternativeShopItem {
     /**
      * Instantiates a new alternative shop item.
      *
-     * @param product the product
+     * @param adds product to the product
      */
     public AlternativeShopItem(Product product) {
         shop = product.getShop().getName();
@@ -39,7 +39,7 @@ public class AlternativeShopItem {
     /**
      * Sets the shop.
      *
-     * @param shop the new shop
+     * @param shop
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -57,7 +57,7 @@ public class AlternativeShopItem {
     /**
      * Sets the url.
      *
-     * @param url the new url
+     * @param url
      */
     public void setUrl(String url) {
         this.url = url;
@@ -75,7 +75,7 @@ public class AlternativeShopItem {
     /**
      * Sets the price.
      *
-     * @param price the new price
+     * @param price
      */
     public void setPrice(Float price) {
         this.price = price;

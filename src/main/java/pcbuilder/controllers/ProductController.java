@@ -41,7 +41,7 @@ public class ProductController {
     /**
      * Adds the products.
      *
-     * @param adds productDataList to the product data list
+     * @param productDataList
      * @return the response entity "All products have been added!"
      */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
@@ -57,7 +57,7 @@ public class ProductController {
     /**
      * Adds the product.
      *
-     * @param adds productData to the product data
+     * @param productData
      * @return the response entity "Found an invalid shopname!"
      */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
@@ -107,8 +107,8 @@ public class ProductController {
     /**
      * Persist component.
      *
-     * @param adds components to the components
-     * @param adds productData to the product data
+     * @param components
+     * @param productData 
      * @return the component
      */
     private Component persistComponent(List<Component> components, ProductData productData) {
@@ -144,7 +144,7 @@ public class ProductController {
     /**
      * Persist connector.
      *
-     * @param adds connectorData to the connector data
+     * @param connectorData
      * @return the connector
      */
     private Connector persistConnector(ConnectorData connectorData) {

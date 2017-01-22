@@ -5,7 +5,6 @@ import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Configuration.
  */
@@ -47,7 +46,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the motherboard.
      *
-     * @param motherboard the new motherboard
+     * @param motherboard
      */
     public void setMotherboard(ComponentRef motherboard) {
         this.motherboard = motherboard;
@@ -65,7 +64,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the cpu.
      *
-     * @param cpu the new cpu
+     * @param cpu
      */
     public void setCpu(ComponentRef cpu) {
         this.cpu = cpu;
@@ -83,7 +82,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the gpu.
      *
-     * @param gpu the new gpu
+     * @param gpu 
      */
     public void setGpu(ComponentRef gpu) {
         this.gpu = gpu;
@@ -101,7 +100,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the memory.
      *
-     * @param memory the new memory
+     * @param memory
      */
     public void setMemory(ComponentRef memory) {
         this.memory = memory;
@@ -119,7 +118,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the storage.
      *
-     * @param storage the new storage
+     * @param storage
      */
     public void setStorage(ComponentRef storage) {
         this.storage = storage;
@@ -137,7 +136,7 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the psu.
      *
-     * @param psu the new psu
+     * @param psu
      */
     public void setPsu(ComponentRef psu) {
         this.psu = psu;
@@ -155,15 +154,12 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the casing.
      *
-     * @param casing the new casing
+     * @param casing
      */
     public void setCasing(ComponentRef casing) {
         this.casing = casing;
     }
 
-    /* (non-Javadoc)
-     * @see java.lang.Iterable#iterator()
-     */
     @Override
     public Iterator<ComponentRef> iterator() {
         return new ComponentRefIterator(this,0,componentCount);
@@ -198,9 +194,9 @@ public class Configuration implements Iterable<ComponentRef> {
         /**
          * Instantiates a new component ref iterator.
          *
-         * @param configuration the configuration
-         * @param start the start
-         * @param end the end
+         * @param configuration
+         * @param start
+         * @param end
          */
         public ComponentRefIterator(Configuration configuration,int start, int end) {
             this.configuration = configuration;
@@ -208,16 +204,10 @@ public class Configuration implements Iterable<ComponentRef> {
             this.end = end;
         }
 
-        /* (non-Javadoc)
-         * @see java.util.Iterator#hasNext()
-         */
         public boolean hasNext() {
             return this.cursor < end;
         }
 
-        /* (non-Javadoc)
-         * @see java.util.Iterator#next()
-         */
         public ComponentRef next() {
             if(this.hasNext()) {
                 ComponentRef componentRef = new ComponentRef();
@@ -242,9 +232,6 @@ public class Configuration implements Iterable<ComponentRef> {
             throw new NoSuchElementException();
         }
 
-        /* (non-Javadoc)
-         * @see java.util.Iterator#remove()
-         */
         public void remove() {
             throw new UnsupportedOperationException();
         }

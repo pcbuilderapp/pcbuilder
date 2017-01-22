@@ -3,7 +3,6 @@ package pcbuilder.controllers.transport;
 import pcbuilder.domain.CType;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ProductData.
  */
@@ -51,7 +50,7 @@ public class ProductData {
     /**
      * Sets the price.
      *
-     * @param price the new price
+     * @param price
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -69,7 +68,7 @@ public class ProductData {
     /**
      * Sets the url.
      *
-     * @param url the new url
+     * @param url
      */
     public void setUrl(String url) {
         this.url = url;
@@ -87,7 +86,7 @@ public class ProductData {
     /**
      * Sets the shop.
      *
-     * @param shop the new shop
+     * @param shop
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -105,7 +104,7 @@ public class ProductData {
     /**
      * Sets the name.
      *
-     * @param name the new name
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -123,7 +122,7 @@ public class ProductData {
     /**
      * Sets the brand.
      *
-     * @param brand the new brand
+     * @param brand
      */
     public void setBrand(String brand) {
         this.brand = brand;
@@ -141,7 +140,7 @@ public class ProductData {
     /**
      * Sets the ean.
      *
-     * @param ean the new ean
+     * @param ean
      */
     public void setEan(String ean) {
         this.ean = ean;
@@ -159,7 +158,7 @@ public class ProductData {
     /**
      * Sets the type.
      *
-     * @param type the new type
+     * @param type
      */
     public void setType(CType type) {
         this.type = type;
@@ -177,7 +176,7 @@ public class ProductData {
     /**
      * Sets the connectors.
      *
-     * @param connectors the new connectors
+     * @param connectors
      */
     public void setConnectors(List<ConnectorData> connectors) {
         this.connectors = connectors;
@@ -195,7 +194,7 @@ public class ProductData {
     /**
      * Sets the mpn.
      *
-     * @param mpn the new mpn
+     * @param mpn
      */
     public void setMpn(String mpn) {
         this.mpn = mpn;
@@ -213,7 +212,7 @@ public class ProductData {
     /**
      * Sets the picture urls.
      *
-     * @param pictureUrl the new picture urls
+     * @param pictureUrl
      */
     public void setPictureUrls(String pictureUrl) {
         this.pictureUrl = pictureUrl;

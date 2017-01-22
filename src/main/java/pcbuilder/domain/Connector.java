@@ -3,7 +3,6 @@ package pcbuilder.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Connector.
  */
@@ -35,8 +34,8 @@ public class Connector implements Serializable {
 	/**
 	 * Instantiates a new connector.
 	 *
-	 * @param name the name
-	 * @param type the type
+	 * @param name
+	 * @param type
 	 */
 	public Connector(String name, CType type) {
     	this.name = name;
@@ -55,7 +54,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the id.
 	 *
-	 * @param id the new id
+	 * @param id
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -73,7 +72,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -91,7 +90,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the type.
 	 *
-	 * @param type the new type
+	 * @param type
 	 */
 	public void setType(CType type) {
 		this.type = type;

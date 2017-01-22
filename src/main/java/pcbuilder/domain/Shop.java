@@ -3,7 +3,6 @@ package pcbuilder.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Shop.
  */
@@ -46,7 +45,7 @@ public class Shop implements Serializable{
 	/**
 	 * Sets the name.
 	 *
-	 * @param name the new name
+	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -64,7 +63,7 @@ public class Shop implements Serializable{
 	/**
 	 * Sets the url.
 	 *
-	 * @param url the new url
+	 * @param url 
 	 */
 	public void setUrl(String url) {
 		this.url = url;
@@ -82,7 +81,7 @@ public class Shop implements Serializable{
 	/**
 	 * Sets the logo url.
 	 *
-	 * @param logoUrl the new logo url
+	 * @param logoUrl
 	 */
 	public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;

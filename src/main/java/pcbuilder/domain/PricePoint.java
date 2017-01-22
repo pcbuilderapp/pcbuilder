@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class PricePoint.
  */
@@ -28,9 +27,9 @@ public class PricePoint implements Serializable {
     /**
      * Instantiates a new price point.
      *
-     * @param product the product
-     * @param pricingDate the pricing date
-     * @param price the price
+     * @param product
+     * @param pricingDate
+     * @param price
      */
     public PricePoint(Product product, Date pricingDate, Float price){
         this.product = product;
@@ -58,7 +57,7 @@ public class PricePoint implements Serializable {
     /**
      * Sets the pricing date.
      *
-     * @param pricingDate the new pricing date
+     * @param pricingDate 
      */
     public void setPricingDate(Date pricingDate) {
         this.pricingDate = pricingDate;
@@ -76,7 +75,7 @@ public class PricePoint implements Serializable {
     /**
      * Sets the price.
      *
-     * @param price the new price
+     * @param price 
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -94,7 +93,7 @@ public class PricePoint implements Serializable {
     /**
      * Sets the product.
      *
-     * @param product the new product
+     * @param product
      */
     public void setProduct(Product product) {
         this.product = product;

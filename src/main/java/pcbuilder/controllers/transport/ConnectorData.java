@@ -2,7 +2,6 @@ package pcbuilder.controllers.transport;
 
 import pcbuilder.domain.CType;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ConnectorData.
  */
@@ -26,7 +25,7 @@ public class ConnectorData {
     /**
      * Sets the name.
      *
-     * @param name the new name
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -44,7 +43,7 @@ public class ConnectorData {
     /**
      * Sets the type.
      *
-     * @param type the new type
+     * @param type
      */
     public void setType(CType type) {
         this.type = type;

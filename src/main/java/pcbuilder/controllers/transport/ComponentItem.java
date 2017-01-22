@@ -10,7 +10,6 @@ import javax.persistence.Enumerated;
 import java.util.LinkedList;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ComponentItem.
  */
@@ -56,9 +55,9 @@ public class ComponentItem {
     /**
      * Instantiates a new component item.
      *
-     * @param component the component
-     * @param product the product
-     * @param alternativeProducts the alternative products
+     * @param component
+     * @param product
+     * @param alternativeProducts
      */
     public ComponentItem(Component component, Product product, Iterable<Product> alternativeProducts) {
 
@@ -94,7 +93,7 @@ public class ComponentItem {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
      */
     public void setId(Long id) {
         this.id = id;
@@ -112,7 +111,7 @@ public class ComponentItem {
     /**
      * Sets the name.
      *
-     * @param name the new name
+     * @param name
      */
     public void setName(String name) {
         this.name = name;
@@ -130,7 +129,7 @@ public class ComponentItem {
     /**
      * Sets the brand.
      *
-     * @param brand the new brand
+     * @param brand
      */
     public void setBrand(String brand) {
         this.brand = brand;
@@ -148,7 +147,7 @@ public class ComponentItem {
     /**
      * Sets the european article number.
      *
-     * @param europeanArticleNumber the new european article number
+     * @param europeanArticleNumber
      */
     public void setEuropeanArticleNumber(String europeanArticleNumber) {
         this.europeanArticleNumber = europeanArticleNumber;
@@ -166,7 +165,7 @@ public class ComponentItem {
     /**
      * Sets the manufacturer part number.
      *
-     * @param manufacturerPartNumber the new manufacturer part number
+     * @param manufacturerPartNumber
      */
     public void setManufacturerPartNumber(String manufacturerPartNumber) {
         this.manufacturerPartNumber = manufacturerPartNumber;
@@ -184,7 +183,7 @@ public class ComponentItem {
     /**
      * Sets the type.
      *
-     * @param type the new type
+     * @param type
      */
     public void setType(CType type) {
         this.type = type;
@@ -202,7 +201,7 @@ public class ComponentItem {
     /**
      * Sets the price.
      *
-     * @param price the new price
+     * @param price
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -220,7 +219,7 @@ public class ComponentItem {
     /**
      * Sets the url.
      *
-     * @param url the new url
+     * @param url
      */
     public void setUrl(String url) {
         this.url = url;
@@ -238,7 +237,7 @@ public class ComponentItem {
     /**
      * Sets the shop.
      *
-     * @param shop the new shop
+     * @param shop
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -256,7 +255,7 @@ public class ComponentItem {
     /**
      * Sets the alternative shops.
      *
-     * @param alternativeShops the new alternative shops
+     * @param alternativeShops
      */
     public void setAlternativeShops(List<AlternativeShopItem> alternativeShops) {
         this.alternativeShops = alternativeShops;
@@ -274,7 +273,7 @@ public class ComponentItem {
     /**
      * Sets the image.
      *
-     * @param image the new image
+     * @param image
      */
     public void setImage(String image) {
         this.image = image;
@@ -292,7 +291,7 @@ public class ComponentItem {
     /**
      * Sets the connectors.
      *
-     * @param connectors the new connectors
+     * @param connectors
      */
     public void setConnectors(List<Connector> connectors) {
         this.connectors = connectors;

@@ -8,7 +8,6 @@ import pcbuilder.domain.Shop;
 import javax.transaction.Transactional;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface ProductRepository.
  */
@@ -18,8 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     /**
      * Find by component and shop.
      *
-     * @param component the component
-     * @param shop the shop
+     * @param component 
+     * @param shop 
      * @return the list
      */
     List<Product> findByComponentAndShop(Component component, Shop shop);
@@ -27,7 +26,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     /**
      * Find by component order by current price asc.
      *
-     * @param component the component
+     * @param component
      * @return the list
      */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);

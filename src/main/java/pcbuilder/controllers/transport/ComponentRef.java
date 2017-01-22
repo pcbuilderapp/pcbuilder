@@ -7,7 +7,6 @@ import pcbuilder.controllers.ComponentController;
 import pcbuilder.domain.Component;
 import pcbuilder.repository.ComponentRepository;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ComponentRef.
  */
@@ -28,7 +27,7 @@ public class ComponentRef {
     /**
      * Sets the id.
      *
-     * @param id the new id
+     * @param id
      */
     public void setId(Long id) {
         this.id = id;
