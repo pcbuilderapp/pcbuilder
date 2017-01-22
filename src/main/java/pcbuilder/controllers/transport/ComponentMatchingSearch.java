@@ -9,6 +9,7 @@ public class ComponentMatchingSearch {
     Configuration configuration;
     Long page;
     Long maxItems;
+    String sort;
 
     public String getFilter() {
         return filter;
@@ -48,5 +49,13 @@ public class ComponentMatchingSearch {
 
     public void setMaxItems(Long maxItems) {
         this.maxItems = maxItems;
+    }
+
+    public String getSort() {
+        return sort;
+    }
+
+    public void setSort(String sort) {
+        this.sort = sort;
     }
 }

@@ -31,6 +31,7 @@ public class Component implements Serializable{
 	private CType type;
 
 	@ManyToMany(cascade = CascadeType.ALL)
+	@OrderBy("type ASC")
 	private List<Connector> connectors = new ArrayList<>();
 
 	private String pictureUrl;

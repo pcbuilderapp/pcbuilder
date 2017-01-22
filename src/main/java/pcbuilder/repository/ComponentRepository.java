@@ -1,6 +1,7 @@
 package pcbuilder.repository;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,14 +17,7 @@ import java.util.List;
 @RepositoryRestResource(path = "components")
 public interface ComponentRepository extends JpaRepository<Component, Long> {
 
-    List<Component> findByName(@Param("name")String name);
-    List<Component> findByNameContaining(@Param("name")String name);
-
-    List<Component> findByBrand(@Param("brand")String brand);
-
-    //List<Component> findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
     List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
-    List<Component> findByType(@Param("type")CType type);
 
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
 
@@ -44,5 +38,4 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
             "GROUP BY c " +
             "HAVING COUNT(DISTINCT yt) = (:connectorsSize)")
     List<Component> findByNameContainingAndWithAllConnectors(@Param("name")String name, @Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize);
-    //List<Component> findByNameContainingAndTypeAndConnector(@Param("name")String name, @Param("type")String type, @Param("Connector")Connector connector);
 }

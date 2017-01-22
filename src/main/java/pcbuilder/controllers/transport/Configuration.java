@@ -78,16 +78,6 @@ public class Configuration implements Iterable<ComponentRef> {
         return new ComponentRefIterator(this,0,componentCount);
     }
 
-    //@Override
-    //public void forEach(Consumer<? super ComponentRef> consumer) {
-    //    consumer.
-    //}
-
-    //@Override
-    //public Spliterator<ComponentRef> spliterator() {
-    //    return null;
-    //}
-
     public boolean hasComponents() {
         for (ComponentRef componentRef : this) {
             if (componentRef != null) return true;
