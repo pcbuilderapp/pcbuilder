@@ -17,14 +17,26 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The Class ComponentItemController.
+ */
 @RestController
 public class ComponentItemController {
+    
+    /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
 
+    /** The product repository. */
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * Gets the matching components.
+     *
+     * @param is ComponentMatchingSearch
+     * @return ComponentItemResponse
+     */
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/componentitem/getmatchingcomponents", method = RequestMethod.POST)
     public ComponentItemResponse getMatchingComponents(@RequestBody ComponentMatchingSearch request) {

@@ -8,6 +8,9 @@ import pcbuilder.domain.PricePoint;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * The Interface PricePointRepository.
+ */
 @Transactional
 public interface PricePointRepository extends CrudRepository<PricePoint, Long> {
 

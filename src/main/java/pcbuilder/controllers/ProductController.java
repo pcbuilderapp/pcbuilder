@@ -12,24 +12,38 @@ import pcbuilder.repository.*;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The Class ProductController.
+ */
 @RestController
 public class ProductController {
 
+    /** The product repository. */
     @Autowired
     private ProductRepository productRepository;
 
+    /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
 
+    /** The shop repository. */
     @Autowired
     private ShopRepository shopRepository;
 
+    /** The price point repository. */
     @Autowired
     private PricePointRepository pricePointRepository;
 
+    /** The connector repository. */
     @Autowired
     private ConnectorRepository connectorRepository;
 
+    /**
+     * Adds the products.
+     *
+     * @param adds productDataList to the product data list
+     * @return the response entity "All products have been added!"
+     */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
 
@@ -40,6 +54,12 @@ public class ProductController {
         return new ResponseEntity<String>("All products have been added!", HttpStatus.CREATED);
     }
 
+    /**
+     * Adds the product.
+     *
+     * @param adds productData to the product data
+     * @return the response entity "Found an invalid shopname!"
+     */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProduct(@RequestBody ProductData productData) {
 
@@ -74,11 +94,23 @@ public class ProductController {
         return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
+    /**
+     * Gets the all products.
+     *
+     * @return all the products
+     */
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
     public Iterable<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
+    /**
+     * Persist component.
+     *
+     * @param adds components to the components
+     * @param adds productData to the product data
+     * @return the component
+     */
     private Component persistComponent(List<Component> components, ProductData productData) {
 
         Component component;
@@ -109,6 +141,12 @@ public class ProductController {
         return component;
     }
 
+    /**
+     * Persist connector.
+     *
+     * @param adds connectorData to the connector data
+     * @return the connector
+     */
     private Connector persistConnector(ConnectorData connectorData) {
 
         Connector connector = connectorRepository.findByNameAndType(connectorData.getName(), connectorData.getType());
