@@ -17,7 +17,9 @@ import java.util.List;
 @RepositoryRestResource(path = "components")
 public interface ComponentRepository extends JpaRepository<Component, Long> {
 
-    List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
+    Component findByName(@Param("name")String name);
+    Component findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
+    Component findByBrandAndEuropeanArticleNumber(@Param("brand")String brand, @Param("europeanArticleNumber")String europeanArticleNumber);
 
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
 

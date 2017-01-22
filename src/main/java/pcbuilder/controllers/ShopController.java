@@ -39,7 +39,7 @@ public class ShopController {
     @RequestMapping(value="/shop/create", method=RequestMethod.POST)
     public ResponseEntity<String> createComponent(@RequestBody Shop shop) {
 
-        if (shopRepository.findByName(shop.getName()).isEmpty()) {
+        if (shopRepository.findByName(shop.getName()) == null) {
             shopRepository.save(shop);
         } else {
             return new ResponseEntity<String>("Shop already exists!", HttpStatus.CONFLICT);

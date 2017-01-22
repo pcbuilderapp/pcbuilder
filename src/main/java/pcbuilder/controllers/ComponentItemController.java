@@ -13,7 +13,6 @@ import pcbuilder.domain.Product;
 import pcbuilder.repository.ComponentRepository;
 import pcbuilder.repository.ProductRepository;
 
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 

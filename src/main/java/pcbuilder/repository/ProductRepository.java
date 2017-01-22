@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @param shop 
      * @return the list
      */
-    List<Product> findByComponentAndShop(Component component, Shop shop);
+    Product findByComponentAndShop(Component component, Shop shop);
     
     /**
      * Find by component order by current price asc.

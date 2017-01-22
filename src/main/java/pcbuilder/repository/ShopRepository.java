@@ -15,8 +15,8 @@ public interface ShopRepository extends CrudRepository<Shop, Long> {
     /**
      * Find by name.
      *
-     * @param name
-     * @return the list
+     * @param String name
+     * @return Shop
      */
-    List<Shop> findByName(@Param("name")String name);
+    Shop findByName(@Param("name")String name);
 }

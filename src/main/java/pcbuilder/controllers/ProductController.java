@@ -8,7 +8,6 @@ import pcbuilder.controllers.transport.ConnectorData;
 import pcbuilder.controllers.transport.ProductData;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
-
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class ProductController {
     /**
      * Adds the products.
      *
-     * @param productDataList
-     * @return the response entity "All products have been added!"
+     * @param List<ProductData>
+     * @return ResponseEntity<String>
      */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
@@ -57,71 +56,93 @@ public class ProductController {
     /**
      * Adds the product.
      *
-     * @param productData
-     * @return the response entity "Found an invalid shopname!"
+     * @param ProductData
+     * @return ResponseEntity<String>
      */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProduct(@RequestBody ProductData productData) {
 
-        List<Product> products;
-        List<Shop> shops = shopRepository.findByName(productData.getShop());
         Product product = new Product();
+        Shop shop = shopRepository.findByName(productData.getShop());
 
-        if (shops.isEmpty()) {
+        if (shop == null) {
             return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
         } else {
-            product.setShop(shops.get(0));
+            product.setShop(shop);
         }
 
-        product.setComponent(componentRepository.save(persistComponent(componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn()), productData)));
-        products = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
+        product.setComponent(persistComponent(findComponent(productData), productData));
 
-        if (products.isEmpty()) {
-
-            product.setCurrentPrice(productData.getPrice());
-            product.setProductUrl(productData.getUrl());
-            productRepository.save(product);
-
-        } else {
-
-            product = products.get(0);
-            product.setCurrentPrice(productData.getPrice());
-            productRepository.save(product);
-        }
+        product = persistProduct(productData, product);
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
+
         System.out.println("Product '" +product.getComponent().getName()+ "' has been added!");
         return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
     /**
-     * Gets the all products.
+     * Searches for an existing component based on the MPN number, EAN number, or name.
      *
-     * @return all the products
+     * @param ProductData
+     * @return Component
      */
-    @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public Iterable<Product> getAllProducts() {
-        return productRepository.findAll();
+    private Component findComponent(ProductData productData) {
+
+        Component component = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
+
+        if (component == null && !productData.getEan().equals("9999999999999") && productData.getEan() != null) {
+            component = componentRepository.findByBrandAndEuropeanArticleNumber(productData.getBrand(), productData.getEan());
+        }
+
+        if (component == null) {
+            component = componentRepository.findByName(productData.getName());
+        }
+
+        return component;
+    }
+
+    /**
+     * Persists a Product
+     *
+     * @param ProductData
+     * @param Product
+     * @return Product
+     */
+    private Product persistProduct(ProductData productData, Product product) {
+
+        Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
+
+        if (searchProduct == null) {
+
+            product.setCurrentPrice(productData.getPrice());
+            product.setProductUrl(productData.getUrl());
+
+        } else {
+
+            product = searchProduct;
+            product.setCurrentPrice(productData.getPrice());
+
+        }
+
+        return productRepository.save(product);
     }
 
     /**
      * Persist component.
      *
-     * @param components
-     * @param productData 
-     * @return the component
+     * @param List<Component>
+     * @param ProductData
+     * @return Component
      */
-    private Component persistComponent(List<Component> components, ProductData productData) {
+    private Component persistComponent(Component component, ProductData productData) {
 
-        Component component;
-
-        if (components.isEmpty()) {
+        if (component == null) {
 
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType(), productData.getPictureUrl());
 
         } else {
 
-            component = components.get(0);
             component.setName(productData.getName());
             component.setBrand(productData.getBrand());
             component.setType(productData.getType());
@@ -138,14 +159,14 @@ public class ProductController {
             }
         }
 
-        return component;
+        return componentRepository.save(component);
     }
 
     /**
      * Persist connector.
      *
-     * @param connectorData
-     * @return the connector
+     * @param ConnectorData
+     * @return Connector
      */
     private Connector persistConnector(ConnectorData connectorData) {
 
@@ -157,5 +178,15 @@ public class ProductController {
         }
 
         return connector;
+    }
+
+    /**
+     * Gets the all products.
+     *
+     * @return all the products
+     */
+    @RequestMapping(value="/product/getall", method=RequestMethod.GET)
+    public Iterable<Product> getAllProducts() {
+        return productRepository.findAll();
     }
 }
