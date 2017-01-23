@@ -1,6 +1,7 @@
 package pcbuilder.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -9,30 +10,44 @@ import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.transport.ConnectorData;
 import pcbuilder.controllers.transport.ProductData;
 import pcbuilder.controllers.transport.ProductSearch;
+import pcbuilder.controllers.transport.ProductsResponse;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
-
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The Class ProductController.
+ */
 @RestController
 public class ProductController {
 
+    /** The product repository. */
     @Autowired
     private ProductRepository productRepository;
 
+    /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
 
+    /** The shop repository. */
     @Autowired
     private ShopRepository shopRepository;
 
+    /** The price point repository. */
     @Autowired
     private PricePointRepository pricePointRepository;
 
+    /** The connector repository. */
     @Autowired
     private ConnectorRepository connectorRepository;
 
+    /**
+     * Adds the products.
+     *
+     * @param List<ProductData>
+     * @return ResponseEntity<String>
+     */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
 
@@ -43,43 +58,92 @@ public class ProductController {
         return new ResponseEntity<String>("All products have been added!", HttpStatus.CREATED);
     }
 
+    /**
+     * Adds the product.
+     *
+     * @param ProductData
+     * @return ResponseEntity<String>
+     */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProduct(@RequestBody ProductData productData) {
 
-        List<Product> products;
-        List<Shop> shops = shopRepository.findByName(productData.getShop());
         Product product = new Product();
+        Shop shop = shopRepository.findByName(productData.getShop());
 
-        if (shops.isEmpty()) {
+        if (shop == null) {
             return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
         } else {
-            product.setShop(shops.get(0));
+            product.setShop(shop);
         }
 
-        product.setComponent(componentRepository.save(persistComponent(componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn()), productData)));
-        products = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
+        product.setComponent(persistComponent(findComponent(productData), productData));
 
-        if (products.isEmpty()) {
-
-            product.setCurrentPrice(productData.getPrice());
-            product.setProductUrl(productData.getUrl());
-            productRepository.save(product);
-
-        } else {
-
-            product = products.get(0);
-            product.setCurrentPrice(productData.getPrice());
-            productRepository.save(product);
-        }
+        product = persistProduct(productData, product);
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
+
         System.out.println("Product '" +product.getComponent().getName()+ "' has been added!");
         return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
+    /**
+     * Searches for an existing component based on the MPN number, EAN number, or name.
+     *
+     * @param ProductData
+     * @return Component
+     */
+    private Component findComponent(ProductData productData) {
+
+        Component component = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
+
+        if (component == null && !productData.getEan().equals("9999999999999") && productData.getEan() != null) {
+            component = componentRepository.findByBrandAndEuropeanArticleNumber(productData.getBrand(), productData.getEan());
+        }
+
+        if (component == null) {
+            component = componentRepository.findByName(productData.getName());
+        }
+
+        return component;
+    }
+
+    /**
+     * Persists a Product
+     *
+     * @param ProductData
+     * @param Product
+     * @return Product
+     */
+    private Product persistProduct(ProductData productData, Product product) {
+
+        Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
+
+        if (searchProduct == null) {
+
+            product.setCurrentPrice(productData.getPrice());
+            product.setProductUrl(productData.getUrl());
+
+        } else {
+
+            product = searchProduct;
+            product.setCurrentPrice(productData.getPrice());
+
+        }
+
+        return productRepository.save(product);
+    }
+
+    /**
+     * Get products.
+     *
+     * @param List<Component>
+     * @param ProductData
+     * @return Component
+     */
+
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public Iterable<Product> getAllProducts(ProductSearch request) {
+    public ProductsResponse getAllProducts(ProductSearch request) {
         Sort sort;
 
         if (request.getSort() == null || request.getSort().equals("")) {
@@ -90,20 +154,32 @@ public class ProductController {
 
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
-        return productRepository.findByNameContaining(request.getFilter(),pageRequest);
+
+        Page<Product> page = productRepository.findByNameContaining(request.getFilter(),pageRequest);
+
+        ProductsResponse response = new ProductsResponse();
+        response.setProducts(page.getContent());
+        response.setPage(page.getNumber());
+        response.setPageCount(page.getTotalPages());
+
+        return response;
     }
 
-    private Component persistComponent(List<Component> components, ProductData productData) {
+    /**
+     * Persist component.
+     *
+     * @param List<Component>
+     * @param ProductData
+     * @return Component
+     */
+    private Component persistComponent(Component component, ProductData productData) {
 
-        Component component;
-
-        if (components.isEmpty()) {
+        if (component == null) {
 
             component = new Component(productData.getName(), productData.getBrand(), productData.getEan(), productData.getMpn(), productData.getType(), productData.getPictureUrl());
 
         } else {
 
-            component = components.get(0);
             component.setName(productData.getName());
             component.setBrand(productData.getBrand());
             component.setType(productData.getType());
@@ -120,9 +196,15 @@ public class ProductController {
             }
         }
 
-        return component;
+        return componentRepository.save(component);
     }
 
+    /**
+     * Persist connector.
+     *
+     * @param ConnectorData
+     * @return Connector
+     */
     private Connector persistConnector(ConnectorData connectorData) {
 
         Connector connector = connectorRepository.findByNameAndType(connectorData.getName(), connectorData.getType());

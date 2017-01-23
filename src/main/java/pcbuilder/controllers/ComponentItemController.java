@@ -16,27 +16,33 @@ import pcbuilder.repository.ProductRepository;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * The Class ComponentItemController.
+ */
 @RestController
 public class ComponentItemController {
+    
+    /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
 
+    /** The product repository. */
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * Gets the matching components.
+     *
+     * @param ComponentMatchingSearch
+     * @return ComponentItemResponse
+     */
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/componentitem/getmatchingcomponents", method = RequestMethod.POST)
     public ComponentItemResponse getMatchingComponents(@RequestBody ComponentMatchingSearch request) {
 
         Configuration configuration = request.getConfiguration();
 
-        Sort sort;
-
-        if (request.getSort() == null || request.getSort().equals("")) {
-            sort = new Sort("name");
-        } else {
-            sort = new Sort(request.getSort());
-        }
+        Sort sort = createSort(request.getSort());
 
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
@@ -100,5 +106,22 @@ public class ComponentItemController {
         response.setPageCount(components.getTotalPages());
 
         return response;
+    }
+
+    private Sort createSort(String sortingColumn) {
+
+        Sort sort;
+
+        if (sortingColumn == null || sortingColumn.equals("")) {
+            sort = new Sort("name");
+        } else {
+            if (sortingColumn.equals("brand")) {
+                sort = new Sort(sortingColumn);
+            } else {
+                sort = new Sort("name");
+            }
+        }
+
+        return sort;
     }
 }

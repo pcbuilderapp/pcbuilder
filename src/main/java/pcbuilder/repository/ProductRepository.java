@@ -12,9 +12,27 @@ import pcbuilder.domain.Shop;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * The Interface ProductRepository.
+ */
 @Transactional
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    List<Product> findByComponentAndShop(Component component, Shop shop);
+    
+    /**
+     * Find by component and shop.
+     *
+     * @param component 
+     * @param shop 
+     * @return the list
+     */
+    Product findByComponentAndShop(Component component, Shop shop);
+    
+    /**
+     * Find by component order by current price asc.
+     *
+     * @param component
+     * @return the list
+     */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
 
     @Query( "SELECT p FROM Product p WHERE p.component.name LIKE %:name%")

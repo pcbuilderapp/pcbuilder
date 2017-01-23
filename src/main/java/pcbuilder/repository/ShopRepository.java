@@ -6,7 +6,17 @@ import pcbuilder.domain.Shop;
 import javax.transaction.Transactional;
 import java.util.List;
 
+/**
+ * The Interface ShopRepository.
+ */
 @Transactional
 public interface ShopRepository extends CrudRepository<Shop, Long> {
-    List<Shop> findByName(@Param("name")String name);
+    
+    /**
+     * Find by name.
+     *
+     * @param String name
+     * @return Shop
+     */
+    Shop findByName(@Param("name")String name);
 }

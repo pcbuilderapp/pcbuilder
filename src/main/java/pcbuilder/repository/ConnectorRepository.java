@@ -7,8 +7,18 @@ import pcbuilder.domain.Connector;
 
 import javax.transaction.Transactional;
 
+/**
+ * The Interface ConnectorRepository.
+ */
 @Transactional
 public interface ConnectorRepository extends CrudRepository<Connector, Long> {
 
+    /**
+     * Find by name and type.
+     *
+     * @param name
+     * @param type
+     * @return the connector
+     */
     Connector findByNameAndType(@Param("name")String name, @Param("type")CType type);
 }

@@ -1,5 +1,23 @@
 package pcbuilder.domain;
 
+/**
+ * The Enum CType.
+ * Declared Component type
+ */
 public enum CType {
-    MOTHERBOARD, CPU, GPU, MEMORY, STORAGE, PSU, CASE
+    
+    /** The motherboard. */
+    MOTHERBOARD, 
+ /** The cpu. */
+ CPU, 
+ /** The gpu. */
+ GPU, 
+ /** The memory. */
+ MEMORY, 
+ /** The storage. */
+ STORAGE, 
+ /** The psu. */
+ PSU, 
+ /** The case. */
+ CASE
 }

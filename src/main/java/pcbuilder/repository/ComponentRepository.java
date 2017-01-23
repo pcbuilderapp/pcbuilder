@@ -17,13 +17,15 @@ import java.util.List;
 @RepositoryRestResource(path = "components")
 public interface ComponentRepository extends JpaRepository<Component, Long> {
 
-    List<Component> findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
+    Component findByName(@Param("name")String name);
+    Component findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
+    Component findByBrandAndEuropeanArticleNumber(@Param("brand")String brand, @Param("europeanArticleNumber")String europeanArticleNumber);
 
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
 
     Page<Component> findByNameContainingAndTypeAndConnectorsIn(String name, CType type, Collection<Connector> connectors, Pageable pageable);
 
-    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
+    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt INNER JOIN c.products " +
             "WHERE c.name LIKE %:name% " +
             "AND c.type = :type " +
             "AND yt IN (:connectors) " +
