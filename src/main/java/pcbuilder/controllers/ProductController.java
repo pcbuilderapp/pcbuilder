@@ -143,7 +143,19 @@ public class ProductController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public ProductsResponse getAllProducts(ProductSearch request) {
+    public List<Product> getAllProducts() { return productRepository.findAll(); }
+
+    /**
+     * Get matching products.
+     *
+     * @param List<Component>
+     * @param ProductData
+     * @return Component
+     */
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
+    public ProductsResponse getMatchingProducts(ProductSearch request) {
         Sort sort;
 
         if (request.getSort() == null || request.getSort().equals("")) {
