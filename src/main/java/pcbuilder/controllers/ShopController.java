@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import pcbuilder.domain.Shop;
 import pcbuilder.repository.ShopRepository;
 
+
 /**
  * The Class ShopController.
  */
 @RestController
 public class ShopController {
 
+
     /** The shop repository. */
     @Autowired
     private ShopRepository shopRepository;
+
 
     /**
      * Gets all the shops.
@@ -30,6 +33,7 @@ public class ShopController {
         return shopRepository.findAll();
     }
 
+
     /**
      * Creates the component.
      *
@@ -37,13 +41,18 @@ public class ShopController {
      * @return the response entity "Shop already exists!"
      */
     @RequestMapping(value="/shop/create", method=RequestMethod.POST)
-    public ResponseEntity<String> createComponent(@RequestBody Shop shop) {
+    public ResponseEntity<String> createShop(@RequestBody Shop shop) {
 
         if (shopRepository.findByName(shop.getName()) == null) {
+
             shopRepository.save(shop);
+
         } else {
+
             return new ResponseEntity<String>("Shop already exists!", HttpStatus.CONFLICT);
+
         }
-        return new ResponseEntity<String>("Shop '"+shop.getName()+"' has been created!", HttpStatus.CREATED);
+
+        return new ResponseEntity<String>("Shop '"+shop.getName()+"' has been created!", HttpStatus.OK);
     }
 }
