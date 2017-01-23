@@ -2,20 +2,20 @@ package pcbuilder.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import pcbuilder.domain.Shop;
+import pcbuilder.domain.Crawler;
 import javax.transaction.Transactional;
 
 /**
- * The Interface ShopRepository.
+ * The Interface CrawlerRepository
  */
 @Transactional
-public interface ShopRepository extends CrudRepository<Shop, Long> {
-    
+public interface CrawlerRepository extends CrudRepository<Crawler, Long> {
+
     /**
      * Find by name.
      *
      * @param String name
-     * @return Shop
+     * @return Crawler
      */
-    Shop findByName(@Param("name")String name);
+    Crawler findByName(@Param("name")String name);
 }

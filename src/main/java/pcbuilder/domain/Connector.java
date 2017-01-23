@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * The Class Connector.
+ * A connector serves the purpose of connecting components together.
+ * Components are mixable if they share a connector with the same CType and name
  */
 @Entity
 @Table(uniqueConstraints={
@@ -34,8 +35,8 @@ public class Connector implements Serializable {
 	/**
 	 * Instantiates a new connector.
 	 *
-	 * @param name
-	 * @param type
+	 * @param String name
+	 * @param CType type
 	 */
 	public Connector(String name, CType type) {
     	this.name = name;
