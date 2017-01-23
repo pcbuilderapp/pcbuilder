@@ -1,11 +1,16 @@
 package pcbuilder.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.transport.ConnectorData;
 import pcbuilder.controllers.transport.ProductData;
+import pcbuilder.controllers.transport.ProductSearch;
+import pcbuilder.controllers.transport.ProductsResponse;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 import java.util.Date;
@@ -129,6 +134,38 @@ public class ProductController {
     }
 
     /**
+     * Get products.
+     *
+     * @param List<Component>
+     * @param ProductData
+     * @return Component
+     */
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/product/getall", method=RequestMethod.GET)
+    public ProductsResponse getAllProducts(ProductSearch request) {
+        Sort sort;
+
+        if (request.getSort() == null || request.getSort().equals("")) {
+            sort = new Sort("name");
+        } else {
+            sort = new Sort(request.getSort());
+        }
+
+        // creating a page request to setup paginated query results
+        PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
+
+        Page<Product> page = productRepository.findByNameContaining(request.getFilter(),pageRequest);
+
+        ProductsResponse response = new ProductsResponse();
+        response.setProducts(page.getContent());
+        response.setPage(page.getNumber());
+        response.setPageCount(page.getTotalPages());
+
+        return response;
+    }
+
+    /**
      * Persist component.
      *
      * @param List<Component>
@@ -178,15 +215,5 @@ public class ProductController {
         }
 
         return connector;
-    }
-
-    /**
-     * Gets the all products.
-     *
-     * @return all the products
-     */
-    @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public Iterable<Product> getAllProducts() {
-        return productRepository.findAll();
     }
 }
