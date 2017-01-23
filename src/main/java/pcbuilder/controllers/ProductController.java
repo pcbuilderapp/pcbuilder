@@ -1,11 +1,14 @@
 package pcbuilder.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.transport.ConnectorData;
 import pcbuilder.controllers.transport.ProductData;
+import pcbuilder.controllers.transport.ProductSearch;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 
@@ -74,9 +77,20 @@ public class ProductController {
         return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
-    public Iterable<Product> getAllProducts() {
-        return productRepository.findAll();
+    public Iterable<Product> getAllProducts(ProductSearch request) {
+        Sort sort;
+
+        if (request.getSort() == null || request.getSort().equals("")) {
+            sort = new Sort("name");
+        } else {
+            sort = new Sort(request.getSort());
+        }
+
+        // creating a page request to setup paginated query results
+        PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
+        return productRepository.findByNameContaining(request.getFilter(),pageRequest);
     }
 
     private Component persistComponent(List<Component> components, ProductData productData) {
