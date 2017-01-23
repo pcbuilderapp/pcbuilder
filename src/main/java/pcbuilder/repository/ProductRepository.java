@@ -35,6 +35,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
 
-    @Query( "SELECT p FROM Product p WHERE p.component.name LIKE %:name%")
+    @Query( "SELECT p FROM Product p INNER JOIN p.component c WHERE c.name LIKE %:name%")
     Page<Product> findByNameContaining(@Param("name")String name, Pageable pageable);
 }

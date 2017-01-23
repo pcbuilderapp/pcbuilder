@@ -155,10 +155,7 @@ public class ProductController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
-    public ProductsResponse getMatchingProducts(ProductSearch request) {
-        System.out.println("getMatchingProducts");
-        System.out.println(request.toString());
-
+    public ProductsResponse getMatchingProducts(@RequestBody ProductSearch request) {
         Sort sort;
 
         if (request.getSort() == null || request.getSort().equals("")) {
