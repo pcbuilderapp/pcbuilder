@@ -94,10 +94,10 @@ public class ProductController {
      */
     private Component findComponent(ProductData productData) {
 
-        Component component = componentRepository.findByBrandAndManufacturerPartNumber(productData.getBrand(), productData.getMpn());
+        Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
 
         if (component == null && !productData.getEan().equals("9999999999999") && productData.getEan() != null) {
-            component = componentRepository.findByBrandAndEuropeanArticleNumber(productData.getBrand(), productData.getEan());
+            component = componentRepository.findByEuropeanArticleNumber(productData.getEan());
         }
 
         if (component == null) {
@@ -156,6 +156,9 @@ public class ProductController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
     public ProductsResponse getMatchingProducts(ProductSearch request) {
+        System.out.println("getMatchingProducts");
+        System.out.println(request.toString());
+
         Sort sort;
 
         if (request.getSort() == null || request.getSort().equals("")) {
@@ -167,7 +170,7 @@ public class ProductController {
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
 
-        Page<Product> page = productRepository.findByNameContaining(request.getFilter(),pageRequest);
+        Page<Product> page = productRepository.findByNameContaining(request.getFilter(), pageRequest);
 
         ProductsResponse response = new ProductsResponse();
         response.setProducts(page.getContent());

@@ -217,4 +217,20 @@ public class ProductData {
     public void setPictureUrls(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
+
+    @Override
+    public String toString() {
+        return "ProductData{" +
+                "name='" + name + '\'' +
+                ", brand='" + brand + '\'' +
+                ", ean='" + ean + '\'' +
+                ", mpn='" + mpn + '\'' +
+                ", price=" + price +
+                ", url='" + url + '\'' +
+                ", shop='" + shop + '\'' +
+                ", type=" + type +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                ", connectors=" + connectors +
+                '}';
+    }
 }

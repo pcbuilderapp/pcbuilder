@@ -18,8 +18,8 @@ import java.util.List;
 public interface ComponentRepository extends JpaRepository<Component, Long> {
 
     Component findByName(@Param("name")String name);
-    Component findByBrandAndManufacturerPartNumber(@Param("brand")String brand, @Param("manufacturerPartNumber")String manufacturerPartNumber);
-    Component findByBrandAndEuropeanArticleNumber(@Param("brand")String brand, @Param("europeanArticleNumber")String europeanArticleNumber);
+    Component findByManufacturerPartNumber(@Param("manufacturerPartNumber")String manufacturerPartNumber);
+    Component findByEuropeanArticleNumber(@Param("europeanArticleNumber")String europeanArticleNumber);
 
     Page<Component> findByNameContainingAndType(@Param("name")String name, @Param("type")CType type, Pageable pageable);
 

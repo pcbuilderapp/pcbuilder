@@ -37,4 +37,14 @@ public class ProductSearch {
     public void setSort(String sort) {
         this.sort = sort;
     }
+
+    @Override
+    public String toString() {
+        return "ProductSearch{" +
+                "filter='" + filter + '\'' +
+                ", page=" + page +
+                ", maxItems=" + maxItems +
+                ", sort='" + sort + '\'' +
+                '}';
+    }
 }
