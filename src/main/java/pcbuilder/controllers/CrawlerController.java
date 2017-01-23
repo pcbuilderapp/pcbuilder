@@ -33,6 +33,15 @@ public class CrawlerController {
         return crawlerRepository.findAll();
     }
 
+    /**
+     * Searches a crawler by name.
+     *
+     * @return a Crawler.
+     */
+    @RequestMapping(value="/crawler/findbyname", method= RequestMethod.GET)
+    public Crawler findCrawlerByName(String name) {
+        return crawlerRepository.findByName(name);
+    }
 
     /**
      * Creates the crawler.
