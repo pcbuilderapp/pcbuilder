@@ -108,25 +108,26 @@ public class ProductController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
-    public ProductsResponse getMatchingProducts(ProductSearch request) {
+    public ProductsResponse getMatchingProducts(@RequestBody ProductSearch request) {
 
         if (request == null) {
             System.out.println("ProductController.getMatchingProducts function called without a valid ProductSearch request object.");
             return null;
         }
 
-        Sort sort;
+        /*Sort sort;
 
         if (request.getSort() == null || request.getSort().equals("")) {
             sort = new Sort("name");
         } else {
             sort = new Sort(request.getSort());
-        }
+        }*/
 
         // creating a page request to setup paginated query results
-        PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems(), sort);
+        //PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems(), sort);
+        PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems());
 
-        Page<Product> page = productRepository.findByNameContaining(request.getFilter(), pageRequest);
+        Page<Product> page = productRepository.findByComponentNameContaining(request.getFilter(), pageRequest);
 
         ProductsResponse response = new ProductsResponse();
         response.setProducts(page.getContent());
