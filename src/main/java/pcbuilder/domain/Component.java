@@ -34,9 +34,9 @@ public class Component implements Serializable{
 	@OrderBy("type ASC")
 	private List<Connector> connectors = new ArrayList<>();
 
-	@OneToMany(fetch = FetchType.EAGER)
+/*	@OneToMany(fetch = FetchType.EAGER)
     @OrderBy("current_price ASC")
-	private List<Product> products = new ArrayList<>();
+	private List<Product> products = new ArrayList<>();*/
 
 	private String pictureUrl;
 
@@ -128,11 +128,11 @@ public class Component implements Serializable{
 		this.pictureUrl = pictureUrl;
 	}
 
-    public List<Product> getProducts() {
+/*    public List<Product> getProducts() {
         return products;
     }
 
     public void setProducts(List<Product> products) {
         this.products = products;
-    }
+    }*/
 }

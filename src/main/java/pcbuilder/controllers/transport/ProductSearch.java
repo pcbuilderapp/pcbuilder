@@ -1,10 +1,11 @@
 package pcbuilder.controllers.transport;
 
 public class ProductSearch {
-    String filter;
-    Long page;
-    Long maxItems;
-    String sort;
+
+    private String filter;
+    private int page;
+    private int maxItems;
+    private String sort;
 
     public String getFilter() {
         return filter;
@@ -14,19 +15,19 @@ public class ProductSearch {
         this.filter = filter;
     }
 
-    public Long getPage() {
+    public int getPage() {
         return page;
     }
 
-    public void setPage(Long page) {
+    public void setPage(int page) {
         this.page = page;
     }
 
-    public Long getMaxItems() {
+    public int getMaxItems() {
         return maxItems;
     }
 
-    public void setMaxItems(Long maxItems) {
+    public void setMaxItems(int maxItems) {
         this.maxItems = maxItems;
     }
 
