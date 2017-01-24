@@ -7,10 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.ConnectorData;
-import pcbuilder.controllers.transport.ProductData;
-import pcbuilder.controllers.transport.ProductSearch;
-import pcbuilder.controllers.transport.ProductsResponse;
+import pcbuilder.controllers.transport.*;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 import java.util.Date;
@@ -105,6 +102,19 @@ public class ProductController {
      * @param //ProductData
      * @return Component
      */
+
+    @RequestMapping(value="/product/pricehistory", method=RequestMethod.GET)
+    public PricePointResponse getPriceHistory(long componentId) {
+
+        Sort sort = new Sort("pricingDate");
+        List<PricePoint> pricepoints = pricePointRepository.findByProductComponent(
+                componentRepository.getOne(componentId), sort);
+
+        PricePointResponse pricePointResponse = new PricePointResponse();
+        pricePointResponse.setPricePoints(pricepoints);
+
+        return pricePointResponse;
+    }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)

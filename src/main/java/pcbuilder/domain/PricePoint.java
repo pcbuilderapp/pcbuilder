@@ -16,8 +16,16 @@ public class PricePoint implements Serializable {
     private Long id;
 
     /** The product. */
-    @ManyToOne(cascade = CascadeType.ALL)
-    Product product;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Product product;
+
+    /** The pricing date. */
+    @Column(nullable = false)
+    private Date pricingDate;
+
+    /** The price. */
+    @Column(nullable = false)
+    private Float price;
 
     /**
      * Instantiates a new price point.
@@ -36,14 +44,6 @@ public class PricePoint implements Serializable {
         this.pricingDate = pricingDate;
         this.price = price;
     }
-
-    /** The pricing date. */
-    @Column(nullable = false)
-    private Date pricingDate;
-
-    /** The price. */
-    @Column(nullable = false)
-    private Float price;
 
     /**
      * Gets the pricing date.

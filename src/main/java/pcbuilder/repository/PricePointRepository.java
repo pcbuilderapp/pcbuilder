@@ -1,5 +1,6 @@
 package pcbuilder.repository;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import pcbuilder.domain.Component;
@@ -14,5 +15,5 @@ import java.util.List;
 @Transactional
 public interface PricePointRepository extends CrudRepository<PricePoint, Long> {
 
-    //List<PricePoint> findByComponent(@Param("component")Component component);
+    List<PricePoint> findByProductComponent(@Param("component")Component component, Sort sort);
 }
