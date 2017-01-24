@@ -34,10 +34,6 @@ public class Component implements Serializable{
 	@OrderBy("type ASC")
 	private List<Connector> connectors = new ArrayList<>();
 
-/*	@OneToMany(fetch = FetchType.EAGER)
-    @OrderBy("current_price ASC")
-	private List<Product> products = new ArrayList<>();*/
-
 	private String pictureUrl;
 
 	public Component(){}

@@ -10,6 +10,7 @@ import pcbuilder.domain.Product;
 import pcbuilder.domain.Shop;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -34,7 +35,28 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @return the list
      */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
-
-    //@Query( "SELECT p FROM Product p WHERE p.component IN (SELECT c FROM Component c WHERE c.name LIKE %:name%)")
+    /**
+     * Find a paged list of products by a component name.
+     *
+     * @param String name
+     * @return the list
+     */
     Page<Product> findByComponentNameContaining(String name, Pageable pageable);
+    /**
+     * Find a paged list of products by a list of components.
+     *
+     * @param List<Component> components
+     * @return the list
+     */
+    @Query("SELECT p FROM Product p WHERE p.component IN :components")
+    Page<Product> findByComponents(@Param("components")Collection<Component> components, Pageable pageable);
+
+    /**
+     * Find a paged list of products by it's component name
+     *
+     * @param List<Component> components
+     * @return the list
+     */
+    Page<Product> findByProductUrl(@Param("productUrl") String productUrl, Pageable pageable);
+
 }
