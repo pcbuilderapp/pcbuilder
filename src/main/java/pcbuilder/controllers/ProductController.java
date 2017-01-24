@@ -87,55 +87,6 @@ public class ProductController {
     }
 
     /**
-     * Searches for an existing component based on the MPN number, EAN number, or name.
-     *
-     * @param ProductData
-     * @return Component
-     */
-    private Component findComponent(ProductData productData) {
-
-        Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
-
-        if (component == null && productData.getEan() != null && !productData.getEan().equals("9999999999999") ) {
-            component = componentRepository.findByEuropeanArticleNumber(productData.getEan());
-        }
-
-/*
-        if (component == null) {
-            component = componentRepository.findByName(productData.getName());
-        }
-*/
-
-        return component;
-    }
-
-    /**
-     * Persists a Product
-     *
-     * @param ProductData
-     * @param Product
-     * @return Product
-     */
-    private Product persistProduct(ProductData productData, Product product) {
-
-        Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
-
-        if (searchProduct == null) {
-
-            product.setCurrentPrice(productData.getPrice());
-            product.setProductUrl(productData.getUrl());
-
-        } else {
-
-            product = searchProduct;
-            product.setCurrentPrice(productData.getPrice());
-
-        }
-
-        return productRepository.save(product);
-    }
-
-    /**
      * Get products.
      *
      * @param List<Component>
@@ -183,6 +134,55 @@ public class ProductController {
         response.setPageCount(page.getTotalPages());
 
         return response;
+    }
+
+    /**
+     * Searches for an existing component based on the MPN number, EAN number, or name.
+     *
+     * @param ProductData
+     * @return Component
+     */
+    private Component findComponent(ProductData productData) {
+
+        Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
+
+        if (component == null && productData.getEan() != null && !productData.getEan().equals("9999999999999") ) {
+            component = componentRepository.findByEuropeanArticleNumber(productData.getEan());
+        }
+
+/*
+        if (component == null) {
+            component = componentRepository.findByName(productData.getName());
+        }
+*/
+
+        return component;
+    }
+
+    /**
+     * Persists a Product
+     *
+     * @param ProductData
+     * @param Product
+     * @return Product
+     */
+    private Product persistProduct(ProductData productData, Product product) {
+
+        Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
+
+        if (searchProduct == null) {
+
+            product.setCurrentPrice(productData.getPrice());
+            product.setProductUrl(productData.getUrl());
+
+        } else {
+
+            product = searchProduct;
+            product.setCurrentPrice(productData.getPrice());
+
+        }
+
+        return productRepository.save(product);
     }
 
     /**
