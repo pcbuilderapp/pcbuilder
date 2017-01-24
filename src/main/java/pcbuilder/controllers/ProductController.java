@@ -45,7 +45,7 @@ public class ProductController {
     /**
      * Adds the products.
      *
-     * @param List<ProductData>
+     * @param //List<ProductData>
      * @return ResponseEntity<String>
      */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
@@ -61,7 +61,7 @@ public class ProductController {
     /**
      * Adds the product.
      *
-     * @param ProductData
+     * @param //ProductData
      * @return ResponseEntity<String>
      */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
@@ -89,8 +89,8 @@ public class ProductController {
     /**
      * Get products.
      *
-     * @param List<Component>
-     * @param ProductData
+     * @param //List<Component>
+     * @param //ProductData
      * @return Component
      */
 
@@ -101,19 +101,14 @@ public class ProductController {
     /**
      * Get matching products.
      *
-     * @param List<Component>
-     * @param ProductData
+     * @param //List<Component>
+     * @param //ProductData
      * @return Component
      */
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
-    public ProductsResponse getMatchingProducts(ProductSearch request) {
-
-        if (request == null) {
-            System.out.println("ProductController.getMatchingProducts function called without a valid ProductSearch request object.");
-            return null;
-        }
+    public ProductsResponse getMatchingProducts(@RequestBody ProductSearch request) {
 
         Sort sort;
 
@@ -125,8 +120,12 @@ public class ProductController {
 
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems(), sort);
+/*String search = request.getFilter() == null ? "" : request.getFilter();*/
 
-        Page<Product> page = productRepository.findByNameContaining(request.getFilter(), pageRequest);
+        List<Component> components = componentRepository.findByNameContaining(request.getFilter());
+        Page<Product> page = productRepository.findByComponents(components, pageRequest);
+
+        /*Page<Product> page = productRepository.findByProductUrl(request.getFilter(), pageRequest);*/
 
         ProductsResponse response = new ProductsResponse();
         response.setProducts(page.getContent());
@@ -139,7 +138,7 @@ public class ProductController {
     /**
      * Searches for an existing component based on the MPN number, EAN number, or name.
      *
-     * @param ProductData
+     * @param //ProductData
      * @return Component
      */
     private Component findComponent(ProductData productData) {
@@ -162,8 +161,8 @@ public class ProductController {
     /**
      * Persists a Product
      *
-     * @param ProductData
-     * @param Product
+     * @param //ProductData
+     * @param //Product
      * @return Product
      */
     private Product persistProduct(ProductData productData, Product product) {
@@ -188,8 +187,8 @@ public class ProductController {
     /**
      * Persist component.
      *
-     * @param List<Component>
-     * @param ProductData
+     * @param //list<Component>
+     * @param //ProductData
      * @return Component
      */
     private Component persistComponent(Component component, ProductData productData) {
@@ -222,7 +221,7 @@ public class ProductController {
     /**
      * Persist connector.
      *
-     * @param ConnectorData
+     * @param //ConnectorData
      * @return Connector
      */
     private Connector persistConnector(ConnectorData connectorData) {
