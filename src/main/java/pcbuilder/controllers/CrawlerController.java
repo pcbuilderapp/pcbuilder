@@ -3,10 +3,7 @@ package pcbuilder.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.transport.CrawlerResponse;
 import pcbuilder.domain.Crawler;
 import pcbuilder.repository.CrawlerRepository;
@@ -31,6 +28,7 @@ public class CrawlerController {
      *
      * @return an Iterable<Crawler> containing all crawlers.
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/crawler/getall", method= RequestMethod.GET)
     public CrawlerResponse getAllCrawlers() {
 
