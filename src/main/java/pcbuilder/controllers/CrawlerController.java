@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import pcbuilder.controllers.transport.CrawlerResponse;
 import pcbuilder.domain.Crawler;
 import pcbuilder.repository.CrawlerRepository;
+
+import java.util.List;
 
 
 /**
@@ -29,8 +32,12 @@ public class CrawlerController {
      * @return an Iterable<Crawler> containing all crawlers.
      */
     @RequestMapping(value="/crawler/getall", method= RequestMethod.GET)
-    public Iterable<Crawler> getAllCrawlers() {
-        return crawlerRepository.findAll();
+    public CrawlerResponse getAllCrawlers() {
+
+        CrawlerResponse crawlerResponse = new CrawlerResponse();
+        crawlerResponse.setCrawlers(crawlerRepository.findAll());
+        return crawlerResponse;
+
     }
 
     /**
