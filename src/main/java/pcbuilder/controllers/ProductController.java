@@ -102,8 +102,8 @@ public class ProductController {
      * @param //ProductData
      * @return Component
      */
-
-    @RequestMapping(value="/product/pricehistory", method=RequestMethod.GET)
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/product/getpricehistory", method=RequestMethod.GET)
     public PricePointResponse getPriceHistory(long componentId) {
 
         Sort sort = new Sort("pricingDate");
