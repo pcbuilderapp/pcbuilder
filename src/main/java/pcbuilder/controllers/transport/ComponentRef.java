@@ -1,12 +1,5 @@
 package pcbuilder.controllers.transport;
 
-import org.springframework.beans.factory.BeanFactoryUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import pcbuilder.controllers.ComponentController;
-import pcbuilder.domain.Component;
-import pcbuilder.repository.ComponentRepository;
-
 /**
  * The Class ComponentRef.
  */

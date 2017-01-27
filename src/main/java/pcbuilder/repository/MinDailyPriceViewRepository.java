@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MinDailyPriceViewRepository  extends CrudRepository<MinDailyPriceView, Long> {
 
-    List<MinDailyPriceView> findByComponentIdOrderByDate(@Param("componentId")long component_id);
+    List<MinDailyPriceView> findByComponentIdOrderByDate(@Param("componentId")long componentId);
 }

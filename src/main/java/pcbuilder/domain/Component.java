@@ -108,7 +108,8 @@ public class Component implements Serializable{
 
 	public boolean hasConnector(String connectorName, CType type) {
 		for(Connector connector : connectors) {
-			if (connector.getName().equals(connectorName) && connector.getType().name().equals(type.name())) return true;
+			if (connector.getName().equals(connectorName) && connector.getType().name().equals(type.name()))
+				return true;
 		}
 		return false;
 	}
@@ -120,12 +121,4 @@ public class Component implements Serializable{
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
-
-/*    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }*/
 }

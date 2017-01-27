@@ -41,9 +41,9 @@ public class ComponentController {
         if (componentRepository.findByManufacturerPartNumber(component.getManufacturerPartNumber()) == null) {
             componentRepository.save(component);
         } else {
-            return new ResponseEntity<String>("Component already exists!", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Component already exists!", HttpStatus.CONFLICT);
         }
-        return new ResponseEntity<String>("Component has been created!", HttpStatus.CREATED);
+        return new ResponseEntity<>("Component has been created!", HttpStatus.CREATED);
     }
 
     /**

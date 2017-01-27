@@ -49,10 +49,10 @@ public class ShopController {
 
         } else {
 
-            return new ResponseEntity<String>("Shop already exists!", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Shop already exists!", HttpStatus.CONFLICT);
 
         }
 
-        return new ResponseEntity<String>("Shop '"+shop.getName()+"' has been created!", HttpStatus.OK);
+        return new ResponseEntity<>("Shop '"+shop.getName()+"' has been created!", HttpStatus.OK);
     }
 }

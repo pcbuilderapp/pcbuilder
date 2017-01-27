@@ -1,9 +1,9 @@
 package pcbuilder.controllers;
 
+import javassist.bytecode.stackmap.TypeData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,16 @@ import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The Class ProductController.
  */
 @RestController
 public class ProductController {
+
+    private static final Logger LOGGER = Logger.getLogger( TypeData.ClassName.class.getName() );
 
     /** The product repository. */
     @Autowired
@@ -52,7 +56,7 @@ public class ProductController {
             addProduct(productData);
         }
 
-        return new ResponseEntity<String>("All products have been added!", HttpStatus.CREATED);
+        return new ResponseEntity<>("All products have been added!", HttpStatus.CREATED);
     }
 
     /**
@@ -68,7 +72,7 @@ public class ProductController {
         Shop shop = shopRepository.findByName(productData.getShop());
 
         if (shop == null) {
-            return new ResponseEntity<String>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
+            return new ResponseEntity<>("Found an invalid shopname!", HttpStatus.NOT_ACCEPTABLE);
         } else {
             product.setShop(shop);
         }
@@ -79,8 +83,9 @@ public class ProductController {
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
 
-        System.out.println("Product '" +product.getComponent().getName()+ "' has been added!");
-        return new ResponseEntity<String>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
+        LOGGER.log(Level.INFO, "Product '" +product.getComponent().getName()+ "' has been added!");
+
+        return new ResponseEntity<>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
     /**
@@ -99,16 +104,7 @@ public class ProductController {
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
     public ProductsResponse getMatchingProducts(@RequestBody ProductSearch request) {
 
-        /*Sort sort;
-
-        if (request.getSort() == null || request.getSort().equals("")) {
-            sort = new Sort("name");
-        } else {
-            sort = new Sort(request.getSort());
-        }*/
-
         // creating a page request to setup paginated query results
-        //PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems(), sort);
         PageRequest pageRequest = new PageRequest(request.getPage(), request.getMaxItems());
 
         Page<Product> page = productRepository.findByComponentNameContaining(request.getFilter(), pageRequest);
@@ -131,7 +127,7 @@ public class ProductController {
 
         Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
 
-        if (component == null && productData.getEan() != null && !productData.getEan().equals("9999999999999") ) {
+        if (component == null && productData.getEan() != null && !"9999999999999".equals(productData.getEan()) ) {
             component = componentRepository.findByEuropeanArticleNumber(productData.getEan()).get(0);
         }
 
@@ -145,8 +141,8 @@ public class ProductController {
      * @param //Product
      * @return Product
      */
-    private Product persistProduct(ProductData productData, Product product) {
-
+    private Product persistProduct(ProductData productData, Product persistProduct) {
+        Product product = persistProduct;
         Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
 
         if (searchProduct == null) {
@@ -171,7 +167,9 @@ public class ProductController {
      * @param //ProductData
      * @return Component
      */
-    private Component persistComponent(Component component, ProductData productData) {
+    private Component persistComponent(Component persistComponent, ProductData productData) {
+
+        Component component = persistComponent;
 
         if (component == null) {
 

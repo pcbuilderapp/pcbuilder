@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface MaxDailyPriceViewRepository  extends CrudRepository<MaxDailyPriceView, Long> {
 
-    List<MaxDailyPriceView> findByComponentIdOrderByDate(@Param("componentId")long component_id);
+    List<MaxDailyPriceView> findByComponentIdOrderByDate(@Param("componentId")long componentId);
 }

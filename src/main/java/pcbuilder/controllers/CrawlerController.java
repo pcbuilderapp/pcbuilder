@@ -8,9 +8,6 @@ import pcbuilder.controllers.transport.CrawlerResponse;
 import pcbuilder.domain.Crawler;
 import pcbuilder.repository.CrawlerRepository;
 
-import java.util.List;
-
-
 /**
  * The Class CrawlerController.
  */
@@ -63,10 +60,10 @@ public class CrawlerController {
 
         } else {
 
-            return new ResponseEntity<String>("Crawler already exists!", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Crawler already exists!", HttpStatus.CONFLICT);
         }
 
-        return new ResponseEntity<String>("Crawler '"+crawler.getName()+"' has been created!", HttpStatus.OK);
+        return new ResponseEntity<>("Crawler '"+crawler.getName()+"' has been created!", HttpStatus.OK);
     }
 
     /**
@@ -83,7 +80,7 @@ public class CrawlerController {
 
         if (crawler == null) {
 
-            return new ResponseEntity<String>("Crawler does not exists, unable to update!", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Crawler does not exists, unable to update!", HttpStatus.CONFLICT);
 
         } else {
 
@@ -92,6 +89,6 @@ public class CrawlerController {
 
         }
 
-        return new ResponseEntity<String>("Crawler '"+crawler.getName()+"' has been updated!", HttpStatus.OK);
+        return new ResponseEntity<>("Crawler '"+crawler.getName()+"' has been updated!", HttpStatus.OK);
     }
 }

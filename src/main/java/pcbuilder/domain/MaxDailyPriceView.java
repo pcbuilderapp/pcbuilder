@@ -12,7 +12,7 @@ public class MaxDailyPriceView {
 
     @Id
     @Column(name = "pricepoint_id")
-    private Long pricepoint_id;
+    private Long pricepointId;
 
     @Column(name = "component_id")
     private Long componentId;
@@ -47,11 +47,11 @@ public class MaxDailyPriceView {
         this.price = price;
     }
 
-    public Long getPricepoint_id() {
-        return pricepoint_id;
+    public Long getPricepointId() {
+        return pricepointId;
     }
 
-    public void setPricepoint_id(Long pricepoint_id) {
-        this.pricepoint_id = pricepoint_id;
+    public void setPricepointId(Long pricepointId) {
+        this.pricepointId = pricepointId;
     }
 }

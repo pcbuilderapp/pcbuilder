@@ -1,6 +1,5 @@
 package pcbuilder.controllers.transport;
 
-import pcbuilder.domain.Component;
 import pcbuilder.domain.SearchQueryType;
 
 public class SearchQueryAddRequest {

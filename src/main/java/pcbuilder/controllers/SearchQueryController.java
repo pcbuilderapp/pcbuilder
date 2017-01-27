@@ -3,13 +3,11 @@ package pcbuilder.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.transport.*;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.SearchQuery;
 import pcbuilder.repository.ComponentRepository;
-import pcbuilder.repository.ProductRepository;
 import pcbuilder.repository.SearchQueryRepository;
 
 @RestController
@@ -23,7 +21,6 @@ public class SearchQueryController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/searches/get", method = RequestMethod.POST)
     public SearchQueryResponse getSearches(@RequestBody SearchQueryRequest request) {
-        //Sort sort = createSort(request.getSort());
 
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue()/*, sort*/);

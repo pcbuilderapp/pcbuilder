@@ -2,8 +2,6 @@ package pcbuilder.controllers.transport;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.Spliterator;
-import java.util.function.Consumer;
 
 /**
  * The Class Configuration.
@@ -11,7 +9,7 @@ import java.util.function.Consumer;
 public class Configuration implements Iterable<ComponentRef> {
 
     /** The component count. */
-    private final int componentCount = 7;
+    private static final int COMPONENT_COUNT = 7;
 
     /** The motherboard. */
     private ComponentRef motherboard;
@@ -162,7 +160,7 @@ public class Configuration implements Iterable<ComponentRef> {
 
     @Override
     public Iterator<ComponentRef> iterator() {
-        return new ComponentRefIterator(this,0,componentCount);
+        return new ComponentRefIterator(this,0, COMPONENT_COUNT);
     }
 
     /**
@@ -172,7 +170,8 @@ public class Configuration implements Iterable<ComponentRef> {
      */
     public boolean hasComponents() {
         for (ComponentRef componentRef : this) {
-            if (componentRef != null) return true;
+            if (componentRef != null)
+                return true;
         }
         return false;
     }
@@ -204,10 +203,12 @@ public class Configuration implements Iterable<ComponentRef> {
             this.end = end;
         }
 
+        @Override
         public boolean hasNext() {
             return this.cursor < end;
         }
 
+        @Override
         public ComponentRef next() {
             if(this.hasNext()) {
                 ComponentRef componentRef = new ComponentRef();
@@ -232,6 +233,7 @@ public class Configuration implements Iterable<ComponentRef> {
             throw new NoSuchElementException();
         }
 
+        @Override
         public void remove() {
             throw new UnsupportedOperationException();
         }
