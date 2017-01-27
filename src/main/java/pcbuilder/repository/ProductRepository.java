@@ -35,6 +35,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @return the list
      */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
+
     /**
      * Find a paged list of products by a component name.
      *
@@ -43,25 +44,5 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * @return the list
      */
     Page<Product> findByComponentNameContaining(String name, Pageable pageable);
-    /**
-     * Find a paged list of products by a list of components.
-     *
-     * @param components List
-     * @param pageable Pageable
-     * @return the list
-     */
-    @Query("SELECT p FROM Product p WHERE p.component IN :components")
-    @SuppressWarnings("unused")
-    Page<Product> findByComponents(@Param("components")Collection<Component> components, Pageable pageable);
-
-    /**
-     * Find a paged list of products by it's component name
-     *
-     * @param productUrl String
-     * @param pageable Pageable
-     * @return the list
-     */
-    @SuppressWarnings("unused")
-    Page<Product> findByProductUrl(@Param("productUrl") String productUrl, Pageable pageable);
 
 }
