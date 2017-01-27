@@ -23,7 +23,7 @@ public class CrawlerController {
     /**
      * Gets all crawlers.
      *
-     * @return an Iterable<Crawler> containing all crawlers.
+     * @return Iterable
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/crawler/getall", method= RequestMethod.GET)
@@ -38,6 +38,7 @@ public class CrawlerController {
     /**
      * Searches a crawler by name.
      *
+     * @param name String
      * @return a Crawler.
      */
     @RequestMapping(value="/crawler/findbyname", method= RequestMethod.GET)
@@ -49,7 +50,7 @@ public class CrawlerController {
      * Creates the crawler.
      *
      * @param crawler Crawler
-     * @return ResponseEntity<String> response"
+     * @return ResponseEntity
      */
     @RequestMapping(value="/crawler/create", method=RequestMethod.POST)
     public ResponseEntity<String> createCrawler(@RequestBody Crawler crawler) {
@@ -70,7 +71,7 @@ public class CrawlerController {
      * Updates the crawler.
      *
      * @param crawlerUpdate Crawler
-     * @return ResponseEntity<String> response"
+     * @return ResponseEntity
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/crawler/update", method=RequestMethod.POST)

@@ -24,7 +24,7 @@ public class ComponentItemResponse {
     /**
      * Sets the components.
      *
-     * @param components List<ComponentItem>
+     * @param components List
      */
     public void setComponents(List<ComponentItem> components) {
         this.components = components;

@@ -14,7 +14,7 @@ public interface CrawlerRepository extends CrudRepository<Crawler, Long> {
     /**
      * Find by name.
      *
-     * @param String name
+     * @param name String
      * @return Crawler
      */
     Crawler findByName(@Param("name")String name);

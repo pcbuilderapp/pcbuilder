@@ -12,24 +12,15 @@ import java.io.Serializable;
 })
 public class Product implements Serializable {
 
-	/** The id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	/** The component. */
 	@OneToOne(cascade = CascadeType.ALL)
 	private Component component;
-
-	/** The shop. */
 	@OneToOne(cascade = CascadeType.ALL)
 	private Shop shop;
-
-	/** The current price. */
 	@Column(nullable = false)
 	private Float currentPrice;
-
-	/** The product url. */
 	private String productUrl;
 
 	/**
@@ -44,7 +35,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the component.
 	 *
-	 * @param component
+	 * @param component Component
 	 */
 	public void setComponent(Component component) {
 		this.component = component;
@@ -62,7 +53,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the current price.
 	 *
-	 * @param currentPrice
+	 * @param currentPrice Float
 	 */
 	public void setCurrentPrice(Float currentPrice) {
 		this.currentPrice = currentPrice;
@@ -80,7 +71,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the shop.
 	 *
-	 * @param shop
+	 * @param shop Shop
 	 */
 	public void setShop(Shop shop) {
 		this.shop = shop;
@@ -98,7 +89,7 @@ public class Product implements Serializable {
 	/**
 	 * Sets the product url.
 	 *
-	 * @param productUrl
+	 * @param productUrl String
 	 */
 	public void setProductUrl(String productUrl) {
 		this.productUrl = productUrl;

@@ -36,7 +36,7 @@ public class ComponentItem {
      *
      * @param component Component
      * @param product Product
-     * @param alternativeProducts Iterable<Product>
+     * @param alternativeProducts Iterable
      */
     public ComponentItem(Component component, Product product, Iterable<Product> alternativeProducts) {
 
@@ -243,7 +243,7 @@ public class ComponentItem {
     /**
      * Sets the alternative shops.
      *
-     * @param alternativeShops List<AlternativeShopItem>
+     * @param alternativeShops List
      */
     @SuppressWarnings("unused")
     public void setAlternativeShops(List<AlternativeShopItem> alternativeShops) {
@@ -283,7 +283,7 @@ public class ComponentItem {
     /**
      * Sets the connectors.
      *
-     * @param connectors List<Connector>
+     * @param connectors List
      */
     @SuppressWarnings("unused")
     public void setConnectors(List<Connector> connectors) {

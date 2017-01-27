@@ -26,7 +26,7 @@ public class ShopController {
     /**
      * Gets all the shops.
      *
-     * @return Iterable<Shop>
+     * @return shopRepository.findAll()
      */
     @RequestMapping(value="/shop/getall", method= RequestMethod.GET)
     public Iterable<Shop> getAllShops() {

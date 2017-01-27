@@ -163,7 +163,7 @@ public class ProductData {
     /**
      * Sets the connectors.
      *
-     * @param connectors List<ConnectorData>
+     * @param connectors List
      */
     @SuppressWarnings("unused")
     public void setConnectors(List<ConnectorData> connectors) {

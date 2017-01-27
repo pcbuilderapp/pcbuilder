@@ -27,31 +27,22 @@ public class ProductController {
 
     private static final Logger LOGGER = Logger.getLogger( TypeData.ClassName.class.getName() );
 
-    /** The product repository. */
     @Autowired
     private ProductRepository productRepository;
-
-    /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
-
-    /** The shop repository. */
     @Autowired
     private ShopRepository shopRepository;
-
-    /** The price point repository. */
     @Autowired
     private PricePointRepository pricePointRepository;
-
-    /** The connector repository. */
     @Autowired
     private ConnectorRepository connectorRepository;
 
     /**
      * Adds the products.
      *
-     * @param productDataList List<ProductData>
-     * @return ResponseEntity<String>
+     * @param productDataList List
+     * @return ResponseEntity
      */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProducts(@RequestBody List<ProductData> productDataList) {
@@ -67,7 +58,7 @@ public class ProductController {
      * Adds the product.
      *
      * @param productData ProductData
-     * @return ResponseEntity<String>
+     * @return ResponseEntity
      */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
     public ResponseEntity<String> addProduct(@RequestBody ProductData productData) {
@@ -95,7 +86,7 @@ public class ProductController {
     /**
      * Get products.
      *
-     * @return List<Product>
+     * @return List
      */
 
     @CrossOrigin(origins = "*")
