@@ -75,6 +75,7 @@ public class CrawlerController {
      * @param Crawler crawler
      * @return ResponseEntity<String> response"
      */
+    @CrossOrigin(origins = "*")
     @RequestMapping(value="/crawler/update", method=RequestMethod.POST)
     public ResponseEntity<String> updateCrawler(@RequestBody Crawler crawlerUpdate) {
 

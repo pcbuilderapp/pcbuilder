@@ -95,27 +95,6 @@ public class ProductController {
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
     public List<Product> getAllProducts() { return productRepository.findAll(); }
 
-    /**
-     * Get matching products.
-     *
-     * @param //List<Component>
-     * @param //ProductData
-     * @return Component
-     */
-    @CrossOrigin(origins = "*")
-    @RequestMapping(value="/product/getpricehistory", method=RequestMethod.GET)
-    public PricePointResponse getPriceHistory(long componentId) {
-
-        Sort sort = new Sort("pricingDate");
-        List<PricePoint> pricepoints = pricePointRepository.findByProductComponent(
-                componentRepository.getOne(componentId), sort);
-
-        PricePointResponse pricePointResponse = new PricePointResponse();
-        pricePointResponse.setPricePoints(pricepoints);
-
-        return pricePointResponse;
-    }
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getmatching", method=RequestMethod.POST)
     public ProductsResponse getMatchingProducts(@RequestBody ProductSearch request) {
