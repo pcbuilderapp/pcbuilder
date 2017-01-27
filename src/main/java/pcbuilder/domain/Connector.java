@@ -28,15 +28,18 @@ public class Connector implements Serializable {
 	private CType type;
 
     /**
-     * Instantiates a new connector.
-     */
-    public Connector() {}
+	 * Must be empty.
+	 */
+	@SuppressWarnings("unused")
+	public Connector() {
+		// This dummy constructor is needed by springboot
+	}
 
 	/**
 	 * Instantiates a new connector.
 	 *
-	 * @param String name
-	 * @param CType type
+	 * @param name String
+	 * @param type CType
 	 */
 	public Connector(String name, CType type) {
     	this.name = name;
@@ -55,7 +58,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the id.
 	 *
-	 * @param id
+	 * @param id Long
 	 */
 	public void setId(Long id) {
 		this.id = id;
@@ -73,7 +76,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the name.
 	 *
-	 * @param name
+	 * @param name String
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -91,7 +94,7 @@ public class Connector implements Serializable {
 	/**
 	 * Sets the type.
 	 *
-	 * @param type
+	 * @param type CType
 	 */
 	public void setType(CType type) {
 		this.type = type;

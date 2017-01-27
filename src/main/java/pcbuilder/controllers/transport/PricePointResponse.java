@@ -8,6 +8,7 @@ public class PricePointResponse {
 
     private List<PricePoint> pricePoints;
 
+    @SuppressWarnings("unused")
     public List<PricePoint> getPricePoints() {
         return pricePoints;
     }

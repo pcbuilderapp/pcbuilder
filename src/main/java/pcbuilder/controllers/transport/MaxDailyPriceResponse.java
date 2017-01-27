@@ -6,8 +6,9 @@ import java.util.List;
 
 public class MaxDailyPriceResponse {
 
-    List<MaxDailyPriceView> maxDailyPriceViewList;
+    private List<MaxDailyPriceView> maxDailyPriceViewList;
 
+    @SuppressWarnings("unused")
     public List<MaxDailyPriceView> getMaxDailyPriceViewList() {
         return maxDailyPriceViewList;
     }

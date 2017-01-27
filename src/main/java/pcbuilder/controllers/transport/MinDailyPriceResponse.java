@@ -6,8 +6,9 @@ import java.util.List;
 
 public class MinDailyPriceResponse {
 
-    List<MinDailyPriceView> minDailyPriceViewList;
+    private List<MinDailyPriceView> minDailyPriceViewList;
 
+    @SuppressWarnings("unused")
     public List<MinDailyPriceView> getMinDailyPriceViewList() {
         return minDailyPriceViewList;
     }

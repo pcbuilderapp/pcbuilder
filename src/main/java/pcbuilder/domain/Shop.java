@@ -9,26 +9,20 @@ import java.io.Serializable;
 @Entity
 public class Shop implements Serializable{
 
-	/** The id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	/** The name. */
 	@Column(unique = true, nullable = false)
 	private String name;
-
-	/** The url. */
 	private String url;
-	
-	/** The logo url. */
 	private String logoUrl;
 
 	/**
 	 * Gets the id.
 	 *
-	 * @return the id
-	 */
+     * @return Long
+     */
 	public Long getId() {
 		return id;
 	}
@@ -36,8 +30,8 @@ public class Shop implements Serializable{
 	/**
 	 * Gets the name.
 	 *
-	 * @return the name
-	 */
+     * @return String
+     */
 	public String getName() {
 		return name;
 	}
@@ -45,8 +39,8 @@ public class Shop implements Serializable{
 	/**
 	 * Sets the name.
 	 *
-	 * @param name
-	 */
+     * @param name String
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -54,36 +48,40 @@ public class Shop implements Serializable{
 	/**
 	 * Gets the url.
 	 *
-	 * @return the url
-	 */
-	public String getUrl() {
+     * @return String
+     */
+    @SuppressWarnings("unused")
+    public String getUrl() {
 		return url;
 	}
 
 	/**
 	 * Sets the url.
 	 *
-	 * @param url 
-	 */
-	public void setUrl(String url) {
+     * @param url String
+     */
+    @SuppressWarnings("unused")
+    public void setUrl(String url) {
 		this.url = url;
 	}
 
 	/**
 	 * Gets the logo url.
 	 *
-	 * @return the logo url
-	 */
-	public String getLogoUrl() {
+     * @return String
+     */
+    @SuppressWarnings("unused")
+    public String getLogoUrl() {
 		return logoUrl;
 	}
 
 	/**
 	 * Sets the logo url.
 	 *
-	 * @param logoUrl
-	 */
-	public void setLogoUrl(String logoUrl) {
+     * @param logoUrl String
+     */
+    @SuppressWarnings("unused")
+    public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
 	}
 

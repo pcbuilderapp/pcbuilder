@@ -9,6 +9,7 @@ public class CrawlerResponse {
 
     private List<Crawler> crawlers = new ArrayList<>();
 
+    @SuppressWarnings("unused")
     public List<Crawler> getCrawlers() {
         return crawlers;
     }

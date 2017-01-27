@@ -33,7 +33,7 @@ public class ComponentController {
     /**
      * Creates the component.
      *
-     * @param component
+     * @param component Component
      * @return the response entity
      */
     @RequestMapping(value="/component/create", method=RequestMethod.POST)
@@ -59,9 +59,10 @@ public class ComponentController {
     /**
      * Gets component by id.
      *
-     * @param id
+     * @param id Long
      * @return Component
      */
+    @SuppressWarnings("unused")
     public Component getById(Long id) {
         return componentRepository.getOne(id);
     }

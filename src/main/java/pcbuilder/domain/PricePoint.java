@@ -30,14 +30,17 @@ public class PricePoint implements Serializable {
     /**
      * Instantiates a new price point.
      */
-    public PricePoint(){}
+    @SuppressWarnings("unused")
+    public PricePoint(){
+        //needs to be empty for SpringBoot
+    }
 
     /**
      * Instantiates a new price point.
      *
-     * @param product
-     * @param pricingDate
-     * @param price
+     * @param product Product
+     * @param pricingDate Date
+     * @param price Float
      */
     public PricePoint(Product product, Date pricingDate, Float price){
         this.product = product;
@@ -50,6 +53,7 @@ public class PricePoint implements Serializable {
      *
      * @return the pricing date
      */
+    @SuppressWarnings("unused")
     public Date getPricingDate() {
         return pricingDate;
     }
@@ -57,8 +61,9 @@ public class PricePoint implements Serializable {
     /**
      * Sets the pricing date.
      *
-     * @param pricingDate 
+     * @param pricingDate Date
      */
+    @SuppressWarnings("unused")
     public void setPricingDate(Date pricingDate) {
         this.pricingDate = pricingDate;
     }
@@ -75,7 +80,7 @@ public class PricePoint implements Serializable {
     /**
      * Sets the price.
      *
-     * @param price 
+     * @param price Float
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -86,6 +91,7 @@ public class PricePoint implements Serializable {
      *
      * @return the product
      */
+    @SuppressWarnings("unused")
     public Product getProduct() {
         return product;
     }
@@ -93,8 +99,9 @@ public class PricePoint implements Serializable {
     /**
      * Sets the product.
      *
-     * @param product
+     * @param product Product
      */
+    @SuppressWarnings("unused")
     public void setProduct(Product product) {
         this.product = product;
     }

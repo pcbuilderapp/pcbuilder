@@ -14,50 +14,29 @@ import java.util.List;
  * The Class ComponentItem.
  */
 public class ComponentItem {
-    
-    /** The id. */
-    private Long id;
-    
-    /** The name. */
-    private String name;
-    
-    /** The brand. */
-    private String brand;
 
-    /** The european article number. */
+    private Long id;
+    private String name;
+    private String brand;
     private String europeanArticleNumber;
-    
-    /** The manufacturer part number. */
     private String manufacturerPartNumber;
 
-    /** The type. */
     @Enumerated(EnumType.STRING)
     private CType type;
-
-    /** The price. */
     private Float price;
-    
-    /** The url. */
     private String url;
-    
-    /** The shop. */
     private String shop;
-    
-    /** The image. */
     private String image;
 
-    /** The alternative shops. */
     private List<AlternativeShopItem> alternativeShops;
-    
-    /** The connectors. */
     private List<Connector> connectors;
 
     /**
      * Instantiates a new component item.
      *
-     * @param component
-     * @param product
-     * @param alternativeProducts
+     * @param component Component
+     * @param product Product
+     * @param alternativeProducts Iterable<Product>
      */
     public ComponentItem(Component component, Product product, Iterable<Product> alternativeProducts) {
 
@@ -84,7 +63,7 @@ public class ComponentItem {
     /**
      * Gets the id.
      *
-     * @return the id
+     * @return id
      */
     public Long getId() {
         return id;
@@ -93,7 +72,7 @@ public class ComponentItem {
     /**
      * Sets the id.
      *
-     * @param id
+     * @param id Long
      */
     public void setId(Long id) {
         this.id = id;
@@ -102,7 +81,7 @@ public class ComponentItem {
     /**
      * Gets the name.
      *
-     * @return the name
+     * @return name
      */
     public String getName() {
         return name;
@@ -111,7 +90,7 @@ public class ComponentItem {
     /**
      * Sets the name.
      *
-     * @param name
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
@@ -120,8 +99,9 @@ public class ComponentItem {
     /**
      * Gets the brand.
      *
-     * @return the brand
+     * @return brand
      */
+    @SuppressWarnings("unused")
     public String getBrand() {
         return brand;
     }
@@ -129,8 +109,9 @@ public class ComponentItem {
     /**
      * Sets the brand.
      *
-     * @param brand
+     * @param brand String
      */
+    @SuppressWarnings("unused")
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -138,8 +119,9 @@ public class ComponentItem {
     /**
      * Gets the european article number.
      *
-     * @return the european article number
+     * @return europeanArticleNumber
      */
+    @SuppressWarnings("unused")
     public String getEuropeanArticleNumber() {
         return europeanArticleNumber;
     }
@@ -147,8 +129,9 @@ public class ComponentItem {
     /**
      * Sets the european article number.
      *
-     * @param europeanArticleNumber
+     * @param europeanArticleNumber String
      */
+    @SuppressWarnings("unused")
     public void setEuropeanArticleNumber(String europeanArticleNumber) {
         this.europeanArticleNumber = europeanArticleNumber;
     }
@@ -158,6 +141,7 @@ public class ComponentItem {
      *
      * @return the manufacturer part number
      */
+    @SuppressWarnings("unused")
     public String getManufacturerPartNumber() {
         return manufacturerPartNumber;
     }
@@ -165,8 +149,9 @@ public class ComponentItem {
     /**
      * Sets the manufacturer part number.
      *
-     * @param manufacturerPartNumber
+     * @param manufacturerPartNumber String
      */
+    @SuppressWarnings("unused")
     public void setManufacturerPartNumber(String manufacturerPartNumber) {
         this.manufacturerPartNumber = manufacturerPartNumber;
     }
@@ -174,7 +159,7 @@ public class ComponentItem {
     /**
      * Gets the type.
      *
-     * @return the type
+     * @return type
      */
     public CType getType() {
         return type;
@@ -183,7 +168,7 @@ public class ComponentItem {
     /**
      * Sets the type.
      *
-     * @param type
+     * @param type CType
      */
     public void setType(CType type) {
         this.type = type;
@@ -192,7 +177,7 @@ public class ComponentItem {
     /**
      * Gets the price.
      *
-     * @return the price
+     * @return price
      */
     public Float getPrice() {
         return price;
@@ -201,7 +186,7 @@ public class ComponentItem {
     /**
      * Sets the price.
      *
-     * @param price
+     * @param price Float
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -210,8 +195,9 @@ public class ComponentItem {
     /**
      * Gets the url.
      *
-     * @return the url
+     * @return url
      */
+    @SuppressWarnings("unused")
     public String getUrl() {
         return url;
     }
@@ -219,8 +205,9 @@ public class ComponentItem {
     /**
      * Sets the url.
      *
-     * @param url
+     * @param url String
      */
+    @SuppressWarnings("unused")
     public void setUrl(String url) {
         this.url = url;
     }
@@ -228,7 +215,7 @@ public class ComponentItem {
     /**
      * Gets the shop.
      *
-     * @return the shop
+     * @return shop
      */
     public String getShop() {
         return shop;
@@ -237,7 +224,7 @@ public class ComponentItem {
     /**
      * Sets the shop.
      *
-     * @param shop
+     * @param shop String
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -246,8 +233,9 @@ public class ComponentItem {
     /**
      * Gets the alternative shops.
      *
-     * @return the alternative shops
+     * @return alternativeShops
      */
+    @SuppressWarnings("unused")
     public List<AlternativeShopItem> getAlternativeShops() {
         return alternativeShops;
     }
@@ -255,8 +243,9 @@ public class ComponentItem {
     /**
      * Sets the alternative shops.
      *
-     * @param alternativeShops
+     * @param alternativeShops List<AlternativeShopItem>
      */
+    @SuppressWarnings("unused")
     public void setAlternativeShops(List<AlternativeShopItem> alternativeShops) {
         this.alternativeShops = alternativeShops;
     }
@@ -266,6 +255,7 @@ public class ComponentItem {
      *
      * @return the image
      */
+    @SuppressWarnings("unused")
     public String getImage() {
         return image;
     }
@@ -273,8 +263,9 @@ public class ComponentItem {
     /**
      * Sets the image.
      *
-     * @param image
+     * @param image String
      */
+    @SuppressWarnings("unused")
     public void setImage(String image) {
         this.image = image;
     }
@@ -284,6 +275,7 @@ public class ComponentItem {
      *
      * @return the connectors
      */
+    @SuppressWarnings("unused")
     public List<Connector> getConnectors() {
         return connectors;
     }
@@ -291,8 +283,9 @@ public class ComponentItem {
     /**
      * Sets the connectors.
      *
-     * @param connectors
+     * @param connectors List<Connector>
      */
+    @SuppressWarnings("unused")
     public void setConnectors(List<Connector> connectors) {
         this.connectors = connectors;
     }

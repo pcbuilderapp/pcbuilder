@@ -1,6 +1,7 @@
 package pcbuilder.controllers.transport;
 
 import pcbuilder.domain.CType;
+
 import java.util.List;
 
 /**
@@ -8,31 +9,14 @@ import java.util.List;
  */
 public class ProductData {
 
-    /** The name. */
     private String name;
-    
-    /** The brand. */
     private String brand;
-    
-    /** The ean. */
     private String ean;
-    
-    /** The mpn. */
     private String mpn;
-    
-    /** The price. */
     private Float price;
-    
-    /** The url. */
     private String url;
-    
-    /** The shop. */
     private String shop;
-    
-    /** The type. */
     private CType type;
-    
-    /** The picture url. */
     private String pictureUrl;
     
     /** The connectors. */
@@ -50,7 +34,7 @@ public class ProductData {
     /**
      * Sets the price.
      *
-     * @param price
+     * @param price Float
      */
     public void setPrice(Float price) {
         this.price = price;
@@ -68,8 +52,9 @@ public class ProductData {
     /**
      * Sets the url.
      *
-     * @param url
+     * @param url String
      */
+    @SuppressWarnings("unused")
     public void setUrl(String url) {
         this.url = url;
     }
@@ -86,7 +71,7 @@ public class ProductData {
     /**
      * Sets the shop.
      *
-     * @param shop
+     * @param shop String
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -104,7 +89,7 @@ public class ProductData {
     /**
      * Sets the name.
      *
-     * @param name
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
@@ -122,8 +107,9 @@ public class ProductData {
     /**
      * Sets the brand.
      *
-     * @param brand
+     * @param brand String
      */
+    @SuppressWarnings("unused")
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -140,8 +126,9 @@ public class ProductData {
     /**
      * Sets the ean.
      *
-     * @param ean
+     * @param ean String
      */
+    @SuppressWarnings("unused")
     public void setEan(String ean) {
         this.ean = ean;
     }
@@ -158,7 +145,7 @@ public class ProductData {
     /**
      * Sets the type.
      *
-     * @param type
+     * @param type CType
      */
     public void setType(CType type) {
         this.type = type;
@@ -176,8 +163,9 @@ public class ProductData {
     /**
      * Sets the connectors.
      *
-     * @param connectors
+     * @param connectors List<ConnectorData>
      */
+    @SuppressWarnings("unused")
     public void setConnectors(List<ConnectorData> connectors) {
         this.connectors = connectors;
     }
@@ -194,8 +182,9 @@ public class ProductData {
     /**
      * Sets the mpn.
      *
-     * @param mpn
+     * @param mpn String
      */
+    @SuppressWarnings("unused")
     public void setMpn(String mpn) {
         this.mpn = mpn;
     }
@@ -212,8 +201,9 @@ public class ProductData {
     /**
      * Sets the picture urls.
      *
-     * @param pictureUrl
+     * @param pictureUrl String
      */
+    @SuppressWarnings("unused")
     public void setPictureUrls(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }

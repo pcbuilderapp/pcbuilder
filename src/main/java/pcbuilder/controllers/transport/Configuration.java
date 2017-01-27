@@ -8,28 +8,13 @@ import java.util.NoSuchElementException;
  */
 public class Configuration implements Iterable<ComponentRef> {
 
-    /** The component count. */
     private static final int COMPONENT_COUNT = 7;
-
-    /** The motherboard. */
     private ComponentRef motherboard;
-    
-    /** The cpu. */
     private ComponentRef cpu;
-    
-    /** The gpu. */
     private ComponentRef gpu;
-    
-    /** The memory. */
     private ComponentRef memory;
-    
-    /** The storage. */
     private ComponentRef storage;
-    
-    /** The psu. */
     private ComponentRef psu;
-    
-    /** The casing. */
     private ComponentRef casing;
 
     /**
@@ -44,8 +29,9 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Sets the motherboard.
      *
-     * @param motherboard
+     * @param motherboard ComponentRef motherboard
      */
+    @SuppressWarnings("unused")
     public void setMotherboard(ComponentRef motherboard) {
         this.motherboard = motherboard;
     }
@@ -53,17 +39,18 @@ public class Configuration implements Iterable<ComponentRef> {
     /**
      * Gets the cpu.
      *
-     * @return the cpu
+     * @return cpu
      */
-    public ComponentRef getCpu() {
+    ComponentRef getCpu() {
         return cpu;
     }
 
     /**
      * Sets the cpu.
      *
-     * @param cpu
+     * @param cpu ComponentRef cpu
      */
+    @SuppressWarnings("unused")
     public void setCpu(ComponentRef cpu) {
         this.cpu = cpu;
     }
@@ -73,15 +60,16 @@ public class Configuration implements Iterable<ComponentRef> {
      *
      * @return the gpu
      */
-    public ComponentRef getGpu() {
+    ComponentRef getGpu() {
         return gpu;
     }
 
     /**
      * Sets the gpu.
      *
-     * @param gpu 
+     * @param gpu ComponentRef gpu
      */
+    @SuppressWarnings("unused")
     public void setGpu(ComponentRef gpu) {
         this.gpu = gpu;
     }
@@ -91,15 +79,16 @@ public class Configuration implements Iterable<ComponentRef> {
      *
      * @return the memory
      */
-    public ComponentRef getMemory() {
+    ComponentRef getMemory() {
         return memory;
     }
 
     /**
      * Sets the memory.
      *
-     * @param memory
+     * @param memory ComponentRef memory
      */
+    @SuppressWarnings("unused")
     public void setMemory(ComponentRef memory) {
         this.memory = memory;
     }
@@ -109,15 +98,16 @@ public class Configuration implements Iterable<ComponentRef> {
      *
      * @return the storage
      */
-    public ComponentRef getStorage() {
+    ComponentRef getStorage() {
         return storage;
     }
 
     /**
      * Sets the storage.
      *
-     * @param storage
+     * @param storage ComponentRef storage
      */
+    @SuppressWarnings("unused")
     public void setStorage(ComponentRef storage) {
         this.storage = storage;
     }
@@ -127,15 +117,16 @@ public class Configuration implements Iterable<ComponentRef> {
      *
      * @return the psu
      */
-    public ComponentRef getPsu() {
+    ComponentRef getPsu() {
         return psu;
     }
 
     /**
      * Sets the psu.
      *
-     * @param psu
+     * @param psu ComponentRef
      */
+    @SuppressWarnings("unused")
     public void setPsu(ComponentRef psu) {
         this.psu = psu;
     }
@@ -145,15 +136,16 @@ public class Configuration implements Iterable<ComponentRef> {
      *
      * @return the casing
      */
-    public ComponentRef getCasing() {
+    ComponentRef getCasing() {
         return casing;
     }
 
     /**
      * Sets the casing.
      *
-     * @param casing
+     * @param casing ComponentRef
      */
+    @SuppressWarnings("unused")
     public void setCasing(ComponentRef casing) {
         this.casing = casing;
     }
@@ -180,24 +172,19 @@ public class Configuration implements Iterable<ComponentRef> {
      * The Class ComponentRefIterator.
      */
     private static final class ComponentRefIterator implements Iterator<ComponentRef> {
-        
-        /** The cursor. */
+
         private int cursor;
-        
-        /** The end. */
         private final int end;
-        
-        /** The configuration. */
         private final Configuration configuration;
 
         /**
          * Instantiates a new component ref iterator.
          *
-         * @param configuration
-         * @param start
-         * @param end
+         * @param configuration Configuration
+         * @param start int
+         * @param end int
          */
-        public ComponentRefIterator(Configuration configuration,int start, int end) {
+        ComponentRefIterator(Configuration configuration,int start, int end) {
             this.configuration = configuration;
             this.cursor = start;
             this.end = end;

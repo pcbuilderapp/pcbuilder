@@ -23,18 +23,22 @@ public class MaxDailyPriceView {
     @Column(name = "price")
     private Double price;
 
+    @SuppressWarnings("unused")
     public Long getComponentId() {
         return componentId;
     }
 
+    @SuppressWarnings("unused")
     public void setComponentId(Long componentId) {
         this.componentId = componentId;
     }
 
+    @SuppressWarnings("unused")
     public Date getDate() {
         return date;
     }
 
+    @SuppressWarnings("unused")
     public void setDate(Date date) {
         this.date = date;
     }
@@ -47,10 +51,12 @@ public class MaxDailyPriceView {
         this.price = price;
     }
 
+    @SuppressWarnings("unused")
     public Long getPricepointId() {
         return pricepointId;
     }
 
+    @SuppressWarnings("unused")
     public void setPricepointId(Long pricepointId) {
         this.pricepointId = pricepointId;
     }

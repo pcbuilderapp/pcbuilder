@@ -23,6 +23,7 @@ public class SearchQuery {
         this.id = id;
     }
 
+    @SuppressWarnings("unused")
     public String getFilter() {
         return filter;
     }

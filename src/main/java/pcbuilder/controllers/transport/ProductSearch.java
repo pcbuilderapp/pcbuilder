@@ -11,6 +11,7 @@ public class ProductSearch {
         return filter;
     }
 
+    @SuppressWarnings("unused")
     public void setFilter(String filter) {
         this.filter = filter;
     }
@@ -27,14 +28,17 @@ public class ProductSearch {
         return maxItems;
     }
 
+    @SuppressWarnings("unused")
     public void setMaxItems(int maxItems) {
         this.maxItems = maxItems;
     }
 
+    @SuppressWarnings("unused")
     public String getSort() {
         return sort;
     }
 
+    @SuppressWarnings("unused")
     public void setSort(String sort) {
         this.sort = sort;
     }

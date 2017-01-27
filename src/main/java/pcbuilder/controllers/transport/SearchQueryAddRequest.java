@@ -11,6 +11,7 @@ public class SearchQueryAddRequest {
         return filter;
     }
 
+    @SuppressWarnings("unused")
     public void setFilter(String filter) {
         this.filter = filter;
     }
@@ -35,7 +36,7 @@ public class SearchQueryAddRequest {
     /**
      * Setter for property 'component'.
      *
-     * @param component Value to set for property 'component'.
+     * @param component ComponentRef
      */
     public void setComponent(ComponentRef component) {
         this.component = component;

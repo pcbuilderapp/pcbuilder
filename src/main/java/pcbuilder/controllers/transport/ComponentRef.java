@@ -4,8 +4,7 @@ package pcbuilder.controllers.transport;
  * The Class ComponentRef.
  */
 public class ComponentRef {
-    
-    /** The id. */
+
     private Long id;
 
     /**
@@ -20,7 +19,7 @@ public class ComponentRef {
     /**
      * Sets the id.
      *
-     * @param id
+     * @param id Long
      */
     public void setId(Long id) {
         this.id = id;

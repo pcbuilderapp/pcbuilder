@@ -6,22 +6,17 @@ import pcbuilder.domain.Product;
  * The Class AlternativeShopItem.
  */
 public class AlternativeShopItem {
-    
-    /** The shop. */
+
     private String shop;
-    
-    /** The url. */
     private String url;
-    
-    /** The price. */
     private Float price;
 
     /**
      * Instantiates a new alternative shop item.
      *
-     * @param adds product to the product
+     * @param product Product
      */
-    public AlternativeShopItem(Product product) {
+    AlternativeShopItem(Product product) {
         shop = product.getShop().getName();
         url = product.getProductUrl();
         price = product.getCurrentPrice();
@@ -30,7 +25,7 @@ public class AlternativeShopItem {
     /**
      * Gets the shop.
      *
-     * @return the shop
+     * @return shop
      */
     public String getShop() {
         return shop;
@@ -39,7 +34,7 @@ public class AlternativeShopItem {
     /**
      * Sets the shop.
      *
-     * @param shop
+     * @param shop String
      */
     public void setShop(String shop) {
         this.shop = shop;
@@ -48,7 +43,7 @@ public class AlternativeShopItem {
     /**
      * Gets the url.
      *
-     * @return the url
+     * @return url
      */
     public String getUrl() {
         return url;
@@ -57,7 +52,7 @@ public class AlternativeShopItem {
     /**
      * Sets the url.
      *
-     * @param url
+     * @param url String
      */
     public void setUrl(String url) {
         this.url = url;
@@ -75,7 +70,7 @@ public class AlternativeShopItem {
     /**
      * Sets the price.
      *
-     * @param price
+     * @param price Float
      */
     public void setPrice(Float price) {
         this.price = price;

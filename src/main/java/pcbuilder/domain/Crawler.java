@@ -17,8 +17,15 @@ public class Crawler {
     @Column(nullable = false)
     private Boolean activated;
 
-    public Crawler() {}
+    /**
+     * Must be empty.
+     */
+    @SuppressWarnings("unused")
+    public Crawler() {
+        // This dummy constructor is needed by springboot
+    }
 
+    @SuppressWarnings("unused")
     public Crawler(String name, Boolean activated) {
         this.name = name;
         this.activated = activated;

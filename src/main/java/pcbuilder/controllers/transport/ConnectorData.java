@@ -7,16 +7,13 @@ import pcbuilder.domain.CType;
  */
 public class ConnectorData {
 
-    /** The name. */
     private String name;
-    
-    /** The type. */
     private CType type;
 
     /**
      * Gets the name.
      *
-     * @return the name
+     * @return name
      */
     public String getName() {
         return name;
@@ -25,7 +22,7 @@ public class ConnectorData {
     /**
      * Sets the name.
      *
-     * @param name
+     * @param name String
      */
     public void setName(String name) {
         this.name = name;
@@ -34,7 +31,7 @@ public class ConnectorData {
     /**
      * Gets the type.
      *
-     * @return the type
+     * @return type
      */
     public CType getType() {
         return type;
@@ -43,7 +40,7 @@ public class ConnectorData {
     /**
      * Sets the type.
      *
-     * @param type
+     * @param type CType
      */
     public void setType(CType type) {
         this.type = type;

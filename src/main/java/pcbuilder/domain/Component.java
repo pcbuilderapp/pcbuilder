@@ -33,7 +33,9 @@ public class Component implements Serializable{
 
 	private String pictureUrl;
 
-	public Component(){}
+	public Component(){
+        //needs to be empty for SpringBoot
+    }
 
 	public Component(String name, String brand, String europeanArticleNumber, String manufacturerPartNumber, CType type, String pictureUrl) {
 		this.name = name;
@@ -96,9 +98,10 @@ public class Component implements Serializable{
 		return connectors;
 	}
 
-	public void setConnectors(List<Connector> connectors) {
-		this.connectors = connectors;
-	}
+    @SuppressWarnings("unused")
+    public void setConnectors(List<Connector> connectors) {
+        this.connectors = connectors;
+    }
 
 	public void addConnector(Connector connector) {
 	    if (connector != null) {

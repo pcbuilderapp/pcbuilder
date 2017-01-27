@@ -7,23 +7,12 @@ import pcbuilder.domain.CType;
  */
 public class ComponentMatchingSearch {
 
-    /** The filter. */
-    String filter;
-    
-    /** The type. */
-    CType type;
-    
-    /** The configuration. */
-    Configuration configuration;
-    
-    /** The page. */
-    Long page;
-    
-    /** The max items. */
-    Long maxItems;
-    
-    /** The sort. */
-    String sort;
+    private String filter;
+    private CType type;
+    private Configuration configuration;
+    private Long page;
+    private Long maxItems;
+    private String sort;
 
     /**
      * Gets the filter.
@@ -37,8 +26,9 @@ public class ComponentMatchingSearch {
     /**
      * Sets the filter.
      *
-     * @param filter
+     * @param filter String
      */
+    @SuppressWarnings("unused")
     public void setFilter(String filter) {
         this.filter = filter;
     }
@@ -55,7 +45,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the type.
      *
-     * @param type
+     * @param type CType
      */
     public void setType(CType type) {
         this.type = type;
@@ -73,8 +63,9 @@ public class ComponentMatchingSearch {
     /**
      * Sets the configuration.
      *
-     * @param configuration
+     * @param configuration Configuration
      */
+    @SuppressWarnings("unused")
     public void setConfiguration(Configuration configuration) {
         this.configuration = configuration;
     }
@@ -91,7 +82,7 @@ public class ComponentMatchingSearch {
     /**
      * Sets the page.
      *
-     * @param page
+     * @param page Long
      */
     public void setPage(Long page) {
         this.page = page;
@@ -109,8 +100,9 @@ public class ComponentMatchingSearch {
     /**
      * Sets the max items.
      *
-     * @param maxItems
+     * @param maxItems Long
      */
+    @SuppressWarnings("unused")
     public void setMaxItems(Long maxItems) {
         this.maxItems = maxItems;
     }
@@ -118,7 +110,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the sort.
      *
-     * @return the sort
+     * @return sort
      */
     public String getSort() {
         return sort;
@@ -127,8 +119,9 @@ public class ComponentMatchingSearch {
     /**
      * Sets the sort.
      *
-     * @param sort
+     * @param sort String
      */
+    @SuppressWarnings("unused")
     public void setSort(String sort) {
         this.sort = sort;
     }

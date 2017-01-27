@@ -41,7 +41,7 @@ public class PricePointController {
     /**
      * Gets an historical list of pricepoints for a given component
      *
-     * @param long componentId
+     * @param componentId long
      * @return PricePointResponse
      */
     @CrossOrigin(origins = "*")

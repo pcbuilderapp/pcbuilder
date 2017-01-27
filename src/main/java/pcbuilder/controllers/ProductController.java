@@ -7,9 +7,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.*;
+import pcbuilder.controllers.transport.ConnectorData;
+import pcbuilder.controllers.transport.ProductData;
+import pcbuilder.controllers.transport.ProductSearch;
+import pcbuilder.controllers.transport.ProductsResponse;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
+
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -46,7 +50,7 @@ public class ProductController {
     /**
      * Adds the products.
      *
-     * @param //List<ProductData>
+     * @param productDataList List<ProductData>
      * @return ResponseEntity<String>
      */
     @RequestMapping(value="/products/add", method= RequestMethod.POST)
@@ -62,7 +66,7 @@ public class ProductController {
     /**
      * Adds the product.
      *
-     * @param //ProductData
+     * @param productData ProductData
      * @return ResponseEntity<String>
      */
     @RequestMapping(value="/product/add", method= RequestMethod.POST)
@@ -91,9 +95,7 @@ public class ProductController {
     /**
      * Get products.
      *
-     * @param //List<Component>
-     * @param //ProductData
-     * @return Component
+     * @return List<Product>
      */
 
     @CrossOrigin(origins = "*")
@@ -120,7 +122,7 @@ public class ProductController {
     /**
      * Searches for an existing component based on the MPN number, EAN number, or name.
      *
-     * @param //ProductData
+     * @param productData ProductData
      * @return Component
      */
     private Component findComponent(ProductData productData) {
@@ -137,8 +139,8 @@ public class ProductController {
     /**
      * Persists a Product
      *
-     * @param //ProductData
-     * @param //Product
+     * @param productData ProductData
+     * @param persistProduct Product
      * @return Product
      */
     private Product persistProduct(ProductData productData, Product persistProduct) {
@@ -163,8 +165,8 @@ public class ProductController {
     /**
      * Persist component.
      *
-     * @param //list<Component>
-     * @param //ProductData
+     * @param productData ProductData
+     * @param persistComponent Component
      * @return Component
      */
     private Component persistComponent(Component persistComponent, ProductData productData) {
@@ -199,7 +201,7 @@ public class ProductController {
     /**
      * Persist connector.
      *
-     * @param //ConnectorData
+     * @param connectorData ConnectorData
      * @return Connector
      */
     private Connector persistConnector(ConnectorData connectorData) {

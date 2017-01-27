@@ -26,7 +26,7 @@ public class ShopController {
     /**
      * Gets all the shops.
      *
-     * @return all the shops
+     * @return Iterable<Shop>
      */
     @RequestMapping(value="/shop/getall", method= RequestMethod.GET)
     public Iterable<Shop> getAllShops() {
@@ -37,7 +37,7 @@ public class ShopController {
     /**
      * Creates the component.
      *
-     * @param shop
+     * @param shop Shop
      * @return the response entity "Shop already exists!"
      */
     @RequestMapping(value="/shop/create", method=RequestMethod.POST)

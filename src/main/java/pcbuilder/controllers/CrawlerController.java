@@ -48,7 +48,7 @@ public class CrawlerController {
     /**
      * Creates the crawler.
      *
-     * @param Crawler crawler
+     * @param crawler Crawler
      * @return ResponseEntity<String> response"
      */
     @RequestMapping(value="/crawler/create", method=RequestMethod.POST)
@@ -69,7 +69,7 @@ public class CrawlerController {
     /**
      * Updates the crawler.
      *
-     * @param Crawler crawler
+     * @param crawlerUpdate Crawler
      * @return ResponseEntity<String> response"
      */
     @CrossOrigin(origins = "*")

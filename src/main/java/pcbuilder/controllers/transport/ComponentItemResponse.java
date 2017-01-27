@@ -6,21 +6,17 @@ import java.util.List;
  * The Class ComponentItemResponse.
  */
 public class ComponentItemResponse {
-    
-    /** The components. */
+
     private List<ComponentItem> components;
-    
-    /** The page. */
     private int page;
-    
-    /** The page count. */
     private int pageCount;
 
     /**
      * Gets the components.
      *
-     * @return the components
+     * @return components
      */
+    @SuppressWarnings("unused")
     public List<ComponentItem> getComponents() {
         return components;
     }
@@ -28,7 +24,7 @@ public class ComponentItemResponse {
     /**
      * Sets the components.
      *
-     * @param components
+     * @param components List<ComponentItem>
      */
     public void setComponents(List<ComponentItem> components) {
         this.components = components;
@@ -37,7 +33,7 @@ public class ComponentItemResponse {
     /**
      * Gets the page.
      *
-     * @return the page
+     * @return page
      */
     public int getPage() {
         return page;
@@ -46,7 +42,7 @@ public class ComponentItemResponse {
     /**
      * Sets the page.
      *
-     * @param page
+     * @param page int
      */
     public void setPage(int page) {
         this.page = page;
@@ -57,6 +53,7 @@ public class ComponentItemResponse {
      *
      * @return the page count
      */
+    @SuppressWarnings("unused")
     public int getPageCount() {
         return pageCount;
     }
@@ -64,7 +61,7 @@ public class ComponentItemResponse {
     /**
      * Sets the page count.
      *
-     * @param pageCount
+     * @param pageCount int
      */
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
