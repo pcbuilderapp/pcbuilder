@@ -4,8 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pcbuilder.controllers.transport.MinDailyPriceResponse;
 import pcbuilder.domain.Component;
+import pcbuilder.domain.MinDailyPriceView;
 import pcbuilder.repository.ComponentRepository;
+import pcbuilder.repository.MinDailyPriceViewRepository;
+
+import java.util.List;
 
 /**
  * The Class ComponentController.
@@ -16,6 +21,9 @@ public class ComponentController {
     /** The component repository. */
     @Autowired
     private ComponentRepository componentRepository;
+
+    @Autowired
+    private MinDailyPriceViewRepository minDailyPriceViewRepository;
 
     /**
      * Creates the component.
@@ -51,5 +59,20 @@ public class ComponentController {
      */
     public Component getById(Long id) {
         return componentRepository.getOne(id);
+    }
+
+
+
+
+    @CrossOrigin(origins = "*")
+    @RequestMapping(value="/component/getpricehistory", method=RequestMethod.GET)
+    public MinDailyPriceResponse getGroupedPriceHistory(long componentId) {
+
+        List<MinDailyPriceView> minDailyPriceViews = minDailyPriceViewRepository.findAllByComponentId(componentId);
+
+        MinDailyPriceResponse minDailyPriceResponse = new MinDailyPriceResponse();
+        minDailyPriceResponse.setMinDailyPriceViewList(minDailyPriceViews);
+
+        return minDailyPriceResponse;
     }
 }
