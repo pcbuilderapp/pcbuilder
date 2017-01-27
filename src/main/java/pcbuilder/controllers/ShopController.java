@@ -38,7 +38,7 @@ public class ShopController {
      * Creates the component.
      *
      * @param shop Shop
-     * @return the response entity "Shop already exists!"
+     * @return ResponseEntity
      */
     @RequestMapping(value="/shop/create", method=RequestMethod.POST)
     public ResponseEntity<String> createShop(@RequestBody Shop shop) {

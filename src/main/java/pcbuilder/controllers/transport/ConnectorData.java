@@ -13,7 +13,7 @@ public class ConnectorData {
     /**
      * Gets the name.
      *
-     * @return name
+     * @return String
      */
     public String getName() {
         return name;
@@ -31,7 +31,7 @@ public class ConnectorData {
     /**
      * Gets the type.
      *
-     * @return type
+     * @return CType
      */
     public CType getType() {
         return type;

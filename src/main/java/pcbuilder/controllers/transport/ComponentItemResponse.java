@@ -14,9 +14,8 @@ public class ComponentItemResponse {
     /**
      * Gets the components.
      *
-     * @return components
+     * @return List
      */
-    @SuppressWarnings("unused")
     public List<ComponentItem> getComponents() {
         return components;
     }
@@ -33,7 +32,7 @@ public class ComponentItemResponse {
     /**
      * Gets the page.
      *
-     * @return page
+     * @return int
      */
     public int getPage() {
         return page;
@@ -51,9 +50,8 @@ public class ComponentItemResponse {
     /**
      * Gets the page count.
      *
-     * @return the page count
+     * @return int
      */
-    @SuppressWarnings("unused")
     public int getPageCount() {
         return pageCount;
     }

@@ -10,7 +10,7 @@ public class ComponentRef {
     /**
      * Gets the id.
      *
-     * @return the id
+     * @return Long
      */
     public Long getId() {
         return id;

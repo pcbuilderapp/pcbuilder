@@ -8,7 +8,6 @@ public class MinDailyPriceResponse {
 
     private List<MinDailyPriceView> minDailyPriceViewList;
 
-    @SuppressWarnings("unused")
     public List<MinDailyPriceView> getMinDailyPriceViewList() {
         return minDailyPriceViewList;
     }

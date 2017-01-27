@@ -26,7 +26,7 @@ public class Product implements Serializable {
 	/**
 	 * Gets the component.
 	 *
-	 * @return the component
+	 * @return Component
 	 */
 	public Component getComponent() {
 		return component;
@@ -44,7 +44,7 @@ public class Product implements Serializable {
 	/**
 	 * Gets the current price.
 	 *
-	 * @return the current price
+	 * @return Float
 	 */
 	public Float getCurrentPrice() {
 		return currentPrice;
@@ -62,7 +62,7 @@ public class Product implements Serializable {
 	/**
 	 * Gets the shop.
 	 *
-	 * @return the shop
+	 * @return Shop
 	 */
 	public Shop getShop() {
 		return shop;
@@ -80,7 +80,7 @@ public class Product implements Serializable {
 	/**
 	 * Gets the product url.
 	 *
-	 * @return the product url
+	 * @return String
 	 */
 	public String getProductUrl() {
 		return productUrl;

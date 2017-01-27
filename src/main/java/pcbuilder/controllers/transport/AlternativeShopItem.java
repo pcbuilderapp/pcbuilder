@@ -25,7 +25,7 @@ public class AlternativeShopItem {
     /**
      * Gets the shop.
      *
-     * @return shop
+     * @return String
      */
     public String getShop() {
         return shop;
@@ -43,7 +43,7 @@ public class AlternativeShopItem {
     /**
      * Gets the url.
      *
-     * @return url
+     * @return String
      */
     public String getUrl() {
         return url;
@@ -61,7 +61,7 @@ public class AlternativeShopItem {
     /**
      * Gets the price.
      *
-     * @return the price
+     * @return Float
      */
     public Float getPrice() {
         return price;

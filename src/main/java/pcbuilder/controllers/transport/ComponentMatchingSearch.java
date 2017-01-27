@@ -17,7 +17,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the filter.
      *
-     * @return the filter
+     * @return String
      */
     public String getFilter() {
         return filter;
@@ -36,7 +36,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the type.
      *
-     * @return the type
+     * @return CType
      */
     public CType getType() {
         return type;
@@ -54,7 +54,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the configuration.
      *
-     * @return the configuration
+     * @return Configuration
      */
     public Configuration getConfiguration() {
         return configuration;
@@ -73,7 +73,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the page.
      *
-     * @return the page
+     * @return Long
      */
     public Long getPage() {
         return page;
@@ -91,7 +91,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the max items.
      *
-     * @return the max items
+     * @return Long
      */
     public Long getMaxItems() {
         return maxItems;
@@ -102,7 +102,6 @@ public class ComponentMatchingSearch {
      *
      * @param maxItems Long
      */
-    @SuppressWarnings("unused")
     public void setMaxItems(Long maxItems) {
         this.maxItems = maxItems;
     }
@@ -110,7 +109,7 @@ public class ComponentMatchingSearch {
     /**
      * Gets the sort.
      *
-     * @return sort
+     * @return String
      */
     public String getSort() {
         return sort;
@@ -121,7 +120,6 @@ public class ComponentMatchingSearch {
      *
      * @param sort String
      */
-    @SuppressWarnings("unused")
     public void setSort(String sort) {
         this.sort = sort;
     }

@@ -13,16 +13,11 @@ import java.io.Serializable;
 })
 public class Connector implements Serializable {
 
-	/** The id. */
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-
-	/** The name. */
 	@Column(nullable = false)
 	private String name;
-
-    /** The type. */
     @Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CType type;
@@ -49,7 +44,7 @@ public class Connector implements Serializable {
 	/**
 	 * Gets the id.
 	 *
-	 * @return the id
+	 * @return Long
 	 */
 	public Long getId() {
 		return id;
@@ -67,7 +62,7 @@ public class Connector implements Serializable {
 	/**
 	 * Gets the name.
 	 *
-	 * @return the name
+	 * @return String
 	 */
 	public String getName() {
 		return name;
@@ -85,7 +80,7 @@ public class Connector implements Serializable {
 	/**
 	 * Gets the type.
 	 *
-	 * @return the type
+	 * @return CType
 	 */
 	public CType getType() {
 		return type;

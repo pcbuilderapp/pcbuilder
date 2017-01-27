@@ -49,7 +49,7 @@ public class ComponentController {
     /**
      * Gets all the components.
      *
-     * @return all the components
+     * @return Iterable
      */
     @RequestMapping(value="/component/getall", method=RequestMethod.GET)
     public Iterable<Component> getAllComponents() {
@@ -62,7 +62,6 @@ public class ComponentController {
      * @param id Long
      * @return Component
      */
-    @SuppressWarnings("unused")
     public Component getById(Long id) {
         return componentRepository.getOne(id);
     }

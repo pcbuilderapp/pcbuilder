@@ -18,7 +18,7 @@ public interface ConnectorRepository extends CrudRepository<Connector, Long> {
      *
      * @param type Ctype
      * @param name name
-     * @return Connector findByNameAndType
+     * @return Connector
      */
     Connector findByNameAndType(@Param("name")String name, @Param("type")CType type);
 }

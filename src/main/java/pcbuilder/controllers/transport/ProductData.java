@@ -25,7 +25,7 @@ public class ProductData {
     /**
      * Gets the price.
      *
-     * @return the price
+     * @return String
      */
     public Float getPrice() {
         return price;
@@ -43,7 +43,7 @@ public class ProductData {
     /**
      * Gets the url.
      *
-     * @return the url
+     * @return String
      */
     public String getUrl() {
         return url;
@@ -54,7 +54,6 @@ public class ProductData {
      *
      * @param url String
      */
-    @SuppressWarnings("unused")
     public void setUrl(String url) {
         this.url = url;
     }
@@ -62,7 +61,7 @@ public class ProductData {
     /**
      * Gets the shop.
      *
-     * @return the shop
+     * @return String
      */
     public String getShop() {
         return shop;
@@ -98,7 +97,7 @@ public class ProductData {
     /**
      * Gets the brand.
      *
-     * @return the brand
+     * @return String
      */
     public String getBrand() {
         return brand;
@@ -109,7 +108,6 @@ public class ProductData {
      *
      * @param brand String
      */
-    @SuppressWarnings("unused")
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -117,7 +115,7 @@ public class ProductData {
     /**
      * Gets the ean.
      *
-     * @return the ean
+     * @return String
      */
     public String getEan() {
         return ean;
@@ -128,7 +126,6 @@ public class ProductData {
      *
      * @param ean String
      */
-    @SuppressWarnings("unused")
     public void setEan(String ean) {
         this.ean = ean;
     }
@@ -136,7 +133,7 @@ public class ProductData {
     /**
      * Gets the type.
      *
-     * @return the type
+     * @return CType
      */
     public CType getType() {
         return type;
@@ -154,7 +151,7 @@ public class ProductData {
     /**
      * Gets the connectors.
      *
-     * @return the connectors
+     * @return List
      */
     public List<ConnectorData> getConnectors() {
         return connectors;
@@ -165,7 +162,6 @@ public class ProductData {
      *
      * @param connectors List
      */
-    @SuppressWarnings("unused")
     public void setConnectors(List<ConnectorData> connectors) {
         this.connectors = connectors;
     }
@@ -173,7 +169,7 @@ public class ProductData {
     /**
      * Gets the mpn.
      *
-     * @return the mpn
+     * @return String
      */
     public String getMpn() {
         return mpn;
@@ -184,7 +180,6 @@ public class ProductData {
      *
      * @param mpn String
      */
-    @SuppressWarnings("unused")
     public void setMpn(String mpn) {
         this.mpn = mpn;
     }
@@ -192,7 +187,7 @@ public class ProductData {
     /**
      * Gets the picture url.
      *
-     * @return the picture url
+     * @return String
      */
     public String getPictureUrl() {
         return pictureUrl;
@@ -203,7 +198,6 @@ public class ProductData {
      *
      * @param pictureUrl String
      */
-    @SuppressWarnings("unused")
     public void setPictureUrls(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }

@@ -9,7 +9,6 @@ public class ProductsResponse {
     private int page;
     private int pageCount;
 
-    @SuppressWarnings("unused")
     public List<Product> getProducts() {
         return products;
     }
@@ -26,7 +25,6 @@ public class ProductsResponse {
         this.page = page;
     }
 
-    @SuppressWarnings("unused")
     public int getPageCount() {
         return pageCount;
     }

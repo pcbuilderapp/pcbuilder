@@ -30,7 +30,7 @@ public class PricePointController {
     /**
      * Gets all the price points.
      *
-     * @return all the price points
+     * @return Iterable
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/pricepoint/getall", method= RequestMethod.GET)

@@ -50,7 +50,6 @@ public class Shop implements Serializable{
 	 *
      * @return String
      */
-    @SuppressWarnings("unused")
     public String getUrl() {
 		return url;
 	}
@@ -60,7 +59,6 @@ public class Shop implements Serializable{
 	 *
      * @param url String
      */
-    @SuppressWarnings("unused")
     public void setUrl(String url) {
 		this.url = url;
 	}
@@ -70,7 +68,6 @@ public class Shop implements Serializable{
 	 *
      * @return String
      */
-    @SuppressWarnings("unused")
     public String getLogoUrl() {
 		return logoUrl;
 	}
@@ -80,7 +77,6 @@ public class Shop implements Serializable{
 	 *
      * @param logoUrl String
      */
-    @SuppressWarnings("unused")
     public void setLogoUrl(String logoUrl) {
 		this.logoUrl = logoUrl;
 	}

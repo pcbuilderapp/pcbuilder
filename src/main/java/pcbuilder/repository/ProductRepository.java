@@ -3,14 +3,11 @@ package pcbuilder.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.Product;
 import pcbuilder.domain.Shop;
 
 import javax.transaction.Transactional;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -24,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *
      * @param component Component
      * @param shop Shop
-     * @return the list
+     * @return Product
      */
     Product findByComponentAndShop(Component component, Shop shop);
     
@@ -32,7 +29,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      * Find by component order by current price asc.
      *
      * @param component Component
-     * @return the list
+     * @return List
      */
     List<Product> findByComponentOrderByCurrentPriceAsc(Component component);
 
@@ -41,7 +38,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
      *
      * @param name String
      * @param pageable Pageable
-     * @return the list
+     * @return Page
      */
     Page<Product> findByComponentNameContaining(String name, Pageable pageable);
 
