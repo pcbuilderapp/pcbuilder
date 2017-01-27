@@ -7,8 +7,8 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "min_daily_price_view")
-public class MinDailyPriceView {
+@Table(name = "max_daily_price_view")
+public class MaxDailyPriceView {
 
     @Id
     @Column(name = "pricepoint_id")
