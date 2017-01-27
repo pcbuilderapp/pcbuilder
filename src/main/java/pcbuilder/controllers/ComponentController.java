@@ -66,9 +66,6 @@ public class ComponentController {
         return componentRepository.getOne(id);
     }
 
-
-
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/component/getminpricehistory", method=RequestMethod.GET)
     public MinDailyPriceResponse getComponentMinPriceHistory(long componentId) {

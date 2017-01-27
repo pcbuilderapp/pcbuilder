@@ -18,6 +18,7 @@ public class ProductData {
     private String shop;
     private CType type;
     private String pictureUrl;
+    private boolean discounted;
     
     /** The connectors. */
     private List<ConnectorData> connectors;
@@ -198,23 +199,26 @@ public class ProductData {
      *
      * @param pictureUrl String
      */
-    public void setPictureUrls(String pictureUrl) {
+    public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
 
-    @Override
-    public String toString() {
-        return "ProductData{" +
-                "name='" + name + '\'' +
-                ", brand='" + brand + '\'' +
-                ", ean='" + ean + '\'' +
-                ", mpn='" + mpn + '\'' +
-                ", price=" + price +
-                ", url='" + url + '\'' +
-                ", shop='" + shop + '\'' +
-                ", type=" + type +
-                ", pictureUrl='" + pictureUrl + '\'' +
-                ", connectors=" + connectors +
-                '}';
+
+    /**
+     * Gets if a product is discounted.
+     *
+     * @return boolean
+     */
+    public boolean isDiscounted() {
+        return discounted;
+    }
+
+    /**
+     * Sets if a product is discounted.
+     *
+     * @param discounted boolean
+     */
+    public void setDiscounted(boolean discounted) {
+        this.discounted = discounted;
     }
 }
