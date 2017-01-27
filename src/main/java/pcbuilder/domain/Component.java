@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(uniqueConstraints={
-		@UniqueConstraint(columnNames = {"brand", "manufacturerPartNumber"})
-})
 public class Component implements Serializable{
 
 	@Id
@@ -23,7 +20,7 @@ public class Component implements Serializable{
 
 	private String europeanArticleNumber;
 
-	@Column(nullable = false)
+	@Column(unique=true, nullable = false)
 	private String manufacturerPartNumber;
 
 	@Column(nullable = false)

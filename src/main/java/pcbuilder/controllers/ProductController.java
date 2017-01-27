@@ -132,14 +132,8 @@ public class ProductController {
         Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
 
         if (component == null && productData.getEan() != null && !productData.getEan().equals("9999999999999") ) {
-            component = componentRepository.findByEuropeanArticleNumber(productData.getEan());
+            component = componentRepository.findByEuropeanArticleNumber(productData.getEan()).get(0);
         }
-
-/*
-        if (component == null) {
-            component = componentRepository.findByName(productData.getName());
-        }
-*/
 
         return component;
     }
