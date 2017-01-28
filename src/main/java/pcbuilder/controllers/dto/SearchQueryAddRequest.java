@@ -3,6 +3,7 @@ package pcbuilder.controllers.dto;
 import pcbuilder.domain.SearchQueryType;
 
 public class SearchQueryAddRequest {
+
     private String filter;
     private SearchQueryType type;
     private ComponentRef component;
