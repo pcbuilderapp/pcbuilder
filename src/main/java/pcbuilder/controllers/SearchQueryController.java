@@ -38,12 +38,14 @@ public class SearchQueryController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/searches/add", method = RequestMethod.POST)
     public void add(@RequestBody SearchQueryAddRequest request) {
-        Component component = componentRepository.findOne(request.getComponent().getId());
+        Component component = request.getComponent() != null ?
+                componentRepository.findOne(request.getComponent().getId()) : null;
 
         SearchQuery existingQuery = searchQueryRepository.findByFilterAndTypeAndComponent(request.getFilter(),request.getType(),component);
 
         if (existingQuery != null) {
             existingQuery.setCount(existingQuery.getCount()+1);
+            searchQueryRepository.save(existingQuery);
         } else {
             SearchQuery searchQuery = new SearchQuery();
             searchQuery.setFilter(request.getFilter());
