@@ -114,4 +114,15 @@ public class Product implements Serializable {
         this.discounted = discounted;
     }
 
+	@Override
+	public String toString() {
+		return "Product{" +
+				"id=" + id +
+				", component=" + component +
+				", shop=" + shop +
+				", currentPrice=" + currentPrice +
+				", productUrl='" + productUrl + '\'' +
+				", discounted=" + discounted +
+				'}';
+	}
 }
