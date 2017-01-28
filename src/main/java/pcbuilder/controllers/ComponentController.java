@@ -74,7 +74,7 @@ public class ComponentController {
      */
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/component/pricehistory", method=RequestMethod.POST)
-    public PriceHistoryResponse getComponentPriceHistory(PriceHistoryRequest priceHistoryRequest) {
+    public PriceHistoryResponse getComponentPriceHistory(@RequestBody PriceHistoryRequest priceHistoryRequest) {
 
         if (priceHistoryRequest.isMin()) {
 
