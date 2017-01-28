@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.*;
+import pcbuilder.controllers.dto.*;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.SearchQuery;
 import pcbuilder.repository.ComponentRepository;

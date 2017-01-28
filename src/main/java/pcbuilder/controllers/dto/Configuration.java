@@ -1,4 +1,4 @@
-package pcbuilder.controllers.transport;
+package pcbuilder.controllers.dto;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

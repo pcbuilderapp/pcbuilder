@@ -1,4 +1,4 @@
-package pcbuilder.controllers.transport;
+package pcbuilder.controllers.dto;
 
 public class SearchQueryRequest {
     private String filter;

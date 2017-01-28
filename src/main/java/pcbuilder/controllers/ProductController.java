@@ -7,10 +7,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.ConnectorData;
-import pcbuilder.controllers.transport.ProductData;
-import pcbuilder.controllers.transport.ProductSearch;
-import pcbuilder.controllers.transport.ProductsResponse;
+import pcbuilder.controllers.dto.ConnectorData;
+import pcbuilder.controllers.dto.ProductData;
+import pcbuilder.controllers.dto.ProductSearch;
+import pcbuilder.controllers.dto.ProductsResponse;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 
