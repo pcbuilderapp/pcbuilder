@@ -10,6 +10,7 @@ public class PriceHistoryRequest {
     private long componentId;
     private Date fromDate;
     private Date toDate;
+    private boolean min;
 
     /**
      *
@@ -57,5 +58,21 @@ public class PriceHistoryRequest {
      */
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public boolean isMin() {
+        return min;
+    }
+
+    /**
+     *
+     * @param min boolean
+     */
+    public void setMin(boolean min) {
+        this.min = min;
     }
 }
