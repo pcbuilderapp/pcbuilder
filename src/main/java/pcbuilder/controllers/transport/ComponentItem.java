@@ -27,7 +27,7 @@ public class ComponentItem {
     private String url;
     private String shop;
     private String image;
-
+    private boolean discounted;
     private List<AlternativeShopItem> alternativeShops;
     private List<Connector> connectors;
 
@@ -53,6 +53,7 @@ public class ComponentItem {
         shop = product.getShop().getName();
         image = component.getPictureUrl();
         alternativeShops = new LinkedList<>();
+        discounted = product.isDiscounted();
 
         for (Product p : alternativeProducts) {
             AlternativeShopItem alternativeShopItem = new AlternativeShopItem(p);
@@ -275,4 +276,23 @@ public class ComponentItem {
     public void setConnectors(List<Connector> connectors) {
         this.connectors = connectors;
     }
+
+    /**
+     * Gets if a product is discounted.
+     *
+     * @return boolean
+     */
+    public boolean isDiscounted() {
+        return discounted;
+    }
+
+    /**
+     * Sets if a product is discounted.
+     *
+     * @param discounted boolean
+     */
+    public void setDiscounted(boolean discounted) {
+        this.discounted = discounted;
+    }
+
 }

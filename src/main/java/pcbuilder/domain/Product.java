@@ -22,6 +22,7 @@ public class Product implements Serializable {
 	@Column(nullable = false)
 	private Float currentPrice;
 	private String productUrl;
+	private boolean discounted;
 
 	/**
 	 * Gets the component.
@@ -94,5 +95,23 @@ public class Product implements Serializable {
 	public void setProductUrl(String productUrl) {
 		this.productUrl = productUrl;
 	}
+
+    /**
+     * Gets if a product is discounted.
+     *
+     * @return boolean
+     */
+    public boolean isDiscounted() {
+        return discounted;
+    }
+
+    /**
+     * Sets if a product is discounted.
+     *
+     * @param discounted boolean
+     */
+    public void setDiscounted(boolean discounted) {
+        this.discounted = discounted;
+    }
 
 }
