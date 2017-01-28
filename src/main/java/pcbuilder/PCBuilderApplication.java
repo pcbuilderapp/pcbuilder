@@ -39,4 +39,14 @@ public class PCBuilderApplication {
                 .paths(PathSelectors.any())
                 .build();
     }
+
+    @Bean
+    public RateLimitInterceptor rateLimitInterceptor() {
+        return new RateLimitInterceptor();
+    }
+
+    @Bean
+    public RateLimitService rateLimitService() {
+        return new RateLimitService();
+    }
 }
