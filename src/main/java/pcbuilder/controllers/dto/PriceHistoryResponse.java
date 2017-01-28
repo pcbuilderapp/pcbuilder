@@ -59,7 +59,7 @@ public class PriceHistoryResponse {
 
     private void calculatePriceFalling() {
         PricePointData first = priceHistory.get(0);
-        PricePointData last = priceHistory.get(priceHistory.size());
+        PricePointData last = priceHistory.get(priceHistory.size()-1);
         if (first.getPrice() > last.getPrice()) {
             setPriceFalling(true);
         } else {
