@@ -6,16 +6,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.dto.*;
-import pcbuilder.domain.CType;
-import pcbuilder.domain.Component;
-import pcbuilder.domain.Connector;
-import pcbuilder.domain.Product;
+import pcbuilder.domain.*;
 import pcbuilder.repository.ComponentRepository;
+import pcbuilder.repository.MinDailyPriceViewRepository;
 import pcbuilder.repository.ProductRepository;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * The Class ComponentItemController.
@@ -23,13 +19,17 @@ import java.util.List;
 @RestController
 public class ComponentItemController {
     
-    /** The component repository. */
+    /** The ComponentRepository. */
     @Autowired
     private ComponentRepository componentRepository;
 
-    /** The product repository. */
+    /** The ProductRepository. */
     @Autowired
     private ProductRepository productRepository;
+
+    /** The MinDailyPriceViewRepository. */
+    @Autowired
+    private MinDailyPriceViewRepository minDailyPriceViewRepository;
 
     /**
      * Gets the matching components.
@@ -114,12 +114,25 @@ public class ComponentItemController {
 
         List<ComponentItem> componentItemList = new LinkedList<>();
 
+        Date toDate = new Date();
+        Calendar c = Calendar.getInstance();
+        c.setTime(toDate);
+        c.add(Calendar.DAY_OF_MONTH, -7);
+        Date fromDate = c.getTime();
+
         for (Component component : components) {
 
+            List<MinDailyPriceView> pricePoints = minDailyPriceViewRepository
+                    .findByComponentIdAndDateBetweenOrderByDate(component.getId(), fromDate, toDate);
             List<Product> products = productRepository.findByComponentOrderByCurrentPriceAsc(component);
 
             if (!products.isEmpty()) {
                 ComponentItem item = new ComponentItem(component, products.get(0), products.subList(1, products.size()));
+                if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
+                    item.setPriceFalling(false);
+                } else {
+                    item.setPriceFalling(true);
+                }
                 componentItemList.add(item);
             }
         }
