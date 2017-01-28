@@ -7,10 +7,6 @@ public class PricePointData {
     private Date date;
     private Double price;
 
-    public PricePointData() {
-        // Empty constructor needed by Spring Boot
-    }
-
     public PricePointData(Date date, Double price) {
         this.date = date;
         this.price = price;
