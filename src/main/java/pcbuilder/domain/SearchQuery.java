@@ -1,17 +1,18 @@
 package pcbuilder.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(uniqueConstraints={
+        @UniqueConstraint(columnNames = {"component_id"})
+})
 public class SearchQuery {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String filter;
     private SearchQueryType type;
+    @OneToOne(cascade = CascadeType.ALL)
     private Component component;
     private Long count;
 
