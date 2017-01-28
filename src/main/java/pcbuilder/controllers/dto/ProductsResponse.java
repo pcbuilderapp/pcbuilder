@@ -1,20 +1,20 @@
-package pcbuilder.controllers.transport;
+package pcbuilder.controllers.dto;
 
-import pcbuilder.domain.SearchQuery;
+import pcbuilder.domain.Product;
 
 import java.util.List;
 
-public class SearchQueryResponse {
-    private List<SearchQuery> searches;
+public class ProductsResponse {
+    private List<Product> products;
     private int page;
     private int pageCount;
 
-    public List<SearchQuery> getSearches() {
-        return searches;
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setSearches(List<SearchQuery> searches) {
-        this.searches = searches;
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public int getPage() {

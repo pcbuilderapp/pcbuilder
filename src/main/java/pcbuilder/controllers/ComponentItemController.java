@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.*;
+import pcbuilder.controllers.dto.*;
 import pcbuilder.domain.CType;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.Connector;

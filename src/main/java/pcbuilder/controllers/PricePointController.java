@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import pcbuilder.controllers.transport.PricePointResponse;
+import pcbuilder.controllers.dto.PricePointResponse;
 import pcbuilder.domain.PricePoint;
 import pcbuilder.repository.ComponentRepository;
 import pcbuilder.repository.PricePointRepository;

@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pcbuilder.controllers.transport.MaxDailyPriceResponse;
-import pcbuilder.controllers.transport.MinDailyPriceResponse;
+import pcbuilder.controllers.dto.MinDailyPriceResponse;
+import pcbuilder.controllers.dto.PriceHistoryResponse;
+import pcbuilder.controllers.dto.PricePointData;
 import pcbuilder.domain.Component;
 import pcbuilder.domain.MaxDailyPriceView;
 import pcbuilder.domain.MinDailyPriceView;
@@ -68,25 +69,33 @@ public class ComponentController {
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/component/getminpricehistory", method=RequestMethod.GET)
-    public MinDailyPriceResponse getComponentMinPriceHistory(long componentId) {
+    public PriceHistoryResponse getComponentMinPriceHistory(long componentId) {
 
-        List<MinDailyPriceView> minDailyPriceViews = minDailyPriceViewRepository.findByComponentIdOrderByDate(componentId);
-
-        MinDailyPriceResponse minDailyPriceResponse = new MinDailyPriceResponse();
-        minDailyPriceResponse.setMinDailyPriceViewList(minDailyPriceViews);
-
-        return minDailyPriceResponse;
+        return priceHistoryResponseFromMinDailyPriceView(minDailyPriceViewRepository.findByComponentIdOrderByDate(componentId));
     }
 
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/component/getmaxpricehistory", method=RequestMethod.GET)
-    public MaxDailyPriceResponse getComponentMaxPriceHistory(long componentId) {
+    public PriceHistoryResponse getComponentMaxPriceHistory(long componentId) {
 
-        List<MaxDailyPriceView> maxDailyPriceViews = maxDailyPriceViewRepository.findByComponentIdOrderByDate(componentId);
+        return priceHistoryResponseFromMaxDailyPriceView(maxDailyPriceViewRepository.findByComponentIdOrderByDate(componentId));
+    }
 
-        MaxDailyPriceResponse maxDailyPriceResponse = new MaxDailyPriceResponse();
-        maxDailyPriceResponse.setMaxDailyPriceViewList(maxDailyPriceViews);
+    private PriceHistoryResponse priceHistoryResponseFromMinDailyPriceView(List<MinDailyPriceView> minDailyPriceViews) {
+        PriceHistoryResponse priceHistoryResponse = new PriceHistoryResponse();
+        for (MinDailyPriceView minDailyPriceView : minDailyPriceViews) {
+            PricePointData pricePointData = new PricePointData(minDailyPriceView.getDate(), minDailyPriceView.getPrice());
+            priceHistoryResponse.addPriceHistory(pricePointData);
+        }
+        return priceHistoryResponse;
+    }
 
-        return maxDailyPriceResponse;
+    private PriceHistoryResponse priceHistoryResponseFromMaxDailyPriceView(List<MaxDailyPriceView> maxDailyPriceViews) {
+        PriceHistoryResponse priceHistoryResponse = new PriceHistoryResponse();
+        for (MaxDailyPriceView maxDailyPriceView : maxDailyPriceViews) {
+            PricePointData pricePointData = new PricePointData(maxDailyPriceView.getDate(), maxDailyPriceView.getPrice());
+            priceHistoryResponse.addPriceHistory(pricePointData);
+        }
+        return priceHistoryResponse;
     }
 }
