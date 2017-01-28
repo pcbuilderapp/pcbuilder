@@ -78,10 +78,9 @@ public class ProductController {
 
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
 
-/*        LOGGER.log(Level.INFO, "Product '" +product.getComponent().getName()+ "' has been added!");*/
-
-        LOGGER.log(Level.INFO, "Product '" +product.toString()+ "' has been added!");
-
+        if (product.isDiscounted()) {
+            LOGGER.log(Level.INFO, "Product " + product.toString());
+        }
         return new ResponseEntity<>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
