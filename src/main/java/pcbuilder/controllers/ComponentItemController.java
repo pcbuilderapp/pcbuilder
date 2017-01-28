@@ -13,6 +13,7 @@ import pcbuilder.domain.Product;
 import pcbuilder.repository.ComponentRepository;
 import pcbuilder.repository.ProductRepository;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -47,21 +48,21 @@ public class ComponentItemController {
         // creating a page request to setup paginated query results
         PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
 
-        Page<Component> components;
         List<Connector> connectors = getConnectors(configuration, request);
 
+        Page<Component> components;
         if (configuration.getMotherboard() != null && request.getType() != CType.MOTHERBOARD) {
             // we hebben een moederbord
             components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(), connectors, pageRequest);
 
-        } else if (connectors.isEmpty() && request.getType() == CType.MOTHERBOARD) {
+        } else if (!connectors.isEmpty() && request.getType() == CType.MOTHERBOARD) {
             // geen moederbord, wel componenten, nu een moederbord aan het kiezen
             components = componentRepository.findByNameContainingAndWithAllConnectorsPaged(request.getFilter(), request.getType(), connectors, (long) connectors.size(), pageRequest);
 
-        } else if (connectors.isEmpty()) {
+        } else if (!connectors.isEmpty()) {
+
             // geen moederbord, wel components, nu niet een moederbord aan het kiezen
-            List<Component> motherboards = componentRepository.findByNameContainingAndWithAllConnectors("", CType.MOTHERBOARD, connectors, (long) connectors.size());
-            // bouw connector lijst op basis van deze moederborden
+            List<Component> motherboards = componentRepository.findByNameContainingAndWithAllConnectors(CType.MOTHERBOARD, connectors, (long) connectors.size());
 
             // geef componenten
             components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(), getMotherboardConnectors(motherboards), pageRequest);
@@ -93,7 +94,7 @@ public class ComponentItemController {
 
     private List<Connector> getMotherboardConnectors(List<Component> motherboards) {
 
-        List<Connector> motherboardConnectors = new LinkedList<>();
+        List<Connector> motherboardConnectors = new ArrayList<>();
 
         for (Component motherboard : motherboards) {
             for (Connector connector : motherboard.getConnectors()) {
@@ -117,7 +118,7 @@ public class ComponentItemController {
 
             List<Product> products = productRepository.findByComponentOrderByCurrentPriceAsc(component);
 
-            if (products.isEmpty()) {
+            if (!products.isEmpty()) {
                 ComponentItem item = new ComponentItem(component, products.get(0), products.subList(1, products.size()));
                 componentItemList.add(item);
             }
