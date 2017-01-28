@@ -28,12 +28,12 @@ public class ComponentItem {
     private String shop;
     private String image;
     private boolean discounted;
+    private boolean priceFalling;
     private List<AlternativeShopItem> alternativeShops;
     private List<Connector> connectors;
 
     /**
      * Instantiates a new component item.
-     *
      * @param component Component
      * @param product Product
      * @param alternativeProducts Iterable
@@ -63,7 +63,6 @@ public class ComponentItem {
 
     /**
      * Gets the id.
-     *
      * @return id
      */
     public Long getId() {
@@ -72,7 +71,6 @@ public class ComponentItem {
 
     /**
      * Sets the id.
-     *
      * @param id Long
      */
     public void setId(Long id) {
@@ -81,7 +79,6 @@ public class ComponentItem {
 
     /**
      * Gets the name.
-     *
      * @return name
      */
     public String getName() {
@@ -90,7 +87,6 @@ public class ComponentItem {
 
     /**
      * Sets the name.
-     *
      * @param name String
      */
     public void setName(String name) {
@@ -99,7 +95,6 @@ public class ComponentItem {
 
     /**
      * Gets the brand.
-     *
      * @return brand
      */
     public String getBrand() {
@@ -108,7 +103,6 @@ public class ComponentItem {
 
     /**
      * Sets the brand.
-     *
      * @param brand String
      */
     public void setBrand(String brand) {
@@ -117,7 +111,6 @@ public class ComponentItem {
 
     /**
      * Gets the european article number.
-     *
      * @return europeanArticleNumber
      */
     public String getEuropeanArticleNumber() {
@@ -126,7 +119,6 @@ public class ComponentItem {
 
     /**
      * Sets the european article number.
-     *
      * @param europeanArticleNumber String
      */
     public void setEuropeanArticleNumber(String europeanArticleNumber) {
@@ -135,7 +127,6 @@ public class ComponentItem {
 
     /**
      * Gets the manufacturer part number.
-     *
      * @return the manufacturer part number
      */
     public String getManufacturerPartNumber() {
@@ -144,7 +135,6 @@ public class ComponentItem {
 
     /**
      * Sets the manufacturer part number.
-     *
      * @param manufacturerPartNumber String
      */
     public void setManufacturerPartNumber(String manufacturerPartNumber) {
@@ -153,7 +143,6 @@ public class ComponentItem {
 
     /**
      * Gets the type.
-     *
      * @return type
      */
     public CType getType() {
@@ -162,7 +151,6 @@ public class ComponentItem {
 
     /**
      * Sets the type.
-     *
      * @param type CType
      */
     public void setType(CType type) {
@@ -171,7 +159,6 @@ public class ComponentItem {
 
     /**
      * Gets the price.
-     *
      * @return Float
      */
     public Float getPrice() {
@@ -180,7 +167,6 @@ public class ComponentItem {
 
     /**
      * Sets the price.
-     *
      * @param price Float
      */
     public void setPrice(Float price) {
@@ -189,7 +175,6 @@ public class ComponentItem {
 
     /**
      * Gets the url.
-     *
      * @return String
      */
     public String getUrl() {
@@ -198,7 +183,6 @@ public class ComponentItem {
 
     /**
      * Sets the url.
-     *
      * @param url String
      */
     public void setUrl(String url) {
@@ -207,7 +191,6 @@ public class ComponentItem {
 
     /**
      * Gets the shop.
-     *
      * @return String
      */
     public String getShop() {
@@ -216,7 +199,6 @@ public class ComponentItem {
 
     /**
      * Sets the shop.
-     *
      * @param shop String
      */
     public void setShop(String shop) {
@@ -225,7 +207,6 @@ public class ComponentItem {
 
     /**
      * Gets the alternative shops.
-     *
      * @return List
      */
     public List<AlternativeShopItem> getAlternativeShops() {
@@ -234,7 +215,6 @@ public class ComponentItem {
 
     /**
      * Sets the alternative shops.
-     *
      * @param alternativeShops List
      */
     public void setAlternativeShops(List<AlternativeShopItem> alternativeShops) {
@@ -243,7 +223,6 @@ public class ComponentItem {
 
     /**
      * Gets the image.
-     *
      * @return String
      */
     public String getImage() {
@@ -252,7 +231,6 @@ public class ComponentItem {
 
     /**
      * Sets the image.
-     *
      * @param image String
      */
     public void setImage(String image) {
@@ -261,7 +239,6 @@ public class ComponentItem {
 
     /**
      * Gets the connectors.
-     *
      * @return List
      */
     public List<Connector> getConnectors() {
@@ -270,7 +247,6 @@ public class ComponentItem {
 
     /**
      * Sets the connectors.
-     *
      * @param connectors List
      */
     public void setConnectors(List<Connector> connectors) {
@@ -279,7 +255,6 @@ public class ComponentItem {
 
     /**
      * Gets if a product is discounted.
-     *
      * @return boolean
      */
     public boolean isDiscounted() {
@@ -288,11 +263,25 @@ public class ComponentItem {
 
     /**
      * Sets if a product is discounted.
-     *
      * @param discounted boolean
      */
     public void setDiscounted(boolean discounted) {
         this.discounted = discounted;
     }
 
+    /**
+     * returns if the price for this component is falling or not
+     * @return boolean
+     */
+    public boolean isPriceFalling() {
+        return priceFalling;
+    }
+
+    /**
+     * sets if the price for this component is falling or not
+     * @param priceFalling boolean
+     */
+    public void setPriceFalling(boolean priceFalling) {
+        this.priceFalling = priceFalling;
+    }
 }
