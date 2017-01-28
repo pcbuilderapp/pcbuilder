@@ -49,6 +49,7 @@ public class SearchQueryController {
             searchQuery.setFilter(request.getFilter());
             searchQuery.setComponent(component);
             searchQuery.setType(request.getType());
+            searchQuery.setCount(Long.valueOf(1));
             searchQueryRepository.save(searchQuery);
         }
     }
