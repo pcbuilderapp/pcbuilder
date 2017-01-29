@@ -34,7 +34,7 @@ public class RateLimitService {
             cache.put(userKey,requestEntry);
         }
 
-        if (requestEntry.count > 100) {
+        if (requestEntry.count > 10000) {
             return true;
         }
 
