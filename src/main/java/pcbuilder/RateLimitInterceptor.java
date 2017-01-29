@@ -27,5 +27,4 @@ public class RateLimitInterceptor extends HandlerInterceptorAdapter {
         }
         return true;
     }
-
 }

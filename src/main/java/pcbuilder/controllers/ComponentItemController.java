@@ -57,12 +57,12 @@ public class ComponentItemController {
 
         } else if (!connectors.isEmpty() && request.getType() == CType.MOTHERBOARD) {
             // geen moederbord, wel componenten, nu een moederbord aan het kiezen
-            components = componentRepository.findByNameContainingAndWithAllConnectorsPaged(request.getFilter(), request.getType(), connectors, (long) connectors.size(), pageRequest);
+            components = componentRepository.findMotherboardByConnectorsIn(request.getFilter(), connectors, pageRequest);
 
         } else if (!connectors.isEmpty()) {
 
             // geen moederbord, wel components, nu niet een moederbord aan het kiezen
-            List<Component> motherboards = componentRepository.findByNameContainingAndWithAllConnectors(CType.MOTHERBOARD, connectors, (long) connectors.size());
+            List<Component> motherboards = componentRepository.findByTypeAndConnectorsIn(CType.MOTHERBOARD, connectors);
 
             // geef componenten
             components = componentRepository.findByNameContainingAndTypeAndConnectorsIn(request.getFilter(), request.getType(), getMotherboardConnectors(motherboards), pageRequest);
@@ -111,7 +111,6 @@ public class ComponentItemController {
 
         ComponentItemResponse componentItemResponse = new ComponentItemResponse();
 
-
         List<ComponentItem> componentItemList = new LinkedList<>();
 
         Date toDate = new Date();
@@ -127,13 +126,9 @@ public class ComponentItemController {
             List<Product> products = productRepository.findByComponentOrderByCurrentPriceAsc(component);
 
             if (!products.isEmpty()) {
+
                 ComponentItem item = new ComponentItem(component, products.get(0), products.subList(1, products.size()));
-                if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
-                    item.setPriceFalling(false);
-                } else {
-                    item.setPriceFalling(true);
-                }
-                componentItemList.add(item);
+                componentItemList.add(setPriceFallingIndicator(pricePoints, item));
             }
         }
 
@@ -157,6 +152,24 @@ public class ComponentItemController {
                     connectors.addAll(componentRepository.getOne(componentRef.getId()).getConnectors());
             }
         }
+
         return connectors;
+    }
+
+    private ComponentItem setPriceFallingIndicator(List<MinDailyPriceView> pricePoints, ComponentItem item) {
+
+        if (!pricePoints.isEmpty()) {
+
+            if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
+                item.setPriceFalling(false);
+            } else {
+                item.setPriceFalling(true);
+            }
+
+        } else {
+            item.setPriceFalling(false);
+        }
+
+        return item;
     }
 }

@@ -35,5 +35,14 @@ public interface ComponentRepository extends JpaRepository<Component, Long> {
             "AND yt IN (:connectors) " +
             "GROUP BY c " +
             "HAVING COUNT(DISTINCT yt) = (:connectorsSize)")
-    List<Component> findByNameContainingAndWithAllConnectors(@Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize);
+    List<Component> findByTypeAndConnectors(@Param("type")CType type, @Param("connectors")Collection<Connector> connectors, @Param("connectorsSize")Long connectorsSize);
+
+    List<Component> findByTypeAndConnectorsIn(@Param("type")CType type, @Param("connectors")Collection<Connector> connectors);
+
+    @Query( "SELECT c FROM Component c INNER JOIN c.connectors yt " +
+            "WHERE c.name LIKE %:name% " +
+            "AND c.type = 'MOTHERBOARD' " +
+            "AND yt IN (:connectors) " +
+            "GROUP BY c ")
+    Page<Component> findMotherboardByConnectorsIn(@Param("name")String name, @Param("connectors")Collection<Connector> connectors, Pageable pageable);
 }
