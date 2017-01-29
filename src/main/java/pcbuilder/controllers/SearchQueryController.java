@@ -3,6 +3,7 @@ package pcbuilder.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.dto.*;
 import pcbuilder.domain.Component;
@@ -21,9 +22,10 @@ public class SearchQueryController {
     @CrossOrigin(origins = "*")
     @RequestMapping(value = "/searches/get", method = RequestMethod.POST)
     public SearchQueryResponse getSearches(@RequestBody SearchQueryRequest request) {
+        Sort sort = createSort(request.getSort());
 
         // creating a page request to setup paginated query results
-        PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue()/*, sort*/);
+        PageRequest pageRequest = new PageRequest(request.getPage().intValue(), request.getMaxItems().intValue(), sort);
 
         Page<SearchQuery> page = searchQueryRepository.findByFilterContaining(request.getFilter(),pageRequest);
 
@@ -54,5 +56,22 @@ public class SearchQueryController {
             searchQuery.setCount(Long.valueOf(1));
             searchQueryRepository.save(searchQuery);
         }
+    }
+
+    private Sort createSort(String sortingColumn) {
+
+        Sort sort;
+
+        if (sortingColumn == null || "".equals(sortingColumn)) {
+            sort = new Sort("count");
+        } else {
+            if (sortingColumn != "component") {
+                sort = new Sort(sortingColumn);
+            } else {
+                sort = new Sort("count");
+            }
+        }
+
+        return sort;
     }
 }
