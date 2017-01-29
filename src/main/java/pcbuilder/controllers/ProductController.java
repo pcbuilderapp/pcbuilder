@@ -88,7 +88,6 @@ public class ProductController {
      *
      * @return List
      */
-
     @CrossOrigin(origins = "*")
     @RequestMapping(value="/product/getall", method=RequestMethod.GET)
     public List<Product> getAllProducts() { return productRepository.findAll(); }
@@ -121,7 +120,12 @@ public class ProductController {
         Component component = componentRepository.findByManufacturerPartNumber(productData.getMpn());
 
         if (component == null && productData.getEan() != null && !"9999999999999".equals(productData.getEan()) && !"".equals(productData.getEan()) ) {
-            component = componentRepository.findByEuropeanArticleNumber(productData.getEan()).get(0);
+
+            List<Component> componentsSearch = componentRepository.findByEuropeanArticleNumber(productData.getEan());
+
+            if (componentsSearch != null && !componentsSearch.isEmpty()) {
+                component = componentsSearch.get(0);
+            }
         }
 
         return component;

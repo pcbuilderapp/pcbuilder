@@ -1,7 +1,5 @@
 package pcbuilder.controllers.dto;
 
-import pcbuilder.domain.PricePoint;
-
 import java.util.ArrayList;
 import java.util.List;
 
