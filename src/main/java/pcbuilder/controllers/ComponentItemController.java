@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import pcbuilder.controllers.dto.*;
 import pcbuilder.domain.*;
 import pcbuilder.repository.ComponentRepository;
-import pcbuilder.repository.MinDailyPriceViewRepository;
 import pcbuilder.repository.ProductRepository;
 
 import java.util.*;
