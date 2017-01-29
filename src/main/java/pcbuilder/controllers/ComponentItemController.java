@@ -74,6 +74,12 @@ public class ComponentItemController {
     private Sort createSort(String sortingColumn) {
 
         Sort sort;
+        Sort.Direction direction;
+        if (true) {
+            direction = Sort.Direction.ASC;
+        } else {
+            direction = Sort.Direction.DESC;
+        }
 
         if (sortingColumn == null || "".equals(sortingColumn)) {
             sort = new Sort("name");
@@ -81,7 +87,7 @@ public class ComponentItemController {
             if ("brand".equals(sortingColumn)) {
                 sort = new Sort(sortingColumn);
             } else {
-                sort = new Sort("name");
+                sort = new Sort(direction, "name");
             }
         }
 

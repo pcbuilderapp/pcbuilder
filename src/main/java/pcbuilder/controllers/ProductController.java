@@ -238,7 +238,7 @@ public class ProductController {
 
         if (!pricePoints.isEmpty()) {
 
-            if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
+            if (pricePoints.get(0).getPrice() >= pricePoints.get(pricePoints.size() - 1).getPrice()) {
                 component.setPriceFalling(false);
             } else {
                 component.setPriceFalling(true);
