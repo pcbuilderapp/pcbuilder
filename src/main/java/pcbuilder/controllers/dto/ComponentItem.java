@@ -47,6 +47,7 @@ public class ComponentItem {
         manufacturerPartNumber = component.getManufacturerPartNumber();
         type = component.getType();
         connectors = component.getConnectors();
+        priceFalling = component.isPriceFalling();
 
         price = product.getCurrentPrice();
         url = product.getProductUrl();

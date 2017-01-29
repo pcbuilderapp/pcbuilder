@@ -27,10 +27,6 @@ public class ComponentItemController {
     @Autowired
     private ProductRepository productRepository;
 
-    /** The MinDailyPriceViewRepository. */
-    @Autowired
-    private MinDailyPriceViewRepository minDailyPriceViewRepository;
-
     /**
      * Gets the matching components.
      *
@@ -113,22 +109,14 @@ public class ComponentItemController {
 
         List<ComponentItem> componentItemList = new LinkedList<>();
 
-        Date toDate = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(toDate);
-        c.add(Calendar.DAY_OF_MONTH, -7);
-        Date fromDate = c.getTime();
-
         for (Component component : components) {
 
-            List<MinDailyPriceView> pricePoints = minDailyPriceViewRepository
-                    .findByComponentIdAndDateBetweenOrderByDate(component.getId(), fromDate, toDate);
             List<Product> products = productRepository.findByComponentOrderByCurrentPriceAsc(component);
 
             if (!products.isEmpty()) {
 
                 ComponentItem item = new ComponentItem(component, products.get(0), products.subList(1, products.size()));
-                componentItemList.add(setPriceFallingIndicator(pricePoints, item));
+                componentItemList.add(item);
             }
         }
 
@@ -154,22 +142,5 @@ public class ComponentItemController {
         }
 
         return connectors;
-    }
-
-    private ComponentItem setPriceFallingIndicator(List<MinDailyPriceView> pricePoints, ComponentItem item) {
-
-        if (!pricePoints.isEmpty()) {
-
-            if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
-                item.setPriceFalling(false);
-            } else {
-                item.setPriceFalling(true);
-            }
-
-        } else {
-            item.setPriceFalling(false);
-        }
-
-        return item;
     }
 }

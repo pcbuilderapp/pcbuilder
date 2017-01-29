@@ -33,6 +33,8 @@ public class Component implements Serializable{
 
 	private String pictureUrl;
 
+	private boolean priceFalling;
+
 	public Component(){
         //needs to be empty for SpringBoot
     }
@@ -123,5 +125,13 @@ public class Component implements Serializable{
 
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
+	}
+
+	public boolean isPriceFalling() {
+		return priceFalling;
+	}
+
+	public void setPriceFalling(boolean priceFalling) {
+		this.priceFalling = priceFalling;
 	}
 }

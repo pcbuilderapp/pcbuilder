@@ -14,6 +14,7 @@ import pcbuilder.controllers.dto.ProductsResponse;
 import pcbuilder.domain.*;
 import pcbuilder.repository.*;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -29,14 +30,22 @@ public class ProductController {
 
     @Autowired
     private ProductRepository productRepository;
+
     @Autowired
     private ComponentRepository componentRepository;
+
     @Autowired
     private ShopRepository shopRepository;
+
     @Autowired
     private PricePointRepository pricePointRepository;
+
     @Autowired
     private ConnectorRepository connectorRepository;
+
+    /** The MinDailyPriceViewRepository. */
+    @Autowired
+    private MinDailyPriceViewRepository minDailyPriceViewRepository;
 
     /**
      * Adds the products.
@@ -139,6 +148,7 @@ public class ProductController {
      * @return Product
      */
     private Product persistProduct(ProductData productData, Product persistProduct) {
+
         Product product = persistProduct;
         Product searchProduct = productRepository.findByComponentAndShop(product.getComponent(), product.getShop());
 
@@ -192,7 +202,7 @@ public class ProductController {
             }
         }
 
-        return componentRepository.save(component);
+        return componentRepository.save(setPriceFallingIndicator(component));
     }
 
     /**
@@ -211,5 +221,33 @@ public class ProductController {
         }
 
         return connector;
+    }
+
+    private Component setPriceFallingIndicator(Component component) {
+
+        Date toDate = new Date();
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(toDate);
+        c.add(Calendar.DAY_OF_MONTH, -7);
+
+        Date fromDate = c.getTime();
+
+        List<MinDailyPriceView> pricePoints = minDailyPriceViewRepository
+                .findByComponentIdAndDateBetweenOrderByDate(component.getId(), fromDate, toDate);
+
+        if (!pricePoints.isEmpty()) {
+
+            if (pricePoints.get(0).getPrice() > pricePoints.get(pricePoints.size() - 1).getPrice()) {
+                component.setPriceFalling(false);
+            } else {
+                component.setPriceFalling(true);
+            }
+
+        } else {
+            component.setPriceFalling(false);
+        }
+
+        return component;
     }
 }
