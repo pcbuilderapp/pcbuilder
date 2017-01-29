@@ -14,6 +14,7 @@ import java.util.*;
 public class RateLimitService {
     private Map<String,RequestEntry> cache = new HashMap<>();
     private Calendar calendar = Calendar.getInstance();
+    static final int MAX_REQUEST_COUNT = 6000;
 
     /**
      * Cronjob for pruning the request count cache.
@@ -50,7 +51,7 @@ public class RateLimitService {
             cache.put(userKey,requestEntry);
         }
 
-        if (requestEntry.count > 600) {
+        if (requestEntry.count > MAX_REQUEST_COUNT) {
             return true;
         }
 
