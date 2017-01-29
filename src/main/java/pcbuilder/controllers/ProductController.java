@@ -79,8 +79,11 @@ public class ProductController {
         pricePointRepository.save(new PricePoint(product, new Date(), productData.getPrice()));
 
         if (product.isDiscounted()) {
-            LOGGER.log(Level.INFO, "Product " + product.toString());
+            LOGGER.log(Level.INFO, "Product '" + product.toString() + "' has been added!");
+        } else {
+            LOGGER.log(Level.INFO, "Product '" +product.getComponent().getName()+ "' has been added!");
         }
+
         return new ResponseEntity<>("Product '" +product.getComponent().getName()+ "' has been added!", HttpStatus.CREATED);
     }
 
@@ -143,11 +146,13 @@ public class ProductController {
 
             product.setCurrentPrice(productData.getPrice());
             product.setProductUrl(productData.getUrl());
+            product.setDiscounted(productData.isDiscounted());
 
         } else {
 
             product = searchProduct;
             product.setCurrentPrice(productData.getPrice());
+            product.setDiscounted(productData.isDiscounted());
 
         }
 
