@@ -229,7 +229,7 @@ public class ProductController {
 
         Calendar c = Calendar.getInstance();
         c.setTime(toDate);
-        c.add(Calendar.DAY_OF_MONTH, -7);
+        c.add(Calendar.DAY_OF_MONTH, -14);
 
         Date fromDate = c.getTime();
 
