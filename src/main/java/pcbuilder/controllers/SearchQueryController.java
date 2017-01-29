@@ -59,16 +59,24 @@ public class SearchQueryController {
     }
 
     private Sort createSort(String sortingColumn) {
+        boolean asc = !sortingColumn.startsWith("!");
 
         Sort sort;
+        Sort.Direction direction;
+        if (asc) {
+            direction = Sort.Direction.ASC;
+        } else {
+            sortingColumn = sortingColumn.substring(1);
+            direction = Sort.Direction.DESC;
+        }
 
         if (sortingColumn == null || "".equals(sortingColumn)) {
-            sort = new Sort("count");
+            sort = new Sort(Sort.Direction.DESC,"count");
         } else {
             if (sortingColumn != "component") {
-                sort = new Sort(sortingColumn);
+                sort = new Sort(direction,sortingColumn);
             } else {
-                sort = new Sort("count");
+                sort = new Sort(direction,"count");
             }
         }
 
