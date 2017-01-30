@@ -59,6 +59,9 @@ public class SearchQueryController {
     }
 
     private Sort createSort(String sortingColumn) {
+        if (sortingColumn == null) {
+            return new Sort(Sort.Direction.DESC,"count");
+        }
         boolean asc = !sortingColumn.startsWith("!");
 
         Sort sort;
@@ -70,7 +73,7 @@ public class SearchQueryController {
             direction = Sort.Direction.DESC;
         }
 
-        if (sortingColumn == null || "".equals(sortingColumn)) {
+        if ("".equals(sortingColumn)) {
             sort = new Sort(Sort.Direction.DESC,"count");
         } else {
             if (sortingColumn != "component") {
