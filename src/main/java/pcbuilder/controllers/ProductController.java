@@ -225,27 +225,30 @@ public class ProductController {
 
     private Component setPriceFallingIndicator(Component component) {
 
-        Date toDate = new Date();
+        if (component != null && component.getId() != null) {
 
-        Calendar c = Calendar.getInstance();
-        c.setTime(toDate);
-        c.add(Calendar.DAY_OF_MONTH, -14);
+            Date toDate = new Date();
 
-        Date fromDate = c.getTime();
+            Calendar c = Calendar.getInstance();
+            c.setTime(toDate);
+            c.add(Calendar.DAY_OF_MONTH, -14);
 
-        List<MinDailyPriceView> pricePoints = minDailyPriceViewRepository
-                .findByComponentIdAndDateBetweenOrderByDate(component.getId(), fromDate, toDate);
+            Date fromDate = c.getTime();
 
-        if (!pricePoints.isEmpty()) {
+            List<MinDailyPriceView> pricePoints = minDailyPriceViewRepository
+                    .findByComponentIdAndDateBetweenOrderByDate(component.getId(), fromDate, toDate);
 
-            if (pricePoints.get(0).getPrice() <= pricePoints.get(pricePoints.size() - 1).getPrice()) {
-                component.setPriceFalling(false);
+            if (!pricePoints.isEmpty()) {
+
+                if (pricePoints.get(0).getPrice() <= pricePoints.get(pricePoints.size() - 1).getPrice()) {
+                    component.setPriceFalling(false);
+                } else {
+                    component.setPriceFalling(true);
+                }
+
             } else {
-                component.setPriceFalling(true);
+                component.setPriceFalling(false);
             }
-
-        } else {
-            component.setPriceFalling(false);
         }
 
         return component;

@@ -25,12 +25,12 @@ public class RateLimitInterceptor extends HandlerInterceptorAdapter {
     private RateLimitService rateLimitService;
 
     RateLimitInterceptor() {
-        crawler = InetAddress.getLoopbackAddress();
+/*        crawler = InetAddress.getLoopbackAddress();
         try {
             crawler = InetAddress.getByName("crawler");
         } catch (UnknownHostException e) {
             LOGGER.log(Level.SEVERE, "Couldn't get crawler address.",e);
-        }
+        }*/
     }
 
 
